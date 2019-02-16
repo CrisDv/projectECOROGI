@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="FBColor">#3B5998</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Gris">#ACACAC</color>
+    <color name="Unknow">#00000000</color>
+    <color name="Vinotino">#540800</color>
+    <color name="nel">#E1DFDF</color>
+</resources>

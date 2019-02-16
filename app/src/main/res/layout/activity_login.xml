@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/portada"
+
+    tools:context=".Login">
+
+    <Button
+        android:id="@+id/FBottom"
+        android:layout_width="226dp"
+        android:layout_height="40dp"
+        android:background="@drawable/campo_bordeado"
+        android:backgroundTint="@color/FBColor"
+        android:text="@string/InsFB"
+        android:textColor="@color/White"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568" />
+
+    <Button
+        android:id="@+id/GSing"
+        android:layout_width="226dp"
+        android:layout_height="40dp"
+        android:background="@drawable/campo_bordeado"
+        android:backgroundTint="@color/Gris"
+        android:text="@string/InsGG"
+        android:textColor="@color/White"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.691" />
+
+    <ImageView
+        android:id="@+id/IconLc"
+        android:layout_width="236dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/imagen1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328"
+        app:srcCompat="@drawable/ecologo" />
+
+
+</android.support.constraint.ConstraintLayout>

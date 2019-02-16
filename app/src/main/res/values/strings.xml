@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ECO</string>
+    <string name="Inicio1">Correo Electronico</string>
+    <string name="Inicio2">Registrar</string>
+    <string name="title_activity_navegacion_l">NavegacionL</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="InsFB">INGRESAR CON FACEBOOK</string>
+    <string name="reg">Registrar</string>
+
+    <string name="InsGG">INGRESAR CON GOOGLE</string>
+    <string name="imagen1">appicon</string>
+    <string name="title_activity_registro">register</string>
+    <string name="cancels">Cerrar Sesion</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

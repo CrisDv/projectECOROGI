@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "482519195414",
+    "firebase_url": "https://ecoapp-es.firebaseio.com",
+    "project_id": "ecoapp-es",
+    "storage_bucket": "ecoapp-es.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482519195414:android:4bc3555a6ec8c095",
+        "android_client_info": {
+          "package_name": "com.fraint.eco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482519195414-l14hl1rqnvtfjqrigcf2ejjrk92558i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fraint.eco",
+            "certificate_hash": "0b4dbf6fcfcfe5d0ce186c7d17c30394093f8df5"
+          }
+        },
+        {
+          "client_id": "482519195414-3fbts594os2n96pdi3mm39itieuvbm0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp3hdpWtgi2Lv2ZM7eCUpHiDOEdXFZL38"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482519195414-3fbts594os2n96pdi3mm39itieuvbm0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

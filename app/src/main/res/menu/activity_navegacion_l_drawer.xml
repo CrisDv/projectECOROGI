@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/M_eco"
+
+            android:title="Mundo Eco" />
+        <item
+            android:id="@+id/request"
+
+            android:title="Mis Pedidos" />
+        <item
+            android:id="@+id/gramos"
+
+            android:title="Gramos Acumulados" />
+        <item
+            android:id="@+id/nav_manage"
+
+            android:title="next" />
+    </group>
+
+
+    <item
+        android:id="@+id/cerrar"
+        android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/nav_otro_item"
+                android:title="@string/cancels" />
+
+        </menu>
+    </item>
+
+</menu>
