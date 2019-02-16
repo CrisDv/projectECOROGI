@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FragECO extends Fragment {
+public class FragECO extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -18,15 +18,19 @@ public class FragECO extends Fragment {
         View view;
         view = inflater.inflate(R.layout.fragment_frag_eco, container, false);
 
-        Button direccion = (Button) view.findViewById(R.id.street);
+        /*Button direccion = (Button) view.findViewById(R.id.street);
         direccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ConfirmacionMAPS.class);
                 getActivity().startActivity(intent);
             }
-        });
+        });*/
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

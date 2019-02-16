@@ -29,6 +29,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
@@ -68,9 +69,17 @@ public class NavegacionL extends AppCompatActivity
 
         //------------------------------------------------------------------------------------------
 
+        Button boton =(Button)findViewById(R.id.street);
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ConfirmacionMAPS.class);// clase cuando inicie sesion
+                startActivityForResult(intent, 0);
+            }
+        });
         //------------------------------------------------------------------------------------------
-        FragmentManager manager =getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.container, new FragECO()).commit();
+        /*FragmentManager manager =getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, new FragECO()).commit();*/
     }
 
     @Override
@@ -110,16 +119,21 @@ public class NavegacionL extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         FragmentManager manager = getSupportFragmentManager();
-        int id = item.getItemId();
+        //int id = item.getItemId();
+        switch (item.getItemId())
+        {
+            case R.id.M_eco:
+                //manager.beginTransaction().replace(R.id.containter, new FragECO()).commit();
+                break;
+            case R.id.request:
+               // manager.beginTransaction().replace(R.id.containter, new FragPedido()).commit();
+                break;
+            case R.id.gramos:
 
-        if (id == R.id.M_eco) {
-            manager.beginTransaction().replace(R.id.containter, new FragECO()).commit();
-        } else if (id == R.id.request) {
-            manager.beginTransaction().replace(R.id.containter, new FragPedido()).commit();
-        } else if (id == R.id.gramos) {
+                break;
+            case R.id.nav_manage:
 
-        } else if (id == R.id.nav_manage) {
-
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

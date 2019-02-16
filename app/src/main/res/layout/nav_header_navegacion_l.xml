@@ -18,34 +18,27 @@
         android:id="@+id/namae"
         android:layout_width="149dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/PhotoPf"
         android:layout_width="131dp"
         android:layout_height="93dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/namae"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.789" />
 
    <!--<ImageView
         android:id="@+id/PhotoPf"
