@@ -30,6 +30,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthRegistrar;
 
 import org.w3c.dom.Text;
 
@@ -69,17 +70,17 @@ public class NavegacionL extends AppCompatActivity
 
         //------------------------------------------------------------------------------------------
 
-        Button boton =(Button)findViewById(R.id.street);
+       /* Button boton =(Button)findViewById(R.id.street);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ConfirmacionMAPS.class);// clase cuando inicie sesion
                 startActivityForResult(intent, 0);
             }
-        });
+        });*/
         //------------------------------------------------------------------------------------------
-        /*FragmentManager manager =getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.container, new FragECO()).commit();*/
+        FragmentManager manager =getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
     }
 
     @Override
@@ -123,10 +124,10 @@ public class NavegacionL extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.M_eco:
-                //manager.beginTransaction().replace(R.id.containter, new FragECO()).commit();
+                manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
                 break;
             case R.id.request:
-               // manager.beginTransaction().replace(R.id.containter, new FragPedido()).commit();
+               manager.beginTransaction().replace(R.id.fragment_container, new FragPedido()).commit();
                 break;
             case R.id.gramos:
 
@@ -181,5 +182,7 @@ public class NavegacionL extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+        FragmentManager manager =getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
     }
 }

@@ -18,14 +18,14 @@ public class FragECO extends Fragment implements View.OnClickListener{
         View view;
         view = inflater.inflate(R.layout.fragment_frag_eco, container, false);
 
-        /*Button direccion = (Button) view.findViewById(R.id.street);
+        Button direccion = (Button) view.findViewById(R.id.street);
         direccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ConfirmacionMAPS.class);
                 getActivity().startActivity(intent);
             }
-        });*/
+        });
         return view;
     }
 
