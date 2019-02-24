@@ -7,41 +7,36 @@
     tools:context=".FragECO">
 
 
-    <Button
-        android:id="@+id/street"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#DDDEAD"
-        android:text="@string/direccion"
-        android:textColor="#000"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001" />
+
 
     <ScrollView
         android:id="@+id/scroll1"
         android:layout_width="match_parent"
-        android:layout_height="654dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/street"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:backgroundTint="#DDDEAD"
+                android:text="@string/direccion"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
             <ScrollView
                 android:layout_width="match_parent"
-
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="16dp">
 
                 <HorizontalScrollView
@@ -53,37 +48,63 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <LinearLayout
+                            android:background="@color/White"
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/White" />
-
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="80dp"
+                                android:layout_width="80dp"
+                                />
+                        </LinearLayout>
                         <Button
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/White" />
-
-                        <Button
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/White" />
-
-                        <Button
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/White" />
-
-                        <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="6dp"
                             android:layout_height="180dp"
                             android:backgroundTint="@color/Unknow" />
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/White"/>
+                        </LinearLayout>
+                        <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/White"/>
+                        </LinearLayout>
+                        <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/White"/>
+                        </LinearLayout>
+                        <Button
+                            android:layout_width="2dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
                     </LinearLayout>
                 </HorizontalScrollView>
             </ScrollView>
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="50dp">
 
                 <HorizontalScrollView
@@ -95,28 +116,59 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/Vinotino" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/Vinotino"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/Vinotino" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/Vinotino"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/Vinotino" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/Vinotino"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/Vinotino" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/Vinotino"/>
+                        </LinearLayout>
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="1dp"
                             android:layout_height="180dp"
                             android:backgroundTint="@color/Unknow" />
                     </LinearLayout>
@@ -125,7 +177,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="50dp">
 
                 <HorizontalScrollView
@@ -137,28 +189,101 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/colorPrimaryDark" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/colorPrimaryDark" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/colorPrimaryDark" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/colorPrimaryDark" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"/>
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="2dp"
                             android:layout_height="180dp"
                             android:backgroundTint="@color/Unknow" />
                     </LinearLayout>
@@ -167,7 +292,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="50dp">
 
                 <HorizontalScrollView
@@ -179,28 +304,59 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/FBColor" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/FBColor"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/FBColor" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/FBColor"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/FBColor" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/FBColor"/>
+                        </LinearLayout>
 
                         <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:backgroundTint="@color/FBColor" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:background="@color/FBColor"/>
+                        </LinearLayout>
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="2dp"
                             android:layout_height="180dp"
                             android:backgroundTint="@color/Unknow" />
                     </LinearLayout>

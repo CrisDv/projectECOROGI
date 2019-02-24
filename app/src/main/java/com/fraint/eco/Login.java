@@ -42,8 +42,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         FBsesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), NavegacionL.class);// clase cuando inicie sesion
-                startActivityForResult(intent, 0);
+               // Intent intent = new Intent(v.getContext(), NavegacionL.class);// clase cuando inicie sesion
+                //startActivityForResult(intent, 0);
 
             }
         });
