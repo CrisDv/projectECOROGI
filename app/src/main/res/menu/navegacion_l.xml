@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/carritoshop"
-        android:icon="@drawable/ic_dcshop"
+        android:icon="@drawable/ic_bolsitashop"
         android:orderInCategory="2"
         app:showAsAction="ifRoom"
         android:title="Carrito" />

@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,6 +44,7 @@ public class NavegacionL extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
 
         GoogleSignInOptions GSO = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)//Opciones para autenticar
                 .requestEmail()//Opcion del correo
@@ -101,7 +103,7 @@ public class NavegacionL extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.carritoshop) {
-
+            startActivity (new Intent (this, Carrito.class));
             return true;
         }
 
