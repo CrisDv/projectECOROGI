@@ -26,6 +26,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavegacionL extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -75,6 +76,7 @@ public class NavegacionL extends AppCompatActivity
         //------------------------------------------------------------------------------------------
         FragmentManager manager =getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
+
     }
 
     @Override
@@ -103,6 +105,7 @@ public class NavegacionL extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.carritoshop) {
+            //carrito de compras
             startActivity (new Intent (this, Carrito.class));
             return true;
         }
