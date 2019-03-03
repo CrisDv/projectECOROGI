@@ -50,6 +50,30 @@
                             android:background="@color/White">
 
                             <ImageView
+
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:text="@string/app_name"
+                                android:textColor="@color/FBColor" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="6dp"
+                            android:layout_height="180dp"
+                            android:backgroundTint="@color/Unknow" />
+
+                        <LinearLayout
+                            android:layout_width="180dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/White">
+
+                            <ImageView
                                 android:layout_width="80dp"
                                 android:layout_height="80dp" />
                         </LinearLayout>
@@ -61,12 +85,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/White">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/White" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -76,27 +100,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/White">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/White" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/White" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -124,12 +133,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/Vinotino">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/Vinotino" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -139,12 +148,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/Vinotino">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/Vinotino" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -154,12 +163,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/Vinotino">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/Vinotino" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -169,12 +178,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/Vinotino">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/Vinotino" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -201,12 +210,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -216,12 +225,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -231,12 +240,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -246,12 +255,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -261,12 +270,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -276,12 +285,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -291,12 +300,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimaryDark">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimaryDark" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -323,12 +332,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/FBColor">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/FBColor" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -338,12 +347,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/FBColor">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/FBColor" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -353,12 +362,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/FBColor">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/FBColor" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
@@ -368,12 +377,12 @@
 
                         <LinearLayout
                             android:layout_width="180dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@color/FBColor">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/FBColor" />
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
                         </LinearLayout>
 
                         <Button
