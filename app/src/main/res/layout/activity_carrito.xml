@@ -7,62 +7,24 @@
     android:theme="@style/ThemeFull"
     tools:context=".Carrito">
 
-    <ScrollView
-        android:layout_width="395dp"
-        android:layout_height="715dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
+    <Button
+        android:id="@+id/confirmarcompra"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/productos"
+        android:layout_width="match_parent"
+        android:layout_height="668dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirmarcompra"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="10dp"
-    android:backgroundTint="@color/Unknow"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/M_eco"
-
             android:title="Mundo Eco" />
         <item
             android:id="@+id/request"
@@ -24,6 +24,7 @@
     </group>
 
 
+
     <item
         android:id="@+id/cerrar"
         android:title="">
@@ -31,7 +32,9 @@
 
             <item
                 android:id="@+id/nav_otro_item"
-                android:title="@string/cancels" />
+                android:title="@string/cancels"
+                app:showAsAction="always"
+                />
 
         </menu>
     </item>

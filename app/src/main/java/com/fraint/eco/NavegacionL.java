@@ -1,5 +1,6 @@
 package com.fraint.eco;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +11,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
@@ -27,11 +31,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class NavegacionL extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
-    private GoogleApiClient Googleapiclient;
+    private GoogleApiClient Googleapiclient;//API para autenticar inicio con Google (intermediario)
+    private com.google.firebase.auth.FirebaseAuth FirebaseAuth;
+    private FirebaseAuth.AuthStateListener AuthListener;
+    private static final String TAG = "NavegationL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +82,28 @@ public class NavegacionL extends AppCompatActivity
             }
         });*/
         //------------------------------------------------------------------------------------------
+        initialize();
         FragmentManager manager =getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
 
+    }
+
+
+    private void initialize() {
+
+        FirebaseAuth = FirebaseAuth.getInstance();
+        AuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getUid());
+                    Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getEmail());
+                } else {
+                    Log.w(TAG, "onAuthStateChanged - signed_out");
+                }
+            }
+        };
     }
 
     @Override
@@ -98,19 +125,34 @@ public class NavegacionL extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.carritoshop) {
+        int id = item.getItemId();
+       /* if (id == R.id.carritoshop) {
             //carrito de compras
             startActivity (new Intent (this, Carrito.class));
             return true;
         }
 
+       */FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction =getFragmentManager().beginTransaction();
+       switch (item.getItemId())
+       {
+           case R.id.carritoshop:
+               manager.beginTransaction().replace(R.id.fragment_container, new Carrito()).commit();
+           break;
+
+       }
         return super.onOptionsItemSelected(item);
+    }
+
+   @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+// Esto es lo que hace mi botón al pulsar ir a atrás
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

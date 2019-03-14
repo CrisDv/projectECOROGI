@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -29,368 +29,140 @@
                 android:text="@string/direccion"
                 android:textColor="@color/Vinotino"
                 android:textSize="15sp" />
-
+            
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="16dp">
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
 
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/White">
-
-                            <ImageView
-
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:text="@string/app_name"
-                                android:textColor="@color/FBColor" />
-
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/White">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/White">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/White">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="2dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </ScrollView>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="50dp">
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Vinotino">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Vinotino">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Vinotino">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Vinotino">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="1dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </ScrollView>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="50dp">
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/share_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:background="@color/White" />
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
+                    <ImageView
+                        android:id="@+id/categoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@color/White"
+                        android:layout_marginTop="5dp"
+                        android:scaleType="centerCrop" />
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
 
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
+                    <ImageView
+                        android:id="@+id/categoria2"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/White"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/categoria3"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/White"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
+                    <ImageView
+                        android:id="@+id/categoria4"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/White"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/categoria5"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/White"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
+                    <ImageView
+                        android:id="@+id/categoria6"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/White"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="2dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </ScrollView>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="50dp">
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                </LinearLayout>
+                <!-- Right side spacer -->
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/FBColor">
+                        <ImageView
+                            android:id="@+id/categoria7"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:background="@color/White"/>
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/categoria8"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"/>
 
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/FBColor">
+                        <ImageView
+                            android:id="@+id/categoria9"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"/>
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/categoria10"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"/>
 
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
+                        <ImageView
+                            android:id="@+id/categoria11"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"/>
 
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/FBColor">
+                        <ImageView
+                            android:id="@+id/categoria12"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"/>
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="6dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/FBColor">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp" />
-                        </LinearLayout>
-
-                        <Button
-                            android:layout_width="2dp"
-                            android:layout_height="180dp"
-                            android:backgroundTint="@color/Unknow" />
                     </LinearLayout>
-                </HorizontalScrollView>
+                </LinearLayout>
             </ScrollView>
         </LinearLayout>
     </ScrollView>

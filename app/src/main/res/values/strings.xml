@@ -20,5 +20,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="checkadress">Confirmar</string>
     <string name="direccion">DIRECCION</string>
+    <string name="p_kilo">P.KILO</string>
+    <string name="precio">Precio</string>
+
 
 </resources>

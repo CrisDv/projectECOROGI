@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -36,6 +38,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -86,6 +90,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 }
             }
         };
+
     }
 
     private void HandleSignInGoogleFireb(GoogleSignInResult resultado)
@@ -112,7 +117,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         }
         else
         {
-            Toast.makeText(Login.this, "Sign In Unsuccess", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Autenticacion no exitosa", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -146,6 +151,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     }
 
 
+    private void sesion ()
+    {
+
+    }
     //Hasta aqui todo bien :'v
 
    /*private void handleSingnInResult(GoogleSignInResult resultado) {
