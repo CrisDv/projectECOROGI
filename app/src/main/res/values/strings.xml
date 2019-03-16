@@ -22,6 +22,7 @@
     <string name="direccion">DIRECCION</string>
     <string name="p_kilo">P.KILO</string>
     <string name="precio">Precio</string>
+    <string name="title_activity_bolsa">Bolsa</string>
 
 
 </resources>

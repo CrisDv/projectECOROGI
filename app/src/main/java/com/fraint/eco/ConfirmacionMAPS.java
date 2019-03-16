@@ -2,17 +2,23 @@ package com.fraint.eco;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -21,6 +27,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -32,8 +39,9 @@ public class ConfirmacionMAPS extends AppCompatActivity implements OnMapReadyCal
     Location mLastLocation = null;
     boolean cambiar = true;
     LatLng latLng = null;
+    private ImageButton ubica;
 
-
+    private LocationManager locationManager;
     private Marker punto1;
     private double Lat = 0.0;
     private double Long = 0.0;
@@ -46,20 +54,34 @@ public class ConfirmacionMAPS extends AppCompatActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+       // checkLocation();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
+
+        LatLng ln = new LatLng(4.526122, -74.122436);
+        mMap.addMarker(new MarkerOptions().position(ln));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ln));
+        LatLng coordinate = new LatLng(4.526122, -74.122436); //Store these lat lng values somewhere. These should be constant.
+        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
+                coordinate, 15);
+        mMap.animateCamera(location);
+
     }
+
     @Override
     public void onLocationChanged(Location location) {
+
 
     }
 

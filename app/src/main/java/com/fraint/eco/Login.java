@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -103,7 +104,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-                        Toast.makeText(Login.this, "Autenticando Con Google", Toast.LENGTH_SHORT).show();
+
+                        //Toast.makeText(Login.this, "Autenticando Con Google", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, NavegacionL.class);
                         startActivity(intent);
                         // finish();
@@ -119,12 +121,19 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         {
             Toast.makeText(Login.this, "Autenticacion no exitosa", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseAuth.addAuthStateListener(AuthListener);
+        AuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull com.google.firebase.auth.FirebaseAuth firebaseAuth) {
+                FirebaseAuth.addAuthStateListener(AuthListener);
+            }
+        };
+
     }
 
     @Override
@@ -149,13 +158,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             HandleSignInGoogleFireb(resultado);
         }
     }
-
-
-    private void sesion ()
-    {
-
-    }
-    //Hasta aqui todo bien :'v
 
    /*private void handleSingnInResult(GoogleSignInResult resultado) {
 

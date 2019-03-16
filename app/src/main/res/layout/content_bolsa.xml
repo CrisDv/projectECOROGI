@@ -2,14 +2,16 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/White"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Bolsa"
+    tools:showIn="@layout/activity_bolsa">
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,33 +35,35 @@
                 android:id="@+id/Nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/Vinotino"
                 android:layout_marginTop="10dp"
                 android:text="Producto"
+                android:textColor="@color/Vinotino"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/VGramo"
-                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="Valor Por Gramo " />
+                android:text="Valor Por Gramo "
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
             <TextView
-                android:textColor="@color/FBColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VALOR TOTAL"/>
+                android:text="VALOR TOTAL"
+                android:textSize="25dp"
+                android:textColor="@color/FBColor" />
         </LinearLayout>
     </LinearLayout>
 

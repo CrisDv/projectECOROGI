@@ -47,6 +47,7 @@ public class NavegacionL extends AppCompatActivity
         setContentView(R.layout.activity_navegacion_l);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -138,12 +139,17 @@ public class NavegacionL extends AppCompatActivity
        switch (item.getItemId())
        {
            case R.id.carritoshop:
-               manager.beginTransaction().replace(R.id.fragment_container, new Carrito()).commit();
+               Intent intent = new Intent(this, Bolsa.class);// clase cuando inicie sesion
+               startActivity(intent);
+
            break;
 
        }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -178,6 +184,8 @@ public class NavegacionL extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+
         return true;
     }
 

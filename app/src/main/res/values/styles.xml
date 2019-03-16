@@ -11,17 +11,16 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="actividades" parent="Base.ThemeOverlay.AppCompat.Dark">
-        <item name="colorPrimary">@color/colorPrimary</item>
+    <style name="actividades">
         <item name="colorPrimaryDark">@android:color/holo_orange_light</item> <!--Color naranja-->
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.Transparent" parent="android:Theme">
@@ -51,5 +50,14 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
 
     </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
