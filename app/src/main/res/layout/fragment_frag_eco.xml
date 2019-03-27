@@ -50,13 +50,13 @@
                         android:id="@+id/share_button"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/White" />
+                        android:background="@drawable/ofertas" />
 
                     <ImageView
                         android:id="@+id/categoria"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:background="@color/White"
+                        android:background="@drawable/granos"
                         android:layout_marginTop="5dp"
                         android:scaleType="centerCrop" />
 

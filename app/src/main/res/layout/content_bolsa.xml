@@ -10,8 +10,13 @@
         android:background="#80b2b2b2"
         android:layout_width="match_parent"
         android:layout_height="0.5dp" />
+    <Button
+        android:id="@+id/pago"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="PAGAR"/>
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -193,5 +198,5 @@
                     android:layout_centerVertical="true" />
             </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
+    </RelativeLayout>-->
 </LinearLayout>

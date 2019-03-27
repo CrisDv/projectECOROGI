@@ -3,6 +3,7 @@ package com.fraint.eco;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -147,19 +148,7 @@ public class NavegacionL extends AppCompatActivity
        }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-   @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-// Esto es lo que hace mi botón al pulsar ir a atrás
-
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+    
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
