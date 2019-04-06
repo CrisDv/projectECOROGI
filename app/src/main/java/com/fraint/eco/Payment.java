@@ -36,16 +36,10 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         Button orden = (Button)findViewById(R.id.order);
-        orden.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GenerarPago();
-            }
-        });
-        configpaypal();
+
     }
 
-    private void configpaypal()
+  /*  private void configpaypal()
     {
         config= new PayPalConfiguration().environment(CONFIG_ENV).clientId(PAYKEY).merchantName("Paypal Login");
     }
@@ -108,5 +102,5 @@ public class Payment extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 }

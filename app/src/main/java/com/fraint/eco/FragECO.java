@@ -5,8 +5,11 @@ import android.app.LauncherActivity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +19,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.actions.ItemListIntents;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class FragECO extends Fragment implements View.OnClickListener{
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +44,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
             }
         });
 
+        ImageView imgo =(ImageView)view.findViewById(R.id.ofertas);
         carga(view);
         return view;
     }
@@ -47,24 +56,13 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
     private void carga(View v)
     {
-        ImageView cat=(ImageView)v.findViewById(R.id.categoria12);
-        Glide.with(this).load("http://ak8.picdn.net/shutterstock/videos/27542833/thumb/10.jpg").into(cat);
-        cat.setOnClickListener(new View.OnClickListener() {
+        StorageReference mStorageImage=FirebaseStorage.getInstance().getReference().child("Categorias").child("2-Granos.png");
+        mStorageImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Productos.class);
-                getActivity().startActivity(intent);
+            public void onSuccess(Uri uri) {
+               // Glide.with(v).load(account.getPhotoUrl()).into(perfil);
             }
         });
-        //FIREBASE STORAGE
-        ImageView huevos = (ImageView)v.findViewById(R.id.categoria2);
     }
 
-    private void DataBaseIMG()
-    {
-        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
-        referencia.child("Artist").child("continuacion");
-
-        //referencia.addValueEventListener()
-    }
 }

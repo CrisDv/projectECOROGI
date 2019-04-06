@@ -31,8 +31,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class NavegacionL extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -49,6 +55,17 @@ public class NavegacionL extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //token para notificaciones
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( NavegacionL.this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+                Log.e("newToken",newToken);
+
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -169,6 +186,9 @@ public class NavegacionL extends AppCompatActivity
             case R.id.nav_manage:
 
                 break;
+            case R.id.OUT:
+                signOut();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -195,6 +215,29 @@ public class NavegacionL extends AppCompatActivity
         }
     }
 
+    private void signOut(){
+        FirebaseAuth.signOut();
+        if (Auth.GoogleSignInApi != null){
+            Auth.GoogleSignInApi.signOut(Googleapiclient).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(@NonNull Status status) {
+                    if (status.isSuccess()){
+                        Intent i = new Intent(NavegacionL.this, Login.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        Toast.makeText(NavegacionL.this, "Error in Google Sign Out", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        /*if (LoginManager.getInstance() != null){
+            LoginManager.getInstance().logOut();
+        }para facebook*/
+
+
+    }
     private void handleSignInResult(GoogleSignInResult result) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headviewer = navigationView.getHeaderView(0);

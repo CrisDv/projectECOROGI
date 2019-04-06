@@ -20,7 +20,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="actividades">
-        <item name="colorPrimaryDark">@android:color/holo_orange_light</item> <!--Color naranja-->
+        <item name="colorPrimaryDark">@android:color/holo_purple</item> <!--Color naranja-->
     </style>
 
     <style name="Theme.Transparent" parent="android:Theme">
@@ -34,7 +34,7 @@
     </style>
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
-        <item name="android:windowBackground">@drawable/iniciosplash</item>
+        <item name="android:windowBackground">@drawable/iniciol</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
