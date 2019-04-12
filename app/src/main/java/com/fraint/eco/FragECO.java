@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.FractionRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,25 +45,28 @@ public class FragECO extends Fragment implements View.OnClickListener{
             }
         });
 
-        ImageView imgo =(ImageView)view.findViewById(R.id.ofertas);
-        carga(view);
+
+        final ImageView imgo =(ImageView) view.findViewById(R.id.categoria);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        final StorageReference storageRef = storage.getReference();
+        storageRef.child("Categorias/2-Granos.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(FragECO.this).load(storageRef).into(imgo);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
         return view;
     }
 
     @Override
     public void onClick(View v) {
 
-    }
-
-    private void carga(View v)
-    {
-        StorageReference mStorageImage=FirebaseStorage.getInstance().getReference().child("Categorias").child("2-Granos.png");
-        mStorageImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-               // Glide.with(v).load(account.getPhotoUrl()).into(perfil);
-            }
-        });
     }
 
 }
