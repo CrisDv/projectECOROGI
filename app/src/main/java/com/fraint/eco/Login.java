@@ -12,6 +12,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,12 +30,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
 import java.net.Authenticator;
+import java.util.Arrays;
 
 public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -36,6 +46,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private com.google.firebase.auth.FirebaseAuth FirebaseAuth;
     private FirebaseAuth.AuthStateListener AuthListener;
     private static final String TAG = "Login";
+    private CallbackManager callbackManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +58,13 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        Button FBsesion =(Button) findViewById(R.id.FBottom);
+        LoginButton FBsesion =(LoginButton) findViewById(R.id.FBottom);
         Button GSingIn =(Button) findViewById(R.id.GSing);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        AppEventsLogger.activateApp(this);
+        Log.w(TAG, "Callback  " + callbackManager.toString());
 
         GoogleSignInOptions GSO = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)//Opciones para autenticar
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -56,12 +73,23 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         Googleapiclient =new GoogleApiClient.Builder(this) .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, GSO).build();//Intermedio entre las apis de google y la autenticacion
 
-        FBsesion.setOnClickListener(new View.OnClickListener() {
+        FBsesion.setReadPermissions("email");
+        FBsesion.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onClick(View v) {
-                // Intent intent = new Intent(v.getContext(), NavegacionL.class);// clase cuando inicie sesion
-                //startActivityForResult(intent, 0);
+            public void onSuccess(LoginResult loginResult) {
+                Log.w(TAG, "Facebook Login Success Token:  " + loginResult.getAccessToken().getToken());
+                signInFacebookFirebase(loginResult.getAccessToken());
+            }
 
+            @Override
+            public void onCancel() {
+                Log.w(TAG, "Facebook Cancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.w(TAG, "Facebook Error");
+                error.printStackTrace();
             }
         });
 
@@ -124,6 +152,24 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     }
 
+    private void signInFacebookFirebase(AccessToken accessToken){
+        AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
+
+        FirebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(Login.this, "Facebook Authentication Success", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Login.this, NavegacionL.class);
+                    startActivity(i);
+                   // finish();
+                }else{
+                    Toast.makeText(Login.this, "Facebook Authentication Unsuccess", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -158,23 +204,5 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             HandleSignInGoogleFireb(resultado);
         }
     }
-
-   /*private void handleSingnInResult(GoogleSignInResult resultado) {
-
-        if (resultado.isSuccess())
-        {
-            goMainScreen();//Lo que hara si el inicio de sesion se logró
-        }
-        else
-        {
-            Toast.makeText(this,"No se ha podido iniciar sesion", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void goMainScreen() {
-        Intent intent = new Intent(this, NavegacionL.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }*/
 
 }

@@ -8,21 +8,20 @@
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     tools:context=".Login">
 
-    <Button
+
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/FBottom"
         android:layout_width="226dp"
         android:layout_height="40dp"
-        android:background="@drawable/campo_bordeado"
-        android:backgroundTint="@color/FBColor"
-        android:text="@string/InsFB"
-        android:textColor="@color/White"
-        android:textSize="17sp"
+        style="@style/FacebookLoginButtom"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.568"
+        />
 
     <Button
         android:id="@+id/GSing"

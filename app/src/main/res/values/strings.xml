@@ -24,5 +24,9 @@
     <string name="precio">Precio</string>
     <string name="title_activity_bolsa">Bolsa</string>
     <style name="notificaciondefault">default</style>
+    <string name="facebook_app_id">409172179635546</string>
+    <string name="fb_login_protocol_scheme">fb409172179635546</string>
+
+
 
 </resources>

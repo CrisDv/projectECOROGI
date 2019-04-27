@@ -19,8 +19,9 @@
             android:title="Gramos Acumulados" />
         <item
             android:id="@+id/nav_manage"
+            android:icon="@drawable/logopp"
 
-            android:title="next" />
+            android:title="Contactos" />
     </group>
 
 
@@ -34,9 +35,11 @@
         <menu>
 
             <item
+
                 android:id="@+id/OUT"
                 android:title="@string/cancels"
-                app:showAsAction="always" />
+                app:showAsAction="always"
+                />
 
         </menu>
     </item>

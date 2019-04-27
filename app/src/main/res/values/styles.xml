@@ -60,4 +60,11 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="FacebookLoginButtom">
+        <item name="android:background">@drawable/campo_bordeado</item>
+        <item name="android:backgroundTint">@color/FBColor</item>
+        <item name="android:text">@string/InsFB</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

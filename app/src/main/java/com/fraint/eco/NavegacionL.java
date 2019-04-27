@@ -2,6 +2,9 @@ package com.fraint.eco;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -39,6 +43,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+
+import java.util.List;
 
 public class NavegacionL extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -57,11 +63,11 @@ public class NavegacionL extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //token para notificaciones
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( NavegacionL.this,  new OnSuccessListener<InstanceIdResult>() {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(NavegacionL.this, new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 String newToken = instanceIdResult.getToken();
-                Log.e("newToken",newToken);
+                Log.e("newToken", newToken);
 
             }
         });
@@ -78,7 +84,7 @@ public class NavegacionL extends AppCompatActivity
                 .requestEmail()//Opcion del correo
                 .build();
 
-        Googleapiclient =new GoogleApiClient.Builder(this) .enableAutoManage(this, this)
+        Googleapiclient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, GSO).build();
 
         //------------------------------------------------------------------------------------------
@@ -102,7 +108,7 @@ public class NavegacionL extends AppCompatActivity
         });*/
         //------------------------------------------------------------------------------------------
         initialize();
-        FragmentManager manager =getSupportFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
 
     }
@@ -152,39 +158,38 @@ public class NavegacionL extends AppCompatActivity
             return true;
         }
 
-       */FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction =getFragmentManager().beginTransaction();
-       switch (item.getItemId())
-       {
-           case R.id.carritoshop:
-               Intent intent = new Intent(this, Bolsa.class);// clase cuando inicie sesion
-               startActivity(intent);
+       */
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        switch (item.getItemId()) {
+            case R.id.carritoshop:
+                Intent intent = new Intent(this, Bolsa.class);// clase cuando inicie sesion
+                startActivity(intent);
 
-           break;
+                break;
 
-       }
+        }
         return super.onOptionsItemSelected(item);
     }
-    
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         FragmentManager manager = getSupportFragmentManager();
         //int id = item.getItemId();
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.M_eco:
                 manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
                 break;
             case R.id.request:
-               manager.beginTransaction().replace(R.id.fragment_container, new FragPedido()).commit();
+                manager.beginTransaction().replace(R.id.fragment_container, new FragPedido()).commit();
                 break;
             case R.id.gramos:
 
                 break;
             case R.id.nav_manage:
-
+                contactos();
                 break;
             case R.id.OUT:
                 signOut();
@@ -198,6 +203,26 @@ public class NavegacionL extends AppCompatActivity
         return true;
     }
 
+
+    private void contactos()
+    {
+        Uri uriWPP=Uri.parse("https://wa.me/573005222012");
+        Intent intent =new Intent(Intent.ACTION_VIEW, uriWPP);
+
+        PackageManager packageManager = getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+        boolean isIntentSafe = activities.size() > 0;
+
+// Start an activity if it's safe
+        if (isIntentSafe)
+        {
+            startActivity(intent);
+        }
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -232,9 +257,9 @@ public class NavegacionL extends AppCompatActivity
             });
         }
 
-        /*if (LoginManager.getInstance() != null){
+        if (LoginManager.getInstance() != null){
             LoginManager.getInstance().logOut();
-        }para facebook*/
+        }
 
 
     }
