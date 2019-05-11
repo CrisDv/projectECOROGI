@@ -52,22 +52,26 @@
                         android:id="@+id/ofertas"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        />
+                        android:contentDescription="@string/categoria_del_producto" />
 
                     <ImageView
                         android:id="@+id/categoria"
                         android:layout_width="match_parent"
+                        android:background="@color/White"
                         android:layout_height="150dp"
                         android:layout_marginTop="5dp"
-                        android:scaleType="fitXY" />
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/categoria_del_producto"/>
 
 
                     <ImageView
                         android:id="@+id/categoria2"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
+                        android:background="@color/White"
                         android:layout_height="150dp"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/categoria_del_producto"/>
 
 
                     <ImageView
@@ -76,7 +80,8 @@
                         android:background="@color/White"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/categoria_del_producto"/>
 
 
                     <ImageView
@@ -86,7 +91,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginBottom="5dp"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/categoria_del_producto"/>
 
                 </LinearLayout>
                 <!-- Right side spacer -->
@@ -104,7 +110,9 @@
                             android:layout_height="150dp"
                             android:layout_weight="1"
                             android:background="@color/White"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/categoria_del_producto"
+                            />
 
                         <ImageView
                             android:id="@+id/categoria8"
@@ -114,7 +122,8 @@
                             android:layout_weight="1"
                             android:layout_marginTop="5dp"
                             android:background="@color/White"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/categoria_del_producto"/>
 
 
                         <ImageView
@@ -125,7 +134,8 @@
                             android:layout_weight="1"
                             android:layout_marginTop="5dp"
                             android:background="@color/White"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/categoria_del_producto"/>
 
                         <ImageView
                             android:id="@+id/categoria10"
@@ -135,7 +145,18 @@
                             android:layout_weight="1"
                             android:layout_marginTop="5dp"
                             android:background="@color/White"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/categoria_del_producto"/>
+                        <ImageView
+                            android:id="@+id/categoria11"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/White"
+                            android:scaleType="fitXY"
+                            android:contentDescription="@string/categoria_del_producto"/>
 
                     </LinearLayout>
                 </LinearLayout>

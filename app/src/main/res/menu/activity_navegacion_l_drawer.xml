@@ -8,40 +8,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/M_eco"
-            android:title="Mundo Eco" />
+            android:title="@string/mundo_eco" />
         <item
             android:id="@+id/request"
 
-            android:title="Mis Pedidos" />
+            android:title="@string/mis_pedidos" />
         <item
             android:id="@+id/gramos"
 
-            android:title="Gramos Acumulados" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/logopp"
-
-            android:title="Contactos" />
+            android:title="@string/gramos_acumulados" />
     </group>
-
-
-    <View
-        android:background="#f2f2f2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <item
-        android:id="@+id/cerrar"
-        android:title="">
-        <menu>
-
-            <item
-
-                android:id="@+id/OUT"
-                android:title="@string/cancels"
-                app:showAsAction="always"
-                />
-
-        </menu>
-    </item>
 
 </menu>

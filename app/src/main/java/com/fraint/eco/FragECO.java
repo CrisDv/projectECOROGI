@@ -32,6 +32,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.Objects;
 
 import static com.firebase.ui.auth.ui.email.RegisterEmailFragment.TAG;
 
@@ -49,7 +50,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ConfirmacionMAPS.class);
-                getActivity().startActivity(intent);
+                Objects.requireNonNull(getActivity()).startActivity(intent);
             }
         });
 
@@ -181,7 +182,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final File file5;
         try {
             file5 = File.createTempFile("dulce", "png");
-            storageRef.child("Categorias/5-Dulce-y-Sal.png").getFile(file5)
+            storageRef.child("Categorias/5-Dulces-y-Sal.png").getFile(file5)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -201,12 +202,37 @@ public class FragECO extends Fragment implements View.OnClickListener{
         }
 
 
+        final ImageView aseo=(ImageView)view.findViewById(R.id.categoria11);
+        //----IMAGEN 6
+        final File file6;
+        try {
+            file6 = File.createTempFile("dulce", "png");
+            storageRef.child("Categorias/6-Aseo.png").getFile(file6)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(file6.getAbsolutePath());
+                            aseo.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                    e.printStackTrace();
+                }
+            });
+        }catch (Exception e){
+            Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
+            e.printStackTrace();
+        }
+
+
         final ImageView cuidado=(ImageView)view.findViewById(R.id.categoria7);
         //----IMAGEN 7
         final File file7;
         try {
             file7 = File.createTempFile("cudados", "png");
-            storageRef.child("Categorias/7.png").getFile(file7)
+            storageRef.child("Categorias/7-Cuidado.png").getFile(file7)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -231,7 +257,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final File file8;
         try {
             file8 = File.createTempFile("cereales", "png");
-            storageRef.child("Categorias/8-Frutos-Secos.png").getFile(file8)
+            storageRef.child("Categorias/8-Frutos.png").getFile(file8)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -252,15 +278,15 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
 
         final ImageView mascota=(ImageView)view.findViewById(R.id.categoria10);
-        //----IMAGEN 12
-        final File file10;
+        //----IMAGEN 9
+        final File file9;
         try {
-            file10 = File.createTempFile("mascotas", "png");
-            storageRef.child("Categorias/Mascotas.png").getFile(file10)
+            file9 = File.createTempFile("mascotas", "png");
+            storageRef.child("Categorias/9-Mascotas.png").getFile(file9)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Bitmap bitmap = BitmapFactory.decodeFile(file10.getAbsolutePath());
+                            Bitmap bitmap = BitmapFactory.decodeFile(file9.getAbsolutePath());
                             mascota.setImageBitmap(bitmap);
                         }
                     }).addOnFailureListener(new OnFailureListener() {

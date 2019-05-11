@@ -13,7 +13,7 @@
     <string name="InsGG">INGRESAR CON GOOGLE</string>
     <string name="imagen1">appicon</string>
     <string name="title_activity_registro">register</string>
-    <string name="cancels">Cerrar Sesion</string>
+    <string name="out">Cerrar Sesion</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -23,10 +23,15 @@
     <string name="p_kilo">P.KILO</string>
     <string name="precio">Precio</string>
     <string name="title_activity_bolsa">Bolsa</string>
+
     <style name="notificaciondefault">default</style>
+
     <string name="facebook_app_id">409172179635546</string>
     <string name="fb_login_protocol_scheme">fb409172179635546</string>
-
+    <string name="mundo_eco">Mundo Eco</string>
+    <string name="mis_pedidos">Mis Pedidos</string>
+    <string name="gramos_acumulados">Gramos Acumulados</string>
+    <string name="categoria_del_producto">Categoria del producto</string>
 
 
 </resources>

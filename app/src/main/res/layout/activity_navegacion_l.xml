@@ -20,6 +20,58 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_navegacion_l"
-        app:menu="@menu/activity_navegacion_l_drawer" />
+        app:menu="@menu/activity_navegacion_l_drawer">
+
+        <LinearLayout
+            android:id="@+id/Cerrarsesion"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp"
+            android:gravity="start"
+            android:background="#FF0000"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/OUT"
+                android:text="@string/out"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:textSize="8pt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/Unknow"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:clipToPadding="false"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/WPPcontact"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/Unknow"
+                />
+
+            <ImageButton
+                android:id="@+id/FBcontact"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:background="@color/Unknow"/>
+
+            <ImageButton
+                android:id="@+id/IGcontact"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/Unknow"/>
+        </LinearLayout>
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

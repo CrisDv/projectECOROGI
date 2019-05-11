@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,6 +133,10 @@ public class NavegacionL extends AppCompatActivity
         };
     }
 
+    private void iconos ()
+    {
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -172,7 +178,6 @@ public class NavegacionL extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -187,9 +192,6 @@ public class NavegacionL extends AppCompatActivity
                 break;
             case R.id.gramos:
 
-                break;
-            case R.id.nav_manage:
-                contactos();
                 break;
             case R.id.OUT:
                 signOut();
