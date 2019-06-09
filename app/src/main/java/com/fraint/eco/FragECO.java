@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.FractionRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -66,6 +67,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                             ofertas.setImageBitmap(bitmap);
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -302,6 +304,21 @@ public class FragECO extends Fragment implements View.OnClickListener{
         }
 
         return view;
+    }
+
+    private void carga()
+    {
+        int DURACION_IMAHEN= 200;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i=1;i<=10;i++)
+                {
+
+                }
+            }
+        },DURACION_IMAHEN);
     }
 
     @Override

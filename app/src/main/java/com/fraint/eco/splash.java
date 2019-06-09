@@ -14,6 +14,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.sql.SQLException;
+
 public class splash extends Activity  {
 
     // Duración en milisegundos que se mostrará el splash
@@ -39,6 +41,8 @@ public class splash extends Activity  {
             };
         }, DURACION_SPLASH);
 
+        Conexion conexion = new Conexion();
+        conexion.psql();
     }
 
 }

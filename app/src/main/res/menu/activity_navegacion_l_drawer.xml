@@ -17,6 +17,10 @@
             android:id="@+id/gramos"
 
             android:title="@string/gramos_acumulados" />
+        <item
+            android:id="@+id/misdireccines"
+            android:title="@string/direcciones_nav_view"
+            />
     </group>
 
 </menu>
