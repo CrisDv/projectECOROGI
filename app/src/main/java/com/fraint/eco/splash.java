@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class splash extends Activity  {
@@ -43,6 +44,7 @@ public class splash extends Activity  {
 
         Conexion conexion = new Conexion();
         conexion.psql();
+
     }
 
 }

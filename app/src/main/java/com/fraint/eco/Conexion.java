@@ -32,18 +32,9 @@ public class Conexion {
                     // "jdbc:postgresql://IP:PUERTO/DB", "USER", "PASSWORD");
                     // Si estás utilizando el emulador de android y tenes el PostgreSQL en tu misma PC no utilizar 127.0.0.1 o localhost como IP, utilizar 10.0.2.2
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:postgresql://3.13.87.79:5432/client", "mastercr", "ECOMARKETAPPTEST");
+                            "jdbc:postgresql://3.130.149.229:5432/client", "mastercr", "ECOMARKETAPPTEST");
+                    escritura(conn);
 
-                    try
-                    {
-                        String sql="SELECT * FROM prueba0";
-                        Statement st=conn.createStatement();
-                        ResultSet rs =st.executeQuery(sql);
-                        while(rs.next())
-                        {
-                            String id = rs.getString(1);
-                        }
-                    }
                 } catch (SQLException se) {
                     System.out.println("oops! No se puede conectar. Error: " + se.toString());
                 } catch (ClassNotFoundException e) {
@@ -51,5 +42,26 @@ public class Conexion {
                 }
             }
         };
+    }
+
+    public String escritura(Connection conn)
+    {
+        String res="";
+
+        try
+        {
+
+            Statement st= conn.createStatement();
+            ResultSet rs= st.executeQuery("SELECT * FROM PRUEBA");
+            while (rs.next())
+            {
+                res=rs.getString(1);
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
+        return res;
     }
 }
