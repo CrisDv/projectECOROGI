@@ -4,25 +4,23 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.os.StrictMode;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,14 +36,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class NavegacionL extends AppCompatActivity
@@ -86,7 +85,8 @@ public class NavegacionL extends AppCompatActivity
                 .requestEmail()//Opcion del correo
                 .build();
 
-        Googleapiclient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
+        Googleapiclient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, GSO).build();
 
         //------------------------------------------------------------------------------------------
@@ -109,6 +109,15 @@ public class NavegacionL extends AppCompatActivity
             }
         });*/
         //------------------------------------------------------------------------------------------
+        ImageView wpp = findViewById(R.id.WPPcontact);
+        wpp.setOnClickListener(view -> contactos());
+
+        /*ImageView FB = findViewById(R.id.FBcontact);
+        FB.setOnClickListener(view -> );*/
+
+        TextView OUT = findViewById(R.id.OUT);
+        OUT.setOnClickListener(view -> signOut());
+
         initialize();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
@@ -118,25 +127,57 @@ public class NavegacionL extends AppCompatActivity
 
     private void initialize() {
 
-        FirebaseAuth = FirebaseAuth.getInstance();
-        AuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getUid());
-                    Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getEmail());
-                } else {
-                    Log.w(TAG, "onAuthStateChanged - signed_out");
-                }
+        FirebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
+        AuthListener = firebaseAuth -> {
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            if (firebaseUser != null) {
+                Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getUid());
+                Log.w(TAG, "onAuthStateChanged - signed_in" + firebaseUser.getEmail());
+            } else {
+                Log.w(TAG, "onAuthStateChanged - signed_out");
             }
         };
     }
 
-    private void iconos ()
+    public Connection conexionbd ()
+    {
+        Connection connection =null;
+        try
+        {
+            StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            Class.forName("org.postgresql.Driver").newInstance();
+            connection= DriverManager.getConnection("jdbc:postgresql://3.13.99.76:5432/MOVIL","mastercr","ECOMARKETAPPTEST");
+
+            Toast.makeText(this, "Conexion Exitosa", Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        }
+        return connection;
+    }
+
+    public void agregar(GoogleSignInAccount account)
     {
 
+        splash sp=new splash();
+        try
+        {
+            PreparedStatement pst=conexionbd().prepareStatement("INSERT INTO usuarios VALUES ('"
+                                                                        +account.getEmail()+"', '"+
+                                                                         account.getDisplayName()+"', 00)");
+            pst.executeQuery();
+            Toast.makeText(this, "CONSULTA AGREGADA", Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            System.out.println(e.getLocalizedMessage());
+        }
     }
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -193,15 +234,11 @@ public class NavegacionL extends AppCompatActivity
             case R.id.gramos:
 
                 break;
-            case R.id.OUT:
-                signOut();
-                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
-
         return true;
     }
 
@@ -225,6 +262,7 @@ public class NavegacionL extends AppCompatActivity
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -233,12 +271,7 @@ public class NavegacionL extends AppCompatActivity
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
         } else {
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
+            opr.setResultCallback(this::handleSignInResult);
         }
     }
 
@@ -268,8 +301,8 @@ public class NavegacionL extends AppCompatActivity
     private void handleSignInResult(GoogleSignInResult result) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headviewer = navigationView.getHeaderView(0);
-        TextView nombre = (TextView) headviewer.findViewById(R.id.namae);
-        ImageView perfil = (ImageView) headviewer.findViewById(R.id.PhotoPf);
+        TextView nombre = headviewer.findViewById(R.id.namae);
+        ImageView perfil = headviewer.findViewById(R.id.PhotoPf);
 
         if (result.isSuccess()) {
 
@@ -283,6 +316,8 @@ public class NavegacionL extends AppCompatActivity
             Intent ListSong = new Intent(getApplicationContext(), Login.class);
             startActivity(ListSong);
         }
+        GoogleSignInAccount account = result.getSignInAccount();
+        agregar(account);
 
     }
 

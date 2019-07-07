@@ -24,7 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".ListaDeProductos"></activity>
-        <activity android:name=".Category" />
         <activity android:name=".Payment" />
         <activity
             android:name=".Bolsa"

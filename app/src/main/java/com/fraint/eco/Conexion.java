@@ -1,67 +1,51 @@
 package com.fraint.eco;
 
-import android.annotation.SuppressLint;
-import android.net.wifi.p2p.WifiP2pManager;
-import android.view.Menu;
-import android.widget.Toast;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+public class Conexion extends SQLiteOpenHelper {
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-import static com.google.common.collect.ComparisonChain.start;
+    private static final String Nombre_BD="name";
+    private static final int Version_BD=1;
+    private static final String TABLA_CARRO= " CREATE TABLE carrito ( " +
+            "id int NOT NULL PRIMARY KEY, " +
+            "product_id int NOT NULL,  suma int NOT NULL,  " +
+            "gramos int NOT NULL,  " +
+            "FOREIGN KEY (product_id) " +
+            "REFERENCES productos (product_id));";
 
-public class Conexion {
+    private static  final String TABLA_PRODUCTOS ="CREATE TABLE productos("+
+            "    product_id int PRIMARY KEY NOT NULL," +
+            "    nombre VARCHAR(45) NOT NULL," +
+            "    preciou int NOT NULL," +
+            "    descripcion varchar (50) NOT NULL," +
+            "    pesokg int NOT NULL);";
+
+    private static final String TABLA_USUARIO = "CREATE TABLE usuario(" +
+            "    correo varchar (50) NOT NULL PRIMARY KEY," +
+            "    nombre varchar (50) NOT NULL," +
+            "    gramos_acumulados int);";
+
+    public Conexion(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, Nombre_BD, null, Version_BD);
+    }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(TABLA_PRODUCTOS);
+        sqLiteDatabase.execSQL(TABLA_USUARIO);
+        sqLiteDatabase.execSQL(TABLA_CARRO);
     }
 
-    public void psql()
-    {
-
-        Thread sqlThread = new Thread() {
-            public void run() {
-                try {
-                    Class.forName("org.postgresql.Driver");
-                    // "jdbc:postgresql://IP:PUERTO/DB", "USER", "PASSWORD");
-                    // Si estás utilizando el emulador de android y tenes el PostgreSQL en tu misma PC no utilizar 127.0.0.1 o localhost como IP, utilizar 10.0.2.2
-                    Connection conn = DriverManager.getConnection(
-                            "jdbc:postgresql://3.130.149.229:5432/client", "mastercr", "ECOMARKETAPPTEST");
-                    escritura(conn);
-
-                } catch (SQLException se) {
-                    System.out.println("oops! No se puede conectar. Error: " + se.toString());
-                } catch (ClassNotFoundException e) {
-                    System.out.println("oops! No se encuentra la clase. Error: " + e.getMessage());
-                }
-            }
-        };
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS"+ TABLA_CARRO);
+        sqLiteDatabase.execSQL(TABLA_CARRO);
     }
 
-    public String escritura(Connection conn)
+    public void AgregarAlCarro (String id, int preciou )
     {
-        String res="";
 
-        try
-        {
-
-            Statement st= conn.createStatement();
-            ResultSet rs= st.executeQuery("SELECT * FROM PRUEBA");
-            while (rs.next())
-            {
-                res=rs.getString(1);
-                System.out.println(res);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        //Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
-        return res;
     }
 }

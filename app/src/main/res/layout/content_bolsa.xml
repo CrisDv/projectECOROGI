@@ -10,19 +10,23 @@
         android:background="#80b2b2b2"
         android:layout_width="match_parent"
         android:layout_height="0.5dp" />
-    <Button
-        android:id="@+id/pago"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="PAGAR"/>
 
-   <!-- <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@color/Vinotino"
+        app:collapseIcon="@color/Vinotino"
+        android:background="@color/White"
+        />
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/rlThereIsNotProduct"
-            android:background="@color/colorPrimaryDark"
+            android:id="@+id/Bolsa_Vacia"
+            android:background="@color/White"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -30,16 +34,16 @@
 
         <ExpandableListView
             android:id="@+id/listview"
-            android:background="@color/colorPrimary"
+            android:background="@color/White"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:listSelector="@null"
             android:groupIndicator="@null"
             android:divider="@null"
-            android:layout_above="@+id/footer_cart" />
+            android:layout_above="@+id/Opciones" />
 
         <RelativeLayout
-            android:id="@+id/footer_cart"
+            android:id="@+id/Opciones"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,11 +129,11 @@
                         android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cargando..."
+                        android:text="Precio Total"
                         android:layout_weight="1" />
                 </LinearLayout>
 
-                <LinearLayout
+           <!--     <LinearLayout
                     android:orientation="horizontal"
                     android:id="@+id/lSaving"
                     android:visibility="gone"
@@ -157,46 +161,41 @@
                         android:text="Cargando..."
                         android:layout_weight="1" />
                 </LinearLayout>
-
+            -->
                 <LinearLayout
                     android:id="@+id/pedido"
-                    android:background="@drawable/button_orange"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_below="@+id/total">
+                    android:layout_below="@+id/total"
+                    android:weightSum="2">
 
                     <TextView
+                        android:id="@+id/Programar_Pedido"
                         android:textSize="18dp"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/White"
                         android:gravity="center"
-                        android:id="@+id/hacer_pedido"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Siguiente"
+                        android:text="Programar Pedido"
+                        android:layout_weight="1"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/Pedido_Domicilio"
+                        android:textSize="18dp"
+                        android:textColor="@color/White"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Domicilio"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/agregarmoreproducts"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="80dp">
-
-                <TextView
-                    android:textSize="18dp"
-                    android:textColor="@color/orange"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Agregar productos"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true" />
-            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>-->
+    </RelativeLayout>
 </LinearLayout>
