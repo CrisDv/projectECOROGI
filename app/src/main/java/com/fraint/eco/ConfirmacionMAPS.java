@@ -1,92 +1,168 @@
 package com.fraint.eco;
 
 import android.Manifest;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.LocationSource;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.AppBarLayout;
 
-public class ConfirmacionMAPS extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
-    private GoogleMap mMap;
-    private GoogleApiClient mGoogleApiClient;
-    Location mLastLocation = null;
-    boolean cambiar = true;
-    LatLng latLng = null;
-    private ImageButton ubica;
+public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCallback{
 
-    private LocationManager locationManager;
-    private Marker punto1;
+    private GoogleMap map;
+    private int MY_LOCATION_REQUEST;
     private double Lat = 0.0;
-    private double Long = 0.0;
-
+    private double Long= 0.0;
+    private Marker marcador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacion_maps);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-       // checkLocation();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map = googleMap;
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                !=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                !=PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST);
+        }
+        else
+        {
+            ubicacion();
+        }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED &&
+                                                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)==PackageManager.PERMISSION_GRANTED)
+        {
+            ubicacion();
+        }
+        /*LatLng sydney=new LatLng(-34, 151);
+        map.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
+
+
+    }
+
+    private void marcador(double Lat, double Long)
+    {
+        LatLng coordenadas=new LatLng(Lat, Long);
+        CameraUpdate ubicacion=CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+        if(marcador == null)
+        {
+            marcador=map.addMarker(new MarkerOptions().position(coordenadas).title("Direccion"));
+            map.animateCamera(ubicacion);
+        }
+    }
+
+    private void actualizar(Location location)
+    {
+        if(location!=null)
+        {
+            Lat =location.getLatitude();
+            Long=location.getLongitude();
+            marcador(Lat, Long);
+        }
+    }
+
+    private void ubicacion()
+    {
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                !=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                !=PackageManager.PERMISSION_GRANTED)
+        {
             return;
         }
 
-        //mMap.setMyLocationEnabled(true);
+        LocationManager locationManager= (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location =locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        actualizar(location);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
-        LatLng ln = new LatLng(4.526122, -74.122436);
-        mMap.addMarker(new MarkerOptions().position(ln));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ln));
-        LatLng coordinate = new LatLng(4.526122, -74.122436); //Store these lat lng values somewhere. These should be constant.
-        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
-                coordinate, 15);
-        mMap.animateCamera(location);
-
+        //------------------------------direccion
+        TextView direccion=findViewById(R.id.AgregarDireccion);
+        if (location.getLatitude() != 0.0 && location.getLongitude() != 0.0) {
+            try {
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> list = geocoder.getFromLocation(
+                        location.getLatitude(), location.getLongitude(), 1);
+                if (!list.isEmpty()) {
+                    Address DirCalle = list.get(0);
+                    direccion.setText(DirCalle.getAddressLine(0));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
+
+    LocationListener locationListener=new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            actualizar(location);
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
 
 
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }
