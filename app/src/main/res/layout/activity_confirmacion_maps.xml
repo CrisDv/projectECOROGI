@@ -9,38 +9,76 @@
 
 
 
-<androidx.appcompat.widget.Toolbar
-    android:id="@+id/Adress"
-    android:layout_width="match_parent"
-    android:layout_height="50dp">
-        <TextView
-            android:id="@+id/AgregarDireccion"
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:text="AGREGAR DIRECCION"
-            android:gravity="center"/>
+            android:layout_height="50dp">
+                <EditText
+                    android:id="@+id/AgregarDireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:text="@string/agregar_direccion"
+                    android:gravity="center"/>
+            <Button
+                android:id="@+id/search_confirm"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_check_black_24dp"
+                />
 
-</androidx.appcompat.widget.Toolbar>
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            tools:layout="@layout/fragment_frag_pedido"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <Spinner
+                    android:id="@+id/opcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+                </Spinner>
+                <EditText
+                    android:id="@+id/NoTorre"
+                    android:hint="@string/Notorre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/NoApartamento"
+                    android:hint="@string/Noapartamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
 
-            />
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                tools:layout="@layout/fragment_frag_pedido" />
+        </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
         <Button
-            android:id="@+id/button"
+            android:id="@+id/ConfirmarDireccion"
             android:layout_width="wrap_content"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/checkadress" />
+            android:text="@string/checkadress"
+            android:layout_weight="2"/>
 
-
+    </LinearLayout>
 
 </LinearLayout>

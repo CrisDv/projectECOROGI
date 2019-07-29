@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     }
 
-   private void HandleSignInGoogleFireb(GoogleSignInResult resultado)
+    private void HandleSignInGoogleFireb(GoogleSignInResult resultado)
     {
         if (resultado.isSuccess())
         {

@@ -1,14 +1,27 @@
 package com.fraint.eco;
 
+import android.Manifest;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,10 +30,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.StrictMode;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,10 +58,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class NavegacionL extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -54,12 +74,14 @@ public class NavegacionL extends AppCompatActivity
     private com.google.firebase.auth.FirebaseAuth FirebaseAuth;
     private FirebaseAuth.AuthStateListener AuthListener;
     private static final String TAG = "NavegationL";
+    private int MY_LOCATION_REQUEST;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navegacion_l);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -149,11 +171,11 @@ public class NavegacionL extends AppCompatActivity
             Class.forName("org.postgresql.Driver").newInstance();
             connection= DriverManager.getConnection("jdbc:postgresql://3.13.99.76:5432/MOVIL","mastercr","ECOMARKETAPPTEST");
 
-            Toast.makeText(this, "Conexion Exitosa", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Conexion Exitosa", Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
         return connection;
     }
@@ -166,13 +188,13 @@ public class NavegacionL extends AppCompatActivity
         {
             PreparedStatement pst=conexionbd().prepareStatement("INSERT INTO usuarios VALUES ('"
                                                                         +account.getEmail()+"', '"+
-                                                                         account.getDisplayName()+"', 00)");
+                                                                         account.getDisplayName()+"', '', 00)");
             pst.executeQuery();
             Toast.makeText(this, "CONSULTA AGREGADA", Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+           /* Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();*/
             System.out.println(e.getLocalizedMessage());
         }
     }
@@ -275,6 +297,7 @@ public class NavegacionL extends AppCompatActivity
         }
     }
 
+
     private void signOut(){
         FirebaseAuth.signOut();
         if (Auth.GoogleSignInApi != null){
@@ -298,11 +321,14 @@ public class NavegacionL extends AppCompatActivity
 
 
     }
+
+
     private void handleSignInResult(GoogleSignInResult result) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headviewer = navigationView.getHeaderView(0);
         TextView nombre = headviewer.findViewById(R.id.namae);
         ImageView perfil = headviewer.findViewById(R.id.PhotoPf);
+
 
         if (result.isSuccess()) {
 
@@ -311,6 +337,8 @@ public class NavegacionL extends AppCompatActivity
             nombre.setText(account.getDisplayName()+account.getEmail());
             //idTextView.setText(account.getId());
             Glide.with(this).load(account.getPhotoUrl()).into(perfil);
+            showAlert();
+            setadres(account);
 
         } else {
             Intent ListSong = new Intent(getApplicationContext(), Login.class);
@@ -318,8 +346,57 @@ public class NavegacionL extends AppCompatActivity
         }
         GoogleSignInAccount account = result.getSignInAccount();
         agregar(account);
-
     }
+
+    public void setadres(GoogleSignInAccount account)
+  {
+      Conexion dbhelper=new Conexion(getApplicationContext());
+      SQLiteDatabase db=dbhelper.getReadableDatabase();
+
+      String sql="SELECT direccion FROM usuario WHERE correo='"+account.getEmail()+"'";
+      Cursor cr= db.rawQuery(sql, null);
+      Button setdr= findViewById(R.id.street);
+
+      if(cr.moveToNext())
+      {
+          setdr.setText("VAMOS A MERCAR");
+          setdr.setText(cr.getColumnIndex("direccion"));
+      }
+  }
+    private void showAlert() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (Objects.requireNonNull(locationManager).isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+        {
+            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    !=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    !=PackageManager.PERMISSION_GRANTED)
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST);
+            }
+            else
+            {
+                // Toast.makeText(this, "Ubicacion Activada", Toast.LENGTH_LONG).show();
+            }
+
+        }
+        else
+        {
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("Enable Location")
+                    .setMessage("Su ubicación esta desactivada.por favor active su ubicación " +
+                            "usa esta app")
+                    .setPositiveButton("Configuración de ubicación", (paramDialogInterface, paramInt) -> {
+                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(myIntent);
+                    })
+                    .setNegativeButton("Cancelar", (paramDialogInterface, paramInt) -> {
+                    });
+            dialog.show();
+        }
+    }
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

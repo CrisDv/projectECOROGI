@@ -1,10 +1,16 @@
 package com.fraint.eco;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.firebase.storage.FirebaseStorage;
@@ -26,21 +34,23 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     final StorageReference storageRef = storage.getReference();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view;
         view = inflater.inflate(R.layout.fragment_frag_eco, container, false);
-
         Button direccion = view.findViewById(R.id.street);
         direccion.setOnClickListener(v -> {
+
             Intent intent = new Intent(getActivity(), ConfirmacionMAPS.class);
             Objects.requireNonNull(getActivity()).startActivity(intent);
+            // closefragment();
+
         });
 
-        final ImageView ofertas= view.findViewById(R.id.ofertas);
 
+        final ImageView ofertas= view.findViewById(R.id.ofertas);
 
         final File file;
         try {
@@ -51,14 +61,19 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         ofertas.setImageBitmap(bitmap);
 
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
         }
         final ImageView cereales= view.findViewById(R.id.categoria);
+
+        cereales.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), InterfazProducto.class);
+            startActivity(intent);
+        });
         //----IMAGEN 1
         final File file1;
         try {
@@ -68,9 +83,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file1.getAbsolutePath());
                         cereales.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -86,9 +101,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
                         granos.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -105,9 +120,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file3.getAbsolutePath());
                         huevos.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -124,9 +139,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file4.getAbsolutePath());
                         aceite.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -143,9 +158,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file5.getAbsolutePath());
                         dulce.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -162,9 +177,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file6.getAbsolutePath());
                         aseo.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -181,9 +196,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file7.getAbsolutePath());
                         cuidado.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -200,9 +215,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file8.getAbsolutePath());
                         frutos.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
@@ -219,64 +234,24 @@ public class FragECO extends Fragment implements View.OnClickListener{
                         Bitmap bitmap = BitmapFactory.decodeFile(file9.getAbsolutePath());
                         mascota.setImageBitmap(bitmap);
                     }).addOnFailureListener(e -> {
-                        Log.e(TAG, "Ocurrio un error al mostrar la imagen");
-                        e.printStackTrace();
-                    });
+                Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
         }catch (Exception e){
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
         }
 
+
         return view;
+    }
+
+    private void closefragment() {
+        getActivity().onBackPressed();
     }
 
     //CATEGORIA 1
     final Runnable imagen_a= () -> {
-
-    };
-    //CATEGORIA 2
-
-    final Runnable imagen_b= () -> {
-
-    };
-    //CATEGORIA 3
-
-    final Runnable imagen_c= () -> {
-
-    };
-    //CATEGORIA 4
-
-    final Runnable imagen_d= () -> {
-
-    };
-    //CATEGORIA 5
-
-    final Runnable imagen_e= () -> {
-
-    };
-    //CATEGORIA 6
-
-    final Runnable imagen_f= () -> {
-
-    };
-    //CATEGORIA 7
-
-    final Runnable imagen_g= () -> {
-
-    };
-    //CATEGORIA 8
-
-    final Runnable imagen_h= () -> {
-
-    };
-    //CATEGORIA 9
-
-    final Runnable imagen_i= () -> {
-
-    };
-    //CATEGORIA 10
-
-    final Runnable imagen_j= () -> {
 
     };
 
@@ -285,4 +260,6 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
 
     }
+
+
 }

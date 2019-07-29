@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ECO</string>
+    <string name="app_name">ECOROGI</string>
     <string name="Inicio1">Correo Electronico</string>
     <string name="Inicio2">Registrar</string>
     <string name="title_activity_navegacion_l">NavegacionL</string>
@@ -33,6 +33,14 @@
     <string name="mis_pedidos">Mis Pedidos</string>
     <string name="gramos_acumulados">Gramos Acumulados</string>
     <string name="categoria_del_producto">Categoria del producto</string>
+    <string name="pago_online">Pago Online</string>
+    <string name="pago_contraentrega">Pago Contraentrega</string>
+    <string name="Notorre"># Torre</string>
+    <string name="Noapartamento">#Apartamento</string>
+    <string name="agregar_direccion">AGREGAR DIRECCION</string>
+    <string name="direccion_actual">Direccion Actual</string>
+    <string name="escribe_tu_direccion">Escribe tu direccion</string>
+    <string name="reescribe_tu_direccion">Reescribe tu direccion</string>
 
 
 </resources>

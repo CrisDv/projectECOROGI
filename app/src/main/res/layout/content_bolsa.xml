@@ -108,7 +108,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="15dp"
                     android:weightSum="2">
@@ -166,7 +166,7 @@
                     android:id="@+id/pedido"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="8dp"
@@ -175,25 +175,23 @@
 
                     <TextView
                         android:id="@+id/Programar_Pedido"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textColor="@color/White"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Programar Pedido"
-                        android:layout_weight="1"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
+                        android:text="@string/pago_contraentrega"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/Pedido_Domicilio"
-                        android:textSize="18dp"
-                        android:textColor="@color/White"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Domicilio"/>
+                        android:gravity="center"
+                        android:text="@string/pago_online"
+                        android:textColor="@color/White"
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

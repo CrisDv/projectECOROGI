@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<RelativeLayout
+ <!--<RelativeLayout
           android:id="@+id/back"
           android:layout_width="50dp"
           android:layout_height="50dp">
@@ -14,7 +14,6 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginLeft="15dp"
-              android:src="@drawable/ic_close_btn"
               android:layout_centerInParent="true" />
       </RelativeLayout>
 
@@ -27,6 +26,7 @@
           <LinearLayout
               android:gravity="center_horizontal"
               android:orientation="vertical"
+              android:background="@color/White"
               android:paddingTop="20dp"
               android:paddingBottom="15dp"
               android:layout_width="match_parent"
@@ -37,35 +37,33 @@
                   android:layout_width="209dp"
                   android:layout_height="209dp"
                   android:layout_marginTop="44dp"
-                  android:src="@drawable/placeholder"
+                  android:background="@color/colorPrimaryDark"
                   android:scaleType="fitCenter"
                   android:layout_centerHorizontal="true"
                   android:layout_centerVertical="true" />
 
               <TextView
                   android:textSize="17sp"
-                  android:textColor="@color/colorFontGray"
+                  android:background="@color/colorPrimaryDark"
                   android:id="@+id/specs_product"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="20dp"
                   android:text="Cargando..."
-                  android:layout_centerHorizontal="true"
-                  fontPath="fonts/SF-UI-Display-Semibold.otf" />
+                  android:layout_centerHorizontal="true" />
 
               <TextView
                   android:textSize="18sp"
-                  android:textColor="@color/colorFontGray"
                   android:gravity="center"
                   android:id="@+id/name_product"
+                  android:background="@color/colorPrimaryDark"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="35dp"
                   android:layout_marginTop="15dp"
                   android:layout_marginRight="35dp"
                   android:text="Cargando..."
-                  android:layout_centerHorizontal="true"
-                  fontPath="fonts/SF-UI-Display-Light.otf" />
+                  android:layout_centerHorizontal="true" />
 
               <LinearLayout
                   android:orientation="horizontal"
@@ -74,37 +72,15 @@
                   android:layout_marginTop="10dp">
 
                   <TextView
-                      android:textSize="@dimen/font_size_22sp"
-                      android:textColor="@color/colorFuscia"
+                      android:textSize="22sp"
+                      android:background="@color/colorPrimaryDark"
                       android:layout_gravity="center"
                       android:id="@+id/price_product"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Cargando.." />
 
-                  <TextView
-                      android:textSize="@dimen/font_size_22sp"
-                      android:textColor="#5a5a5a"
-                      android:layout_gravity="center"
-                      android:id="@+id/old_price_number"
-                      android:visibility="gone"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="11dp"
-                      android:text="Cargando..." />
               </LinearLayout>
-
-              <TextView
-                  android:textSize="@dimen/font_size_18sp"
-                  android:textColor="@color/colorFuscia"
-                  android:id="@+id/tvDiscount"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="10dp"
-                  android:text="Cargando..."
-                  android:drawableLeft="@drawable/ic_icon_label"
-                  android:drawablePadding="5dp"
-                  android:layout_centerHorizontal="true" />
 
               <TextView
                   android:textSize="18sp"
@@ -172,6 +148,7 @@
 
               <TextView
                   android:textSize="15sp"
+                  android:background="@color/colorPrimaryDark"
                   android:textColor="@color/colorPrimaryDark"
                   android:id="@+id/descripcion"
                   android:layout_width="match_parent"
@@ -182,113 +159,113 @@
           </LinearLayout>
       </ScrollView>
 
-      <RelativeLayout
-          android:id="@+id/footer_btns"
-          android:background="@color/White"
-          android:layout_width="match_parent"
-          android:layout_height="70dp"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentBottom="true">
+    <RelativeLayout
+        android:id="@+id/footer_btns"
+        android:background="@color/White"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true">
 
-          <View
-              android:background="#f2f2f2"
-              android:layout_width="match_parent"
-              android:layout_height="1dp" />
+        <View
+            android:background="#f2f2f2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-          <LinearLayout
-              android:orientation="horizontal"
-              android:id="@+id/operations"
-              android:background="@drawable/addressbox"
-              android:layout_width="match_parent"
-              android:layout_height="45dp"
-              android:layout_marginLeft="10dp"
-              android:layout_marginRight="10dp"
-              android:weightSum="3"
-              android:layout_toLeftOf="@+id/agregar"
-              android:layout_centerVertical="true">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/operations"
+            android:background="@drawable/addressbox"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:weightSum="3"
+            android:layout_toLeftOf="@+id/agregar"
+            android:layout_centerVertical="true">
 
-              <RelativeLayout
-                  android:id="@+id/restar_cantidad"
-                  android:layout_width="0dp"
-                  android:layout_height="match_parent"
-                  android:layout_weight="1">
+            <RelativeLayout
+                android:id="@+id/restar_cantidad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="-5dp"
-                      android:text="-"
-                      android:textColor="@color/colorBlueLight"
-                      android:textSize="37dp" />
-              </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
+                    android:text="-"
+                    android:textColor="@color/colorBlueLight"
+                    android:textSize="37dp" />
+            </RelativeLayout>
 
-              <RelativeLayout
-                  android:layout_width="0dp"
-                  android:layout_height="match_parent"
-                  android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                  <View
-                      android:background="#e1e1e1"
-                      android:layout_width="1dp"
-                      android:layout_height="25dp"
-                      android:layout_marginTop="8dp"
-                      android:layout_marginBottom="8dp"
-                      android:layout_centerVertical="true" />
+                <View
+                    android:background="#e1e1e1"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_centerVertical="true" />
 
-                  <TextView
-                      android:textSize="20dp"
-                      android:textColor="@color/colorFontGray"
-                      android:gravity="center"
-                      android:id="@+id/number_item"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="1"
-                      android:layout_centerHorizontal="true"
-                      android:layout_centerVertical="true" />
+                <TextView
+                    android:textSize="20dp"
+                    android:textColor="@color/colorFontGray"
+                    android:gravity="center"
+                    android:id="@+id/number_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
 
-                  <View
-                      android:background="#e1e1e1"
-                      android:layout_width="1dp"
-                      android:layout_height="25dp"
-                      android:layout_marginTop="8dp"
-                      android:layout_marginBottom="8dp"
-                      android:layout_alignParentRight="true"
-                      android:layout_centerVertical="true" />
-              </RelativeLayout>
+                <View
+                    android:background="#e1e1e1"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
 
-              <RelativeLayout
-                  android:id="@+id/add_cantidad"
-                  android:layout_width="0dp"
-                  android:layout_height="match_parent"
-                  android:layout_weight="1"
-                  android:layout_alignParentRight="true">
+            <RelativeLayout
+                android:id="@+id/add_cantidad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_alignParentRight="true">
 
-                  <TextView
-                      android:textSize="35dp"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="+"
-                      android:layout_centerInParent="true" />
-              </RelativeLayout>
-          </LinearLayout>
+                <TextView
+                    android:textSize="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </LinearLayout>
 
-          <RelativeLayout
-              android:id="@+id/agregar"
-              android:layout_width="150dp"
-              android:layout_height="45dp"
-              android:layout_marginRight="10dp"
-              android:layout_alignParentRight="true"
-              android:layout_centerVertical="true">
+        <RelativeLayout
+            android:id="@+id/agregar"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
 
-              <TextView
-                  android:textSize="17sp"
-                  android:textColor="@color/colorPrimaryDark"
-                  android:id="@+id/agregar_text"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Agregar"
-                  android:layout_centerHorizontal="true"
-                  android:layout_centerVertical="true" />
-          </RelativeLayout>
-      </RelativeLayout>-->
+            <TextView
+                android:textSize="17sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/agregar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>

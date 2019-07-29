@@ -23,7 +23,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ListaDeProductos"></activity>
+        <activity android:name=".interfaz_pago"></activity>
+        <activity android:name=".Lista_Categoria" />
+        <activity android:name=".InterfazProducto" />
         <activity android:name=".Payment" />
         <activity
             android:name=".Bolsa"

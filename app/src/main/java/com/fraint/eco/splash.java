@@ -9,6 +9,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -30,10 +33,11 @@ public class splash extends Activity{
 
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(splash.this, NavegacionL.class);
+            //Intent intent1=new Intent(this, Login.class);
+
+            GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
             startActivity(intent);
             finish();
         }, DURACION_SPLASH);
-
     }
-
 }

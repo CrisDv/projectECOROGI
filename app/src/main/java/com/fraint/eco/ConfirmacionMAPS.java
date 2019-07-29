@@ -1,63 +1,73 @@
 package com.fraint.eco;
 
 import android.Manifest;
-import android.app.FragmentTransaction;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
+import android.os.ConditionVariable;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 
+import com.facebook.places.model.PlaceFields;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.firestore.GeoPoint;
+
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCallback{
+
+public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
     private int MY_LOCATION_REQUEST;
-    private double Lat = 0.0;
-    private double Long= 0.0;
+
     private Marker marcador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacion_maps);
 
-        SupportMapFragment mapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
 
@@ -65,23 +75,8 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
 
         map = googleMap;
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST);
-        }
-        else
-        {
-            ubicacion();
-        }
-
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED &&
-                                                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)==PackageManager.PERMISSION_GRANTED)
-        {
-            ubicacion();
-        }
+        ubicacion();
+        spineroptions();
         /*LatLng sydney=new LatLng(-34, 151);
         map.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
         map.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
@@ -89,43 +84,43 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    private void marcador(double Lat, double Long)
-    {
-        LatLng coordenadas=new LatLng(Lat, Long);
-        CameraUpdate ubicacion=CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
-        if(marcador == null)
-        {
-            marcador=map.addMarker(new MarkerOptions().position(coordenadas).title("Direccion"));
+    private void marcador(double Lat, double Long) {
+        LatLng coordenadas = new LatLng(Lat, Long);
+        CameraUpdate ubicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+        if (marcador == null) {
+            marcador = map.addMarker(new MarkerOptions().position(coordenadas).title("Direccion"));
             map.animateCamera(ubicacion);
         }
+
     }
 
-    private void actualizar(Location location)
-    {
-        if(location!=null)
-        {
-            Lat =location.getLatitude();
-            Long=location.getLongitude();
+    double Lat = 0.0;
+    double Long = 0.0;
+
+    private void actualizar(Location location) {
+
+        if (location != null) {
+            Lat = location.getLatitude();
+            Long = location.getLongitude();
             marcador(Lat, Long);
         }
     }
 
-    private void ubicacion()
-    {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                !=PackageManager.PERMISSION_GRANTED)
-        {
+    private void ubicacion() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
-        LocationManager locationManager= (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location =locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);// PASO DE GPS_PROVIDER A PASSIVE_PROVIDER
         actualizar(location);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
         //------------------------------direccion
-        TextView direccion=findViewById(R.id.AgregarDireccion);
+
+        EditText direccion = findViewById(R.id.AgregarDireccion);
         if (location.getLatitude() != 0.0 && location.getLongitude() != 0.0) {
             try {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -134,13 +129,106 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
                 if (!list.isEmpty()) {
                     Address DirCalle = list.get(0);
                     direccion.setText(DirCalle.getAddressLine(0));
+                    String Confirmar_Direccion =DirCalle.getAddressLine(0);
+                    Botones();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+
     }
 
+    private void Botones()
+    {
+
+        Conexion dbhelper=new Conexion(getBaseContext());
+        Button BTN_CONFIRM=findViewById(R.id.ConfirmarDireccion);
+        BTN_CONFIRM.setOnClickListener(view -> {
+
+            NavegacionL navegacionL=new NavegacionL();
+
+            GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
+            EditText direccion=findViewById(R.id.AgregarDireccion);
+
+            PreparedStatement statement= null;
+            try {
+                statement = navegacionL.conexionbd().prepareStatement("UPDATE usuarios SET direccion='"+direccion.getText()+"' WHERE correo='"+account.getEmail()+"'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                statement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            try
+            {
+                SQLiteDatabase db=dbhelper.getWritableDatabase();
+
+
+                db.execSQL("UPDATE usuario SET direccion ='"+direccion.getText()+"'");
+                Toast.makeText(this, "Tu Direccion será \n'"+direccion.getText()+"'", Toast.LENGTH_LONG).show();
+
+
+                Intent intent=new Intent(this, NavegacionL.class);
+                startActivity(intent);
+                finish();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        });
+    }
+
+    private void spineroptions()
+    {
+        ArrayList<String> agregar=new ArrayList<>();
+        agregar.add("Casa");
+        agregar.add("Apartamento");
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, agregar);
+
+        Spinner mSpinner;
+        mSpinner=findViewById(R.id.opcion);
+
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               // String elemento= (String) mSpinner.getAdapter().getItem(i);
+                EditText apartamento = findViewById(R.id.NoApartamento);
+                EditText torre = findViewById(R.id.NoTorre);
+
+                apartamento.setVisibility(View.INVISIBLE);
+                torre.setVisibility(View.INVISIBLE);
+
+                if (mSpinner.getSelectedItemPosition()==1)
+                {
+                    torre.setVisibility(View.VISIBLE);
+                    apartamento.setVisibility(View.VISIBLE);
+                }
+                else if(mSpinner.getSelectedItemPosition()==1)
+                {
+                    torre.setVisibility(View.INVISIBLE);
+                    apartamento.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
 
     LocationListener locationListener=new LocationListener() {
         @Override
@@ -163,6 +251,7 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
 
         }
     };
+
 
 
 }

@@ -25,9 +25,10 @@ public class Conexion extends SQLiteOpenHelper {
     private static final String TABLA_USUARIO = "CREATE TABLE usuario(" +
             "    correo varchar (50) NOT NULL PRIMARY KEY," +
             "    nombre varchar (50) NOT NULL," +
+            "    direccion varchar(50),"+
             "    gramos_acumulados int);";
 
-    public Conexion(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public Conexion(Context context) {
         super(context, Nombre_BD, null, Version_BD);
     }
 
