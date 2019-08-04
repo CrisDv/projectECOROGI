@@ -41,6 +41,7 @@
     <string name="direccion_actual">Direccion Actual</string>
     <string name="escribe_tu_direccion">Escribe tu direccion</string>
     <string name="reescribe_tu_direccion">Reescribe tu direccion</string>
+    <string name="tu_numero_de_celular">Tu Numero De Celular</string>
 
 
 </resources>

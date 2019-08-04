@@ -16,6 +16,7 @@
                     android:id="@+id/AgregarDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="text"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     android:text="@string/agregar_direccion"

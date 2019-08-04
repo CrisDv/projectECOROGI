@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -65,6 +66,7 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacion_maps);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         assert mapFragment != null;
@@ -182,6 +184,7 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
                 System.out.println(e);
             }
         });
+
     }
 
     private void spineroptions()

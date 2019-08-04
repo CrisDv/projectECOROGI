@@ -191,6 +191,7 @@ public class NavegacionL extends AppCompatActivity
                                                                          account.getDisplayName()+"', '', 00)");
             pst.executeQuery();
             Toast.makeText(this, "CONSULTA AGREGADA", Toast.LENGTH_LONG).show();
+            pst.close();
         }
         catch (Exception e)
         {
@@ -221,19 +222,21 @@ public class NavegacionL extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-       /* if (id == R.id.carritoshop) {
-            //carrito de compras
-            startActivity (new Intent (this, Carrito.class));
-            return true;
-        }
 
-       */
+        Bolsa bl=new Bolsa();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.carritoshop:
-                Intent intent = new Intent(this, Bolsa.class);// clase cuando inicie sesion
-                startActivity(intent);
+                if (bl.bolsallena()==true)
+                {
+                    Intent intent = new Intent(this, Bolsa.class);// bolsa
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(this, "Aun no has agregado nada", Toast.LENGTH_LONG).show();
+                }
 
                 break;
 
@@ -338,7 +341,6 @@ public class NavegacionL extends AppCompatActivity
             //idTextView.setText(account.getId());
             Glide.with(this).load(account.getPhotoUrl()).into(perfil);
             showAlert();
-            setadres(account);
 
         } else {
             Intent ListSong = new Intent(getApplicationContext(), Login.class);
@@ -348,21 +350,6 @@ public class NavegacionL extends AppCompatActivity
         agregar(account);
     }
 
-    public void setadres(GoogleSignInAccount account)
-  {
-      Conexion dbhelper=new Conexion(getApplicationContext());
-      SQLiteDatabase db=dbhelper.getReadableDatabase();
-
-      String sql="SELECT direccion FROM usuario WHERE correo='"+account.getEmail()+"'";
-      Cursor cr= db.rawQuery(sql, null);
-      Button setdr= findViewById(R.id.street);
-
-      if(cr.moveToNext())
-      {
-          setdr.setText("VAMOS A MERCAR");
-          setdr.setText(cr.getColumnIndex("direccion"));
-      }
-  }
     private void showAlert() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 

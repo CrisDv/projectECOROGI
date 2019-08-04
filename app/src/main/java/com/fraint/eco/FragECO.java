@@ -1,6 +1,7 @@
 package com.fraint.eco;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +51,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
         });
 
-
+selecting_category();
         final ImageView ofertas= view.findViewById(R.id.ofertas);
 
         final File file;
@@ -261,5 +263,9 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
     }
 
+    public String selecting_category()
+    {
+        return "";
+    }
 
 }

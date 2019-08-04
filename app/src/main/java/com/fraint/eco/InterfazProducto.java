@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,62 +16,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class InterfazProducto extends AppCompatActivity {
+public class InterfazProducto extends AppCompatActivity implements View.OnClickListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interfaz_producto);
-        mostrar();
+
+        TextView nombre=findViewById(R.id.Nombre);
+        TextView precio=findViewById(R.id.precio);
+        EditText cantidad_producto=findViewById(R.id.num_cantidad);
+        TextView tipo_producto=findViewById(R.id.product_type);
+
+        String nom, pric, tipo_pr;
+        nom=getIntent().getStringExtra("nombre");
+        pric=getIntent().getStringExtra("precio");
+        tipo_pr=getIntent().getStringExtra("Tipo_del_producto");
+
+        nombre.setText(nom);
+        precio.setText(pric);
+        tipo_producto.setText(tipo_pr);
     }
 
-    static double unidad=0.0;
 
-    private void datos()
-    {
-        String sql1="SELECT nombre ID";
-        String sql2="";
-        String sql3="";
-        NavegacionL mainbd=new NavegacionL();
-        try {
-            PreparedStatement st1=mainbd.conexionbd().prepareStatement(sql1);
-            PreparedStatement st2=mainbd.conexionbd().prepareStatement(sql2);
-            PreparedStatement st3=mainbd.conexionbd().prepareStatement(sql3);
+    @Override
+    public void onClick(View view) {
+        Button agregar=findViewById(R.id.agregarBolsa);
 
+        
 
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    private void mostrar ()
-    {
-        EditText cantidad=findViewById(R.id.number_item);
-        TextView restar = findViewById(R.id.restar_cantidad);
-        TextView agregar=findViewById(R.id.add_cantidad);
-        //unidad=Integer.parseInt(cantidad.getText());
-
-        //cantidad.setText(0);
-        agregar.setOnClickListener(view -> {
-            unidad=unidad+0.5;
-
-            cantidad.setText(unidad+"");
-            if(unidad>=201)
-            {
-                Toast.makeText(this, "No puedes agregar mas de 200 Libras", Toast.LENGTH_LONG).show();
-                //cantidad.setText(200);
-            }
-
-        });
-
-        restar.setOnClickListener(view -> {
-            unidad=unidad-0.5;
-            cantidad.setText(unidad+"");
-            if (unidad<=-0.5)
-            {
-                cantidad.setText(0);
-                //unidad=0;
-            }
-        });
     }
 }

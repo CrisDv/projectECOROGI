@@ -5,11 +5,13 @@ import android.widget.ImageView;
 public class producto_pr {
     private String Nombre;
     private String precio;
+    private String tipo;
     private int imgproduct;
 
-    public producto_pr(String nombre, String precio, int imgproduct) {
+    public producto_pr(String nombre, String precio,String tipo, int imgproduct) {
         Nombre = nombre;
         this.precio = precio;
+        this.tipo=tipo;
         this.imgproduct = imgproduct;
     }
 
@@ -37,7 +39,17 @@ public class producto_pr {
         return imgproduct;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public void setImgproduct(int imgproduct) {
         this.imgproduct = imgproduct;
     }
+
+
 }

@@ -1,101 +1,76 @@
-<?xml  version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!--<RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="5dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-         <RelativeLayout
-             android:id="@+id/content"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-             android:layout_centerVertical="true">
+            <ImageView
+                android:id="@+id/imageProduct"
+                android:layout_width="100dp"
+                android:background="@color/White"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ecologo" />
 
-             <RelativeLayout
-                 android:id="@+id/rel_img_bunch"
-                 android:layout_width="65dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10dp"
-                 android:layout_centerVertical="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                 <ImageView
-                     android:id="@+id/protuctoimg"
-                     android:layout_width="50dp"
-                     android:layout_height="50dp"
-                     android:layout_marginTop="25dp"
-                     android:src="@drawable/placeholder"
-                     android:layout_centerInParent="true" />
+                <TextView
+                    android:id="@+id/itemName"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/White"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:textAllCaps="true" />
 
-             </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-             <RelativeLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_toRightOf="@+id/rel_img_bunch"
-                 android:layout_centerHorizontal="true"
-                 android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/Cantidad_Comprada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textColor="@color/White"
+                        android:layout_weight="1"
+                        android:text="Cantidad" />
 
-                 <TextView
-                     android:textSize="@dimen/font_size_normal"
-                     android:textColor="@color/background_colors"
-                     android:ellipsize="end"
-                     android:id="@+id/nombre_product"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="8dp"
-                     android:layout_marginRight="8dp"
-                     android:text="Cargando..."
-                     android:maxLines="2" />
+                    <TextView
+                        android:id="@+id/TotalComprado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textColor="@color/White"
+                        android:layout_weight="1"
+                        android:text="numeroTotal" />
+                </LinearLayout>
 
-                 <TextView
-                     android:textSize="@dimen/font_size_small"
-                     android:textColor="@color/colorFontGray"
-                     android:ellipsize="end"
-                     android:id="@+id/tvPumDescription"
-                     android:visibility="gone"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="8dp"
-                     android:layout_marginTop="2dp"
-                     android:layout_marginRight="8dp"
-                     android:text="Cargando..."
-                     android:lines="1"
-                     android:layout_below="@+id/nombre_product" />
-
-                 <TextView
-                     android:textSize="@dimen/font_size_small"
-                     android:textColor="@color/colorFontGray"
-                     android:id="@+id/unitario"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="8dp"
-                     android:layout_marginTop="10dp"
-                     android:layout_marginRight="8dp"
-                     android:text="Cargando..."
-                     android:layout_below="@+id/tvPumDescription" />
-                 <TextView
-                     android:textSize="@dimen/font_size_small"
-                     android:textColor="@color/colorFontGray"
-                     android:id="@+id/unitario2"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="8dp"
-                     android:layout_marginRight="8dp"
-                     android:layout_marginBottom="8dp"
-                     android:text="Cargando..."
-                     android:layout_below="@+id/unitario" />
-             </RelativeLayout>
-         </RelativeLayout>
-
-         <View
-             android:background="@color/background_dark"
-             android:layout_width="match_parent"
-             android:layout_height="0.2dp"
-             android:layout_alignParentBottom="true" />
-     </RelativeLayout>-->
-</RelativeLayout>
+                <Button
+                    android:id="@+id/delete_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:background="#C21818"
+                    android:text="ELIMINAR"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

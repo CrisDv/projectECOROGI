@@ -4,19 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lista_Categoria extends AppCompatActivity {
+public class Lista_Categoria extends AppCompatActivity implements Recycler_productAdapter.OnProductListener {
 
     private RecyclerView recyclerproducto;
-    private Recycler_product recycler_product;
+    private Recycler_productAdapter recycler_productAdapter;
+    private List<producto_pr>product=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,24 +26,57 @@ public class Lista_Categoria extends AppCompatActivity {
         recyclerproducto=findViewById(R.id.recyclerlistproducto);
         recyclerproducto.setLayoutManager(new LinearLayoutManager(this));
 
-        recycler_product=new Recycler_product(mostrarproductos());
-        recyclerproducto.setAdapter(recycler_product);
+        recycler_productAdapter =new Recycler_productAdapter(mostrarproductos(), this);
+        recyclerproducto.setAdapter(recycler_productAdapter);
 
     }
 
     public List<producto_pr> mostrarproductos()
     {
-       /* FragECO catego=new FragECO();
-        String sql="SELECT * FROM productos WHERE categoria='"+catego.condicioncategoria()+"'";
-        NavegacionL nl= (NavegacionL) new NavegacionL().conexionbd();*/
+        String a="";
+        String sqla="SELECT * FROM productos';";
+        NavegacionL con=new NavegacionL();
 
-        List<producto_pr> product=new ArrayList<>();
+        try
+        {
+            Statement st =con.conexionbd().createStatement();
+            ResultSet rs=st.executeQuery(sqla);
+
+            for(int i=0;i<=100;i++)
+            {
+                while(rs.next())
+                {
+                    //List<producto_pr>product=new ArrayList<>();
+                    product.add(new producto_pr(rs.getString(2),rs.getString(3), rs.getString(6),R.drawable.ecologo));
+
+                }
+            }
+            st.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        finally {
+            System.out.println("MUESTRAN LOS DATOS");
+        }
+
+
+       /* List<producto_pr> product=new ArrayList<>();
         product.add(new producto_pr("producto 1", "1.000", R.drawable.ecologo));
 
-        product.add(new producto_pr("producto 3", "3.000", R.drawable.ecologo));
-
-
+        product.add(new producto_pr("producto 3", "3.000", R.drawable.ecologo));*/
         return product;
     }
 
+    @Override
+    public void onProductClick(int position) {
+
+        final producto_pr pdpropieties=product.get(position);
+        Intent intent=new Intent(this, InterfazProducto.class);
+        intent.putExtra("nombre", pdpropieties.getNombre());
+        intent.putExtra("precio", pdpropieties.getPrecio());
+        intent.putExtra("Tipo_del_producto", pdpropieties.getTipo());
+        startActivity(intent);
+    }
 }
