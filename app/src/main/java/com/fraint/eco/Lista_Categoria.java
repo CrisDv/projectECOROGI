@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -33,8 +36,9 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
     public List<producto_pr> mostrarproductos()
     {
-        String a="";
-        String sqla="SELECT * FROM productos';";
+        String categoria=getIntent().getStringExtra("valor");
+        String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"';";
+        String sqli="SELECT * FROM productos";
         NavegacionL con=new NavegacionL();
 
         try
@@ -47,7 +51,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
                 while(rs.next())
                 {
                     //List<producto_pr>product=new ArrayList<>();
-                    product.add(new producto_pr(rs.getString(2),rs.getString(3), rs.getString(6),R.drawable.ecologo));
+                    product.add(new producto_pr(rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(6),foto(Integer.parseInt(rs.getString(1)))));
 
                 }
             }
@@ -64,7 +68,6 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
        /* List<producto_pr> product=new ArrayList<>();
         product.add(new producto_pr("producto 1", "1.000", R.drawable.ecologo));
-
         product.add(new producto_pr("producto 3", "3.000", R.drawable.ecologo));*/
         return product;
     }
@@ -74,9 +77,37 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
         final producto_pr pdpropieties=product.get(position);
         Intent intent=new Intent(this, InterfazProducto.class);
+        intent.putExtra("id_producto", pdpropieties.getId_product());
         intent.putExtra("nombre", pdpropieties.getNombre());
         intent.putExtra("precio", pdpropieties.getPrecio());
         intent.putExtra("Tipo_del_producto", pdpropieties.getTipo());
+        intent.putExtra("BitImage", pdpropieties.getImgproduct());
         startActivity(intent);
+    }
+
+    public Bitmap foto(int id)
+    {
+        String sql="SELECT img FROM productos WHERE product_id="+id+";";
+
+        InputStream im=null;
+
+        NavegacionL con=new NavegacionL();
+        try
+        {
+            Statement st =con.conexionbd().createStatement();
+            ResultSet rs=st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                im=rs.getBinaryStream(1);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
+        Bitmap bpm=BitmapFactory.decodeStream(im);
+        return bpm;
     }
 }

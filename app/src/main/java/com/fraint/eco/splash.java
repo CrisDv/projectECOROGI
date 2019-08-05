@@ -33,9 +33,6 @@ public class splash extends Activity{
 
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(splash.this, NavegacionL.class);
-            //Intent intent1=new Intent(this, Login.class);
-
-            GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
             startActivity(intent);
             finish();
         }, DURACION_SPLASH);

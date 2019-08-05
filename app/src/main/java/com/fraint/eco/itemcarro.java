@@ -1,7 +1,10 @@
 package com.fraint.eco;
 
+import android.graphics.Bitmap;
+
 public class itemcarro {
 
+    int id_producto;
     private String Nombre;
     private int cantidad;
     private int total;
@@ -12,7 +15,8 @@ public class itemcarro {
 
     }
 
-    public itemcarro(String nombre, int cantidad, int total, int img) {
+    public itemcarro(int id_producto,String nombre, int cantidad, int total, int img) {
+        this.id_producto=id_producto;
         Nombre = nombre;
         this.cantidad = cantidad;
         this.total = total;
@@ -49,5 +53,14 @@ public class itemcarro {
 
     public void setImg(int img) {
         this.img = img;
+    }
+
+
+    public int getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
     }
 }

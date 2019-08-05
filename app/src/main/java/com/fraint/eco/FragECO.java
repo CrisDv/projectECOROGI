@@ -51,7 +51,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
 
         });
 
-selecting_category();
+
         final ImageView ofertas= view.findViewById(R.id.ofertas);
 
         final File file;
@@ -70,12 +70,19 @@ selecting_category();
             Log.e(TAG, "Ocurrió un error en la descarga de imágenes");
             e.printStackTrace();
         }
+//--------------------------------------------------------------------------------------
+
         final ImageView cereales= view.findViewById(R.id.categoria);
 
         cereales.setOnClickListener(view1 -> {
-            Intent intent=new Intent(getContext(), InterfazProducto.class);
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "cereales");
             startActivity(intent);
         });
+
+
+
+//--------------------------------------------------------------------------------------
         //----IMAGEN 1
         final File file1;
         try {
@@ -94,6 +101,11 @@ selecting_category();
         }
 
         final ImageView granos= view.findViewById(R.id.categoria2);
+        granos.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "granos");
+            startActivity(intent);
+        });
         //----IMAGEN 2
         final File file2;
         try {
@@ -113,6 +125,11 @@ selecting_category();
 
 
         final ImageView huevos= view.findViewById(R.id.categoria3);
+        huevos.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "huevosyharina");
+            startActivity(intent);
+        });
         //----IMAGEN 3
         final File file3;
         try {
@@ -132,6 +149,11 @@ selecting_category();
 
 
         final ImageView aceite= view.findViewById(R.id.categoria4);
+        aceite.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "aceites");
+            startActivity(intent);
+        });
         //----IMAGEN 4
         final File file4;
         try {
@@ -151,6 +173,11 @@ selecting_category();
 
 
         final ImageView dulce= view.findViewById(R.id.categoria8);
+        dulce.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "dulces");
+            startActivity(intent);
+        });
         //----IMAGEN 5
         final File file5;
         try {
@@ -170,6 +197,11 @@ selecting_category();
 
 
         final ImageView aseo= view.findViewById(R.id.categoria11);
+        aseo.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "aseo");
+            startActivity(intent);
+        });
         //----IMAGEN 6
         final File file6;
         try {
@@ -189,6 +221,11 @@ selecting_category();
 
 
         final ImageView cuidado= view.findViewById(R.id.categoria7);
+        cuidado.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "cuidadopersonal");
+            startActivity(intent);
+        });
         //----IMAGEN 7
         final File file7;
         try {
@@ -208,6 +245,11 @@ selecting_category();
 
 
         final ImageView frutos= view.findViewById(R.id.categoria9);
+        frutos.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "frutos");
+            startActivity(intent);
+        });
         //----IMAGEN 8
         final File file8;
         try {
@@ -227,6 +269,11 @@ selecting_category();
 
 
         final ImageView mascota= view.findViewById(R.id.categoria10);
+        mascota.setOnClickListener(view1 -> {
+            Intent intent=new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "mascotas");
+            startActivity(intent);
+        });
         //----IMAGEN 9
         final File file9;
         try {
@@ -260,12 +307,7 @@ selecting_category();
     @Override
     public void onClick(View view) {
 
-
     }
 
-    public String selecting_category()
-    {
-        return "";
-    }
 
 }

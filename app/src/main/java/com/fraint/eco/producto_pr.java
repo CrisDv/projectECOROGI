@@ -1,14 +1,19 @@
 package com.fraint.eco;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
+import java.io.InputStream;
+
 public class producto_pr {
+    private String id_product;
     private String Nombre;
     private String precio;
     private String tipo;
-    private int imgproduct;
+    private Bitmap imgproduct;
 
-    public producto_pr(String nombre, String precio,String tipo, int imgproduct) {
+    public producto_pr(String id_product, String nombre, String precio,String tipo, Bitmap imgproduct) {
+        this.id_product=id_product;
         Nombre = nombre;
         this.precio = precio;
         this.tipo=tipo;
@@ -35,7 +40,7 @@ public class producto_pr {
         this.precio = precio;
     }
 
-    public int getImgproduct() {
+    public Bitmap getImgproduct() {
         return imgproduct;
     }
 
@@ -47,9 +52,16 @@ public class producto_pr {
         this.tipo = tipo;
     }
 
-    public void setImgproduct(int imgproduct) {
+    public void setImgproduct(Bitmap imgproduct) {
         this.imgproduct = imgproduct;
     }
 
 
+    public String getId_product() {
+        return id_product;
+    }
+
+    public void setId_product(String id_product) {
+        this.id_product = id_product;
+    }
 }

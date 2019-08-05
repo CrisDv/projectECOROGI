@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Bolsa extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recycleritemb;
     private RecyclerBolsaAdapter mRecyclerBolsaAdapter;
-    private List<itemcarro>itembolsa=new ArrayList<>();
+    private List<itemcarro> itembolsa = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,25 +32,15 @@ public class Bolsa extends AppCompatActivity implements View.OnClickListener {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recycleritemb=findViewById(R.id.contenido_bolsa);
+        recycleritemb = findViewById(R.id.contenido_bolsa);
         recycleritemb.setLayoutManager(new LinearLayoutManager(this));
 
-        Conexion cn=new Conexion(getApplicationContext());
-        mRecyclerBolsaAdapter=new RecyclerBolsaAdapter(cn.ContenidoBolsa());
+        Conexion cn = new Conexion(getApplicationContext());
+        mRecyclerBolsaAdapter = new RecyclerBolsaAdapter(cn.ContenidoBolsa());
         recycleritemb.setAdapter(mRecyclerBolsaAdapter);
-    }
 
-
-    public boolean bolsallena()
-    {
-        if (itembolsa==null||itembolsa.size()==0||itembolsa.isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        TextView total=findViewById(R.id.totalbolsa);
+        total.setText(Integer.toString(cn.sumdatos()));
     }
 
 

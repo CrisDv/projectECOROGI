@@ -228,15 +228,9 @@ public class NavegacionL extends AppCompatActivity
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.carritoshop:
-                if (bl.bolsallena()==true)
-                {
+
                     Intent intent = new Intent(this, Bolsa.class);// bolsa
                     startActivity(intent);
-                }
-                else
-                {
-                    Toast.makeText(this, "Aun no has agregado nada", Toast.LENGTH_LONG).show();
-                }
 
                 break;
 

@@ -7,133 +7,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contenido_bolsa"
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_height="?attr/actionBarSize">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/infocart"
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/subtotal_layout_linearLayout"
-            android:visibility="gone"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contenido_bolsa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:weightSum="2">
-
-            <TextView
-                android:textColor="#292B36"
-                android:id="@+id/sub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subtotal"
-                android:layout_weight="1" />
-
-            <TextView
-                android:textColor="#292B36"
-                android:gravity="right"
-                android:id="@+id/subtotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cargando..."
-                android:layout_weight="1" />
-        </LinearLayout>
+            android:layout_above="@+id/infocart"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/disc_rel"
-            android:visibility="gone"
+            android:id="@+id/infocart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
-            android:weightSum="2">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
 
-            <TextView
-                android:textColor="#292B36"
-                android:gravity="right"
-                android:id="@+id/discount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cargando..."
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
-            android:weightSum="2">
-
-            <TextView
-                android:textSize="20dp"
-                android:textColor="#292B36"
-                android:id="@+id/tot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total"
-                android:layout_weight="1" />
-
-            <TextView
-                android:textSize="20dp"
-                android:textColor="#292B36"
-                android:gravity="right"
-                android:id="@+id/total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Precio Total"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pedido"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@+id/total"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/Programar_Pedido"
-                android:textSize="18sp"
-                android:textColor="@color/White"
-                android:gravity="center"
+            <LinearLayout
+                android:id="@+id/subtotal_layout_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/pago_contraentrega"
-                android:layout_weight="1" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="2">
 
-            <TextView
-                android:id="@+id/Pedido_Domicilio"
+                <TextView
+                    android:id="@+id/sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Subtotal"
+                    android:textColor="#292B36" />
+
+                <TextView
+                    android:id="@+id/subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Cargando..."
+                    android:textColor="#292B36" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/disc_rel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/pago_online"
-                android:textColor="@color/White"
-                android:textSize="18sp" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Cargando..."
+                    android:textColor="#292B36" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+
+                    android:id="@+id/tot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PAGO TOTAL"
+                    android:textColor="#292B36"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/totalbolsa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Precio Total"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pedido"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/totalbolsa"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="8dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/Programar_Pedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/pago_contraentrega"
+                    android:textColor="@color/White"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/Pedido_Domicilio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/pago_online"
+                    android:textColor="@color/White"
+                    android:textSize="18sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
+
+

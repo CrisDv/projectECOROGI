@@ -63,7 +63,7 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
 
         holder.Nombre.setText(productolista.get(position).getNombre());
         holder.precio.setText(productolista.get(position).getPrecio());
-        holder.FotoProducto.setImageResource(productolista.get(position).getImgproduct());
+        holder.FotoProducto.setImageBitmap(productolista.get(position).getImgproduct());
 
     }
 
