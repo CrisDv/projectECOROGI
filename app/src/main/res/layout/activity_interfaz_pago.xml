@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,8 +17,10 @@
         <TextView
             android:id="@+id/inf_Direccion"
             android:layout_width="match_parent"
+            android:hint="Direccion"
             android:layout_height="50dp" />
         <EditText
+            android:id="@+id/inf_number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/tu_numero_de_celular"/>
@@ -50,6 +54,56 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/Nombre_Usuario"
+            android:layout_width="match_parent"
+            android:hint="Nombre Del Titular De La Tarjeta"
+            android:layout_height="50dp" />
+        <EditText
+            android:id="@+id/CC"
+            android:hint="Ingresa Tu Numero De Identidad"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/NoTarjeta"
+            android:hint="Ingresa Tu Numero De Tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/TarjetaMes"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="match_parent"
+                    android:hint="MM"/>
+                <EditText
+                    android:id="@+id/anio_Tarjeta"
+                    android:hint="YYYY"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/CVV"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="CVV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout

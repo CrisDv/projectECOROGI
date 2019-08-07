@@ -6,18 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,14 +24,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.StrictMode;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,10 +38,8 @@ import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,13 +48,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class NavegacionL extends AppCompatActivity
@@ -144,6 +129,8 @@ public class NavegacionL extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
 
+        handleSignInResult();
+
     }
 
 
@@ -161,32 +148,15 @@ public class NavegacionL extends AppCompatActivity
         };
     }
 
-    public Connection conexionbd ()
-    {
-        Connection connection =null;
-        try
-        {
-            StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-            Class.forName("org.postgresql.Driver").newInstance();
-            connection= DriverManager.getConnection("jdbc:postgresql://3.13.99.76:5432/MOVIL","mastercr","ECOMARKETAPPTEST");
-
-            //Toast.makeText(this, "Conexion Exitosa", Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-           // Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-        }
-        return connection;
-    }
 
     public void agregar(GoogleSignInAccount account)
     {
 
+        Conexionpst post=new Conexionpst();
         splash sp=new splash();
         try
         {
-            PreparedStatement pst=conexionbd().prepareStatement("INSERT INTO usuarios VALUES ('"
+            PreparedStatement pst=post.conexionbd().prepareStatement("INSERT INTO usuarios VALUES ('"
                                                                         +account.getEmail()+"', '"+
                                                                          account.getDisplayName()+"', '', 00)");
             pst.executeQuery();
@@ -282,7 +252,7 @@ public class NavegacionL extends AppCompatActivity
 
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(Googleapiclient);
@@ -292,7 +262,7 @@ public class NavegacionL extends AppCompatActivity
         } else {
             opr.setResultCallback(this::handleSignInResult);
         }
-    }
+    }*/
 
 
     private void signOut(){
@@ -320,28 +290,30 @@ public class NavegacionL extends AppCompatActivity
     }
 
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    private void handleSignInResult() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headviewer = navigationView.getHeaderView(0);
         TextView nombre = headviewer.findViewById(R.id.namae);
         ImageView perfil = headviewer.findViewById(R.id.PhotoPf);
 
 
-        if (result.isSuccess()) {
+       // if (result.isSuccess()) {
 
-            GoogleSignInAccount account = result.getSignInAccount();
+            GoogleSignInAccount account =GoogleSignIn.getLastSignedInAccount(this);
 
             nombre.setText(account.getDisplayName()+account.getEmail());
             //idTextView.setText(account.getId());
             Glide.with(this).load(account.getPhotoUrl()).into(perfil);
             showAlert();
 
-        } else {
+       /* } else {
             Intent ListSong = new Intent(getApplicationContext(), Login.class);
             startActivity(ListSong);
-        }
-        GoogleSignInAccount account = result.getSignInAccount();
+
+        }*/
+      //  GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         agregar(account);
+
     }
 
     private void showAlert() {

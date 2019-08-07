@@ -26,7 +26,6 @@
         <activity android:name=".interfaz_pago"></activity>
         <activity android:name=".Lista_Categoria" />
         <activity android:name=".InterfazProducto" />
-        <activity android:name=".Payment" />
         <activity
             android:name=".Bolsa"
             android:label="@string/title_activity_bolsa"

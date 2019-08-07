@@ -182,7 +182,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final File file5;
         try {
             file5 = File.createTempFile("dulce", "png");
-            storageRef.child("Categorias/5-Dulces-y-Sal.png").getFile(file5)
+            storageRef.child("Categorias/5-Dulce-y-sal.png").getFile(file5)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(file5.getAbsolutePath());
                         dulce.setImageBitmap(bitmap);
@@ -230,7 +230,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final File file7;
         try {
             file7 = File.createTempFile("cudados", "png");
-            storageRef.child("Categorias/7-Cuidado.png").getFile(file7)
+            storageRef.child("Categorias/7-Dulceria.png").getFile(file7)
                     .addOnSuccessListener(taskSnapshot -> {
                         Bitmap bitmap = BitmapFactory.decodeFile(file7.getAbsolutePath());
                         cuidado.setImageBitmap(bitmap);

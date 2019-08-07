@@ -150,7 +150,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         }
         else
         {
-            Toast.makeText(Login.this, "Autenticacion no exitosa 2", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Revisa tu conexion", Toast.LENGTH_SHORT).show();
         }
 
         System.out.println(resultado.getStatus());

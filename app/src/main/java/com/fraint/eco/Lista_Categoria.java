@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -41,9 +40,10 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         String sqli="SELECT * FROM productos";
         NavegacionL con=new NavegacionL();
 
+        Conexionpst post=new Conexionpst();
         try
         {
-            Statement st =con.conexionbd().createStatement();
+            Statement st =post.conexionbd().createStatement();
             ResultSet rs=st.executeQuery(sqla);
 
             for(int i=0;i<=100;i++)
@@ -92,9 +92,11 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         InputStream im=null;
 
         NavegacionL con=new NavegacionL();
+
+        Conexionpst post=new Conexionpst();
         try
         {
-            Statement st =con.conexionbd().createStatement();
+            Statement st =post.conexionbd().createStatement();
             ResultSet rs=st.executeQuery(sql);
 
             while (rs.next())

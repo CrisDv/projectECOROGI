@@ -1,13 +1,11 @@
 package com.fraint.eco;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -16,43 +14,35 @@ import android.location.LocationManager;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.os.ConditionVariable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.facebook.places.model.PlaceFields;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.firestore.GeoPoint;
 
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCallback {
@@ -154,9 +144,10 @@ public class ConfirmacionMAPS extends FragmentActivity implements OnMapReadyCall
             GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
             EditText direccion=findViewById(R.id.AgregarDireccion);
 
+            Conexionpst post=new Conexionpst();
             PreparedStatement statement= null;
             try {
-                statement = navegacionL.conexionbd().prepareStatement("UPDATE usuarios SET direccion='"+direccion.getText()+"' WHERE correo='"+account.getEmail()+"'");
+                statement = post.conexionbd().prepareStatement("UPDATE usuarios SET direccion='"+direccion.getText()+"' WHERE correo='"+account.getEmail()+"'");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

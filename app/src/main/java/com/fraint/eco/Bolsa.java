@@ -41,7 +41,18 @@ public class Bolsa extends AppCompatActivity implements View.OnClickListener {
 
         TextView total=findViewById(R.id.totalbolsa);
         total.setText(Integer.toString(cn.sumdatos()));
+
+        TextView domicilio=findViewById(R.id.Pedido_Domicilio);
+        domicilio.setOnClickListener(view ->
+        {
+            interfaz_pago pagarDomicilio=new interfaz_pago();
+            Intent intent=new Intent(this, interfaz_pago.class);
+            startActivity(intent);
+        });
     }
+
+
+
 
 
     @Override
