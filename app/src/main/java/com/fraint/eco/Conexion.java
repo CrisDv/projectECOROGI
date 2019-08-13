@@ -27,7 +27,8 @@ public class Conexion extends SQLiteOpenHelper {
             "    nombrepr VARCHAR (20) PRIMARY KEY NOT NULL," +
             "    cantidad INT NOT NULL," +
             "    suma INT NOT NULL," +
-            "    img blob" +
+            "    img bytea," +
+            "    tipo_producto VARCHAR (5)"+
             ");";
 
     private static  final String TABLA_PRODUCTOS ="CREATE TABLE productos("+
@@ -56,11 +57,13 @@ public class Conexion extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-       //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS"+ TABLA_CARRO);
-       //sqLiteDatabase.execSQL(TABLA_CARRO);
+       sqLiteDatabase.execSQL("DROP TABLE IF EXISTS"+ TABLA_CARRO);
+       sqLiteDatabase.execSQL(TABLA_CARRO);
+
+       onCreate(sqLiteDatabase);
     }
 
-    public void AgregarABolsa(int id_produc, String nombre, int cantidad, int sumacomprada, Bitmap imc)
+    public void AgregarABolsa(int id_produc, String nombre, int cantidad, int sumacomprada, Bitmap imc, String tipoUnidad)
     {
         ByteArrayOutputStream bos=new ByteArrayOutputStream();
         imc.compress(Bitmap.CompressFormat.PNG, 0, bos);
@@ -68,7 +71,7 @@ public class Conexion extends SQLiteOpenHelper {
         SQLiteDatabase bdagregar=getWritableDatabase();
         if (bdagregar!=null)
         {
-            bdagregar.execSQL("INSERT INTO bolsacompra (id_producto, nombrepr, cantidad, suma) VALUES ("+id_produc+",'"+nombre+"', "+cantidad+", "+sumacomprada+");");
+            bdagregar.execSQL("INSERT INTO bolsacompra (id_producto, nombrepr, cantidad, suma, tipo_producto) VALUES ("+id_produc+",'"+nombre+"', "+cantidad+", "+sumacomprada+",'"+tipoUnidad+"');");
 
             bdagregar.close();
         }
@@ -82,11 +85,12 @@ public class Conexion extends SQLiteOpenHelper {
 
         List<itemcarro> bolsa=new ArrayList<>();
 
+        Lista_Categoria lc=new Lista_Categoria();
 
             if (cr.moveToFirst())
             {
                 do {
-                    bolsa.add(new itemcarro(cr.getInt(0),cr.getString(1), cr.getInt(2), cr.getInt(3), R.drawable.ecologo));//para la imagen, recibir un int
+                    bolsa.add(new itemcarro(cr.getInt(0),cr.getString(1), cr.getInt(2), cr.getInt(3), lc.foto(cr.getInt(0)), cr.getString(5)));//para la imagen, recibir un int
                 }while (cr.moveToNext());
             }
 
@@ -111,15 +115,11 @@ public class Conexion extends SQLiteOpenHelper {
         return total;
     }
 
-    public Bitmap foto(int id)
+    public void eliminarproducto(String nombre)
     {
-        SQLiteDatabase bd=getReadableDatabase();
-        String sql="";
-        Cursor cr=bd.rawQuery("SELECT img FROM bolsacompra WHERE id_producto="+id+";", null);
-
-            byte[] im=cr.getBlob(4);
-            Bitmap bpm=BitmapFactory.decodeByteArray(im, 0, im.length);
-
-        return bpm;
+        SQLiteDatabase bd=getWritableDatabase();
+        bd.delete("bolsacompra", "nombrepr='"+nombre+"'", null);
+        System.out.println(nombre);
     }
+
 }

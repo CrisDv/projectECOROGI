@@ -116,14 +116,25 @@ public class NavegacionL extends AppCompatActivity
             }
         });*/
         //------------------------------------------------------------------------------------------
-        ImageView wpp = findViewById(R.id.WPPcontact);
-        wpp.setOnClickListener(view -> contactos());
 
-        /*ImageView FB = findViewById(R.id.FBcontact);
-        FB.setOnClickListener(view -> );*/
+        Bolsa ps=new Bolsa();
+        ImageView wpp = findViewById(R.id.WPPcontact);
+        wpp.setOnClickListener(view -> redes(1));
+
+        ImageView FB = findViewById(R.id.FBcontact);
+        FB.setOnClickListener(view -> redes(2));
+
+        ImageView IG=findViewById(R.id.IGcontact);
+        IG.setOnClickListener(view -> redes(3));
 
         TextView OUT = findViewById(R.id.OUT);
         OUT.setOnClickListener(view -> signOut());
+
+        TextView feed=findViewById(R.id.feedback);
+        feed.setOnClickListener(view ->
+        {
+            redes(4);
+        });
 
         initialize();
         FragmentManager manager = getSupportFragmentManager();
@@ -231,40 +242,6 @@ public class NavegacionL extends AppCompatActivity
         return true;
     }
 
-
-    private void contactos()
-    {
-        Uri uriWPP=Uri.parse("https://wa.me/573005222012");
-        Intent intent =new Intent(Intent.ACTION_VIEW, uriWPP);
-
-        PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
-        boolean isIntentSafe = activities.size() > 0;
-
-// Start an activity if it's safe
-        if (isIntentSafe)
-        {
-            startActivity(intent);
-        }
-
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
-
-    }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(Googleapiclient);
-        if (opr.isDone()) {
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            opr.setResultCallback(this::handleSignInResult);
-        }
-    }*/
-
-
     private void signOut(){
         FirebaseAuth.signOut();
         if (Auth.GoogleSignInApi != null){
@@ -285,8 +262,6 @@ public class NavegacionL extends AppCompatActivity
         if (LoginManager.getInstance() != null){
             LoginManager.getInstance().logOut();
         }
-
-
     }
 
 
@@ -356,5 +331,67 @@ public class NavegacionL extends AppCompatActivity
 
         FragmentManager manager =getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
+    }
+
+    public void redes(int i)
+    {
+
+        switch (i)
+        {
+            case 1:
+                Uri uriWPP=Uri.parse("https://wa.me/573005222012");
+                Intent intent =new Intent(Intent.ACTION_VIEW, uriWPP);
+
+                PackageManager packageManager = getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+                boolean isIntentSafe = activities.size() > 0;
+
+// Start an activity if it's safe
+                if (isIntentSafe)
+                {
+                    startActivity(intent);
+                }
+
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fragment_container, new FragECO()).commit();
+            case 2:
+                Uri uriFB=Uri.parse("https://www.facebook.com/ecorogi/");
+                Intent intent1=new Intent(Intent.ACTION_VIEW, uriFB);
+                PackageManager pk1=getPackageManager();
+                List<ResolveInfo> activities1=pk1.queryIntentActivities(intent1,0);
+                boolean isIntent1Safe=activities1.size()>0;
+                if (isIntent1Safe)
+                {
+                    startActivity(intent1);
+                }
+
+            case 3:
+
+                Uri uriING=Uri.parse("https://www.instagram.com/ecorogi");
+                Intent intent2=new Intent(Intent.ACTION_VIEW, uriING);
+                PackageManager pk2=getPackageManager();
+                List<ResolveInfo> activities2=pk2.queryIntentActivities(intent2, 0);
+                boolean isIntent2Safe=activities2.size()>0;
+                if (isIntent2Safe)
+                {
+                    startActivity(intent2);
+                }
+
+            case 4:
+                Uri uridoc=Uri.parse("https://docs.google.com/forms/d/1PGr2Cl4kIrvaknyvh7DQ7xJ6y2Fz-FrUcX1-KSdzh_M/edit ");
+                Intent intentd =new Intent(Intent.ACTION_VIEW, uridoc);
+
+                PackageManager packageManagerd = getPackageManager();
+                List<ResolveInfo> activitiesd = packageManagerd.queryIntentActivities(intentd, 0);
+                boolean isIntentSafde = activitiesd.size() > 0;
+
+// Start an activity if it's safe
+                if (isIntentSafde)
+                {
+                    startActivity(intentd);
+                }
+
+        }
+
     }
 }

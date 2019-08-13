@@ -50,10 +50,12 @@
                     android:hint="@string/Notorre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:layout_weight="1"/>
                 <EditText
                     android:id="@+id/NoApartamento"
                     android:hint="@string/Noapartamento"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>

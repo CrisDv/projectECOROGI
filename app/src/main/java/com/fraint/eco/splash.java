@@ -39,7 +39,7 @@ public class splash extends AppCompatActivity implements GoogleApiClient.OnConne
     private com.google.firebase.auth.FirebaseAuth FirebaseAuth;
 
     // Duración en milisegundos que se mostrará el splash
-    private final int DURACION_SPLASH = 5000; // 1.5 segundos
+    private final int DURACION_SPLASH = 2000; // 1.5 segundos
     @Override
     public void onCreate(Bundle savedInstanceState) {
 

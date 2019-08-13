@@ -8,19 +8,21 @@ public class itemcarro {
     private String Nombre;
     private int cantidad;
     private int total;
-    private int img;
+    private Bitmap img;
+    private String tipo_unidad;
 
 
     public itemcarro() {
 
     }
 
-    public itemcarro(int id_producto,String nombre, int cantidad, int total, int img) {
+    public itemcarro(int id_producto,String nombre, int cantidad, int total, Bitmap img, String tipo_unidad) {
         this.id_producto=id_producto;
         Nombre = nombre;
         this.cantidad = cantidad;
         this.total = total;
         this.img = img;
+        this.tipo_unidad=tipo_unidad;
     }
 
     public String getNombre() {
@@ -47,11 +49,11 @@ public class itemcarro {
         this.total = total;
     }
 
-    public int getImg() {
+    public Bitmap getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(Bitmap img) {
         this.img = img;
     }
 
@@ -62,5 +64,13 @@ public class itemcarro {
 
     public void setId_producto(int id_producto) {
         this.id_producto = id_producto;
+    }
+
+    public String getTipo_unidad() {
+        return tipo_unidad;
+    }
+
+    public void setTipo_unidad(String tipo_unidad) {
+        this.tipo_unidad = tipo_unidad;
     }
 }

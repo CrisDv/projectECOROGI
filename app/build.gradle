@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion"29.0.0"
+    buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.fraint.eco"
         minSdkVersion 20
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -50,6 +51,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
 
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

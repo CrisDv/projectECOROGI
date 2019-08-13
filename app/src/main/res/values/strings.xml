@@ -33,8 +33,8 @@
     <string name="mis_pedidos">Mis Pedidos</string>
     <string name="gramos_acumulados">Gramos Acumulados</string>
     <string name="categoria_del_producto">Categoria del producto</string>
-    <string name="pago_online">Pago Online</string>
-    <string name="pago_contraentrega">Pago Contraentrega</string>
+    <string name="pago_online">Online</string>
+    <string name="pago_contraentrega">Contraentrega</string>
     <string name="Notorre"># Torre</string>
     <string name="Noapartamento">#Apartamento</string>
     <string name="agregar_direccion">AGREGAR DIRECCION</string>

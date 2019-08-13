@@ -1,12 +1,21 @@
 package com.fraint.eco;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.StrictMode;
+
+import androidx.fragment.app.FragmentManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 public class Conexionpst {
 
+    Context context;
     public Connection conexionbd()
     {
         Connection connection =null;

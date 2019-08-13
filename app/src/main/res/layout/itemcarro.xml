@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:background="@color/Unknow"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
+            android:background="@color/White"
             android:orientation="horizontal">
 
             <ImageView
@@ -32,9 +32,10 @@
                 <TextView
                     android:id="@+id/itemName"
                     android:layout_width="match_parent"
-                    android:textColor="@color/White"
+                    android:textColor="#000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="15dp"
                     android:text="TextView"
@@ -42,6 +43,7 @@
                     app:textAllCaps="true" />
 
                 <LinearLayout
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -49,30 +51,56 @@
                     <TextView
                         android:id="@+id/Cantidad_Comprada"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:textColor="@color/White"
-                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:layout_marginLeft="20dp"
                         android:text="Cantidad" />
 
+                    <TextView
+                        android:id="@+id/tipo_cantidad"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent" />
+
+
+                    <TextView
+                        android:text="$"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="50dp"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
                     <TextView
                         android:id="@+id/TotalComprado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:textSize="15dp"
-                        android:textColor="@color/White"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="#000"
                         android:text="numeroTotal" />
+
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/delete_product"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="#C21818"
-                    android:text="ELIMINAR"/>
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/delete_product_from_bag"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/ic_eliminar"
+                        android:clickable="true" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

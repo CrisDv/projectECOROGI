@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,19 +38,24 @@ public class InterfazProducto extends AppCompatActivity {
         TextView tipo_producto=findViewById(R.id.product_type);
         ImageView imagepr=findViewById(R.id.imageProduct);
         TextView idpr=findViewById(R.id.id_product);
+        TextView produnidad=findViewById(R.id.producto_unidad);
+        preciototal.setText("0");
 
-        String nom, pric, tipo_pr, id;
+        cantidad_producto.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String nom, pric, tipo_pr, id, unidad;
         Bitmap imgpr;
         id=getIntent().getStringExtra("id_producto");
         nom=getIntent().getStringExtra("nombre");
         pric=getIntent().getStringExtra("precio");
         tipo_pr=getIntent().getStringExtra("Tipo_del_producto");
         imgpr=getIntent().getParcelableExtra("BitImage");
+        unidad=getIntent().getStringExtra("Tipo_del_producto");
 
         idpr.setText(id);
         nombre.setText(nom);
         precio.setText(pric);
         tipo_producto.setText(tipo_pr);
+        produnidad.setText(unidad);
         imagepr.setImageBitmap(imgpr);
 
 
@@ -68,28 +76,46 @@ public class InterfazProducto extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                int sumatotal, cantidad, preciou;
-                cantidad=Integer.parseInt(cantidad_producto.getText().toString());
-                preciou=Integer.parseInt(precio.getText().toString());
-                sumatotal=cantidad*preciou;
-                preciototal.setText(String.valueOf(sumatotal));
+                try
+                {
+                    int sumatotal, cantidad, preciou;
+                    cantidad=Integer.parseInt(cantidad_producto.getText().toString());
+                    preciou=Integer.parseInt(precio.getText().toString());
+                    sumatotal=cantidad*preciou;
+                    preciototal.setText(String.valueOf(sumatotal));
+                }
+                catch (NumberFormatException nx)
+                {
+                    System.out.println(nx);
+                    preciototal.setText("0");
+                }
+
             }
         });
 
 
         agregar.setOnClickListener(view ->
         {
-            if (cantidad_producto.getText().toString()==null||preciototal.getText().toString()==null)
+            if (cantidad_producto.getText().toString()==null||preciototal.getText().toString()=="0")
             {
                 Toast.makeText(this, "No agregaste una cantidad", Toast.LENGTH_LONG).show();
             }
             else
             {
-                cna.AgregarABolsa(Integer.parseInt(idpr.getText().toString()),nombre.getText().toString(),Integer.parseInt(cantidad_producto.getText().toString()), Integer.parseInt(preciototal.getText().toString()), imgpr);
+                cna.AgregarABolsa(Integer.parseInt(idpr.getText().toString()),nombre.getText().toString(),Integer.parseInt(cantidad_producto.getText().toString()), Integer.parseInt(preciototal.getText().toString()), imgpr, produnidad.getText().toString());
                 Toast.makeText(this, "Producto Agregado", Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(this, NavegacionL.class);
-                startActivity(intent);
+               /* Intent intent=new Intent(this, NavegacionL.class);
+                startActivity(intent);*/
+               onBackPressed();
             }
         });
+
+        ImageView bolsa=findViewById(R.id.bolsacompra);
+        bolsa.setOnClickListener(view ->
+        {
+            Intent intent=new Intent(this, Bolsa.class);
+            startActivity(intent);
+        });
     }
+
 }

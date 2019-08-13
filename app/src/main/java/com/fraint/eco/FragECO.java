@@ -103,7 +103,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView granos= view.findViewById(R.id.categoria2);
         granos.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "granos");
+            intent.putExtra("valor", "Granos");
             startActivity(intent);
         });
         //----IMAGEN 2
@@ -127,7 +127,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView huevos= view.findViewById(R.id.categoria3);
         huevos.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "huevosyharina");
+            intent.putExtra("valor", "Huevos y Harina");
             startActivity(intent);
         });
         //----IMAGEN 3
@@ -151,7 +151,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView aceite= view.findViewById(R.id.categoria4);
         aceite.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "aceites");
+            intent.putExtra("valor", "Aceites");
             startActivity(intent);
         });
         //----IMAGEN 4
@@ -175,7 +175,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView dulce= view.findViewById(R.id.categoria8);
         dulce.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "dulces");
+            intent.putExtra("valor", "Dulce y Sal");
             startActivity(intent);
         });
         //----IMAGEN 5
@@ -199,7 +199,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView aseo= view.findViewById(R.id.categoria11);
         aseo.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "aseo");
+            intent.putExtra("valor", "Aseo del Hogar");
             startActivity(intent);
         });
         //----IMAGEN 6
@@ -223,7 +223,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView cuidado= view.findViewById(R.id.categoria7);
         cuidado.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "cuidadopersonal");
+            intent.putExtra("valor", "Dulceria");
             startActivity(intent);
         });
         //----IMAGEN 7
@@ -247,7 +247,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView frutos= view.findViewById(R.id.categoria9);
         frutos.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "frutos");
+            intent.putExtra("valor", "Frutos Secos");
             startActivity(intent);
         });
         //----IMAGEN 8
@@ -271,7 +271,7 @@ public class FragECO extends Fragment implements View.OnClickListener{
         final ImageView mascota= view.findViewById(R.id.categoria10);
         mascota.setOnClickListener(view1 -> {
             Intent intent=new Intent(getContext(), Lista_Categoria.class);
-            intent.putExtra("valor", "mascotas");
+            intent.putExtra("valor", "Mascotas");
             startActivity(intent);
         });
         //----IMAGEN 9

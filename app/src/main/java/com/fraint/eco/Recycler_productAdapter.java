@@ -3,6 +3,7 @@ package com.fraint.eco;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,8 +18,9 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
     private OnProductListener mOnProductListener;
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private TextView Nombre, precio;
+        private TextView Nombre, precio, tipo;
         ImageView FotoProducto;
+        private Button delete_prod;
 
         OnProductListener onProductListener;
 
@@ -28,6 +30,7 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
              Nombre=itemView.findViewById(R.id.Product_Name);
              precio=itemView.findViewById(R.id.precioproduct);
              FotoProducto=itemView.findViewById(R.id.imageProduct);
+             tipo=itemView.findViewById(R.id.Unidad);
 
              this.onProductListener=onProductListener;
              itemView.setOnClickListener(this);
@@ -35,7 +38,6 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
 
         @Override
         public void onClick(View view) {
-
 
             onProductListener.onProductClick(getAdapterPosition());
         }
@@ -62,8 +64,9 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.Nombre.setText(productolista.get(position).getNombre());
-        holder.precio.setText(productolista.get(position).getPrecio());
+        holder.precio.setText(String.valueOf(productolista.get(position).getPrecio()));
         holder.FotoProducto.setImageBitmap(productolista.get(position).getImgproduct());
+        holder.tipo.setText(productolista.get(position).getTipo());
 
     }
 
