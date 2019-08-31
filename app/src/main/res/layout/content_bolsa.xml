@@ -3,34 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:background="@color/White"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="?attr/actionBarSize">
-
-        <TextView
-            android:id="@+id/cant_bolsa"
-            android:text="Bolsita de Compra"
-            android:textColor="@color/Vinotino"
-            android:textStyle="bold"
-
-            android:textSize="28dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
+    <include
+        android:id="@+id/TituloCategoria"
+        layout="@layout/toolbarcategoria"
+        />
 
     <RelativeLayout
-        android:background="@drawable/bolsacolor"
+        android:background="@color/White"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/emptybag"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignBottom="@+id/infocart"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="105dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="221dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/contenido_bolsa"
@@ -38,16 +33,22 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/infocart"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp" />
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="-2dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginEnd="-2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="1dp"
+            android:background="#ff904c" />
 
         <LinearLayout
             android:id="@+id/infocart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="@color/White"
             android:orientation="vertical">
 
             <LinearLayout
@@ -105,6 +106,7 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
+                android:background="@drawable/contorno"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -116,25 +118,25 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="20dp"
                     android:textStyle="bold"
-                    android:text="PAGO TOTAL"
+                    android:text="@string/sub_total"
                     android:textColor="#292B36"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:text="$"
+                    android:text="@string/____"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/totalbolsa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:gravity="right"
-                    android:text="Precio Total"
+                    android:text="@string/precio_total"
                     android:textColor="#000"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -148,29 +150,28 @@
                 android:layout_marginBottom="8dp"
                 android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/Programar_Pedido"
+                <Button
+                    android:id="@+id/Pedido_Efectivo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/boton_redondo"
                     android:gravity="center"
-                    android:layout_marginRight="5dp"
                     android:text="@string/pago_contraentrega"
                     android:textColor="@color/White"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/Pedido_Domicilio"
+                <!--<Button
+                    android:id="@+id/Pedido_Efectivo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/boton_redondo"
                     android:gravity="center"
-                    android:text="@string/pago_online"
+                    android:text="@string/pago_Efectivo"
                     android:textColor="@color/White"
-                    android:textSize="18sp" />
+                    android:textSize="18sp" />-->
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

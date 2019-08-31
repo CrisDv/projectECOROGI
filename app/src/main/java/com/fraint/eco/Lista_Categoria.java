@@ -1,21 +1,21 @@
 package com.fraint.eco;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.icu.text.DecimalFormat;
 import android.os.Bundle;
-import android.text.style.TtsSpan;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
     private RecyclerView recyclerproducto;
     private Recycler_productAdapter recycler_productAdapter;
-    private List<producto_pr>product=new ArrayList<>();
+    private List<itemproducto>product=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,14 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         recyclerproducto.setAdapter(recycler_productAdapter);
         toolbar();
 
+        recyclerproducto.setHasFixedSize(true);
+        recyclerproducto.setItemViewCacheSize(20);
+        recyclerproducto.setDrawingCacheEnabled(true);
+        recyclerproducto.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
     }
 
-    public List<producto_pr> mostrarproductos()
+    public List<itemproducto> mostrarproductos()
     {
         String categoria=getIntent().getStringExtra("valor");
         String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"';";
@@ -55,12 +60,11 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             Statement st =post.conexionbd().createStatement();
             ResultSet rs=st.executeQuery(sqla);
 
-            for(int i=0;i<=100;i++)
+            for(int i=0;i<=49;i++)
             {
                 while(rs.next())
                 {
-                    //List<producto_pr>product=new ArrayList<>();
-                    product.add(new producto_pr(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(6),foto(Integer.parseInt(rs.getString(1)))));
+                    product.add(new itemproducto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6),foto(Integer.parseInt(rs.getString(1)))));
 
                 }
             }
@@ -68,23 +72,19 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         }
         catch (Exception e)
         {
+            Toast.makeText(this, "Sin Productos por el momento", Toast.LENGTH_LONG).show();
             System.out.println(e);
         }
         finally {
             System.out.println("MUESTRAN LOS DATOS");
         }
-
-
-       /* List<producto_pr> product=new ArrayList<>();
-        product.add(new producto_pr("producto 1", "1.000", R.drawable.ecologo));
-        product.add(new producto_pr("producto 3", "3.000", R.drawable.ecologo));*/
         return product;
     }
 
-    @Override
+  @Override
     public void onProductClick(int position) {
 
-        final producto_pr pdpropieties=product.get(position);
+         final itemproducto pdpropieties=product.get(position);
         Intent intent=new Intent(this, InterfazProducto.class);
         intent.putExtra("id_producto", pdpropieties.getId_product());
         intent.putExtra("nombre", pdpropieties.getNombre());
@@ -99,8 +99,6 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         String sql="SELECT img FROM productos WHERE product_id="+id+";";
 
         InputStream im=null;
-
-        NavegacionL con=new NavegacionL();
 
         Conexionpst post=new Conexionpst();
         try
@@ -135,9 +133,15 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.navegacion_l, menu);
+        getMenuInflater().inflate(R.menu.toolbar_p, menu);
         return true;
     }
 

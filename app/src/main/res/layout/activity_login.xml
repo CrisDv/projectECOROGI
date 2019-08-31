@@ -2,53 +2,36 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ic_img_inicio_sesion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginapp"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     tools:context=".Login">
 
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/FBottom"
-        android:layout_width="226dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
     <Button
-        android:id="@+id/GSing"
-        android:layout_width="226dp"
-        android:layout_height="40dp"
-        android:background="@drawable/campo_bordeado"
-        android:backgroundTint="@color/Gris"
-        android:text="@string/InsGG"
-        android:textColor="@color/White"
-        android:textSize="17sp"
+        android:id="@+id/GSingIng"
+        android:layout_width="296dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/btnlogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintVertical_bias="0.41" />
 
     <ImageView
-        android:id="@+id/IconLc"
-        android:layout_width="236dp"
-        android:layout_height="150dp"
-        android:contentDescription="@string/imagen1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/icgoogle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237"
-        app:srcCompat="@drawable/ecologo" />
-
-
+        app:layout_constraintVertical_bias="0.415110" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,9 +43,9 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
         }
     }
 
-    public List<producto_pr> productolista;
+    public List<itemproducto> productolista;
 
-    public Recycler_productAdapter(List<producto_pr>productolista, OnProductListener onProductListener)
+    public Recycler_productAdapter(List<itemproducto>productolista, OnProductListener onProductListener)
     {
         this.productolista=productolista;
         this.mOnProductListener=onProductListener;

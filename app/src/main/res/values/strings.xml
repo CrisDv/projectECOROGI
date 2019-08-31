@@ -1,47 +1,39 @@
 <resources>
     <string name="app_name">ECOROGI</string>
-    <string name="Inicio1">Correo Electronico</string>
-    <string name="Inicio2">Registrar</string>
-    <string name="title_activity_navegacion_l">NavegacionL</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="menu_perfil">Perfil</string>
 
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="InsFB">INGRESAR CON FACEBOOK</string>
-    <string name="reg">Registrar</string>
-    <string name="direcciones_nav_view">Mis Direcciones</string>
-
-    <string name="InsGG">INGRESAR CON GOOGLE</string>
-    <string name="imagen1">appicon</string>
-    <string name="title_activity_registro">register</string>
-    <string name="out">Cerrar Sesión</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Pendiente_direccion">¡Valida Tu Cobertura!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
     <string name="title_activity_maps">Map</string>
-    <string name="checkadress">Confirmar</string>
-    <string name="direccion">¡Valida Tu Cobertura!</string>
-    <string name="p_kilo">P.KILO</string>
-    <string name="precio">Precio</string>
-    <string name="title_activity_bolsa">Bolsa</string>
-
-    <style name="notificaciondefault">default</style>
-
-    <string name="facebook_app_id">409172179635546</string>
-    <string name="fb_login_protocol_scheme">fb409172179635546</string>
-    <string name="mundo_eco">Mundo Eco</string>
+    <string name="agregar_direccion">Agregar Direccion</string>
+    <string name="no_torre">No Torre</string>
+    <string name="no_apartamento">No Apartamento</string>
+    <string name="confirmar_Direccion">Confirmar</string>
+    <string name="pago_contraentrega">PAGA EN EFECTIVO</string>
+    <string name="pago_online">ONLINE</string>
+    <string name="preciopor">preciopor</string>
     <string name="mis_pedidos">Mis Pedidos</string>
-    <string name="gramos_acumulados">Gramos Acumulados</string>
-    <string name="categoria_del_producto">Categoria del producto</string>
-    <string name="pago_online">Online</string>
-    <string name="pago_contraentrega">Contraentrega</string>
-    <string name="Notorre"># Torre</string>
-    <string name="Noapartamento">#Apartamento</string>
-    <string name="agregar_direccion">AGREGAR DIRECCION</string>
-    <string name="direccion_actual">Direccion Actual</string>
-    <string name="escribe_tu_direccion">Escribe tu direccion</string>
-    <string name="reescribe_tu_direccion">Reescribe tu direccion</string>
-    <string name="tu_numero_de_celular">Tu Numero De Celular</string>
-
-
+    <string name="mis_direcciones">Mis Direcciones</string>
+    <string name="agregar_a_bolsa">AGREGAR</string>
+    <string name="numerototal">numeroTotal</string>
+    <string name="no_documento">No. Documento</string>
+    <string name="nombre_titular">No. Celular</string>
+    <string name="cuando_llevamos_tu_orden">¿Cuando llevamos tu orden?</string>
+    <string name="confirmar_orden">CONFIRMAR ORDEN</string>
+    <string name="unidades">Unidades:</string>
+    <string name="canridad_en_g">Cantidad en g:</string>
+    <string name="cantidad_en_ml">Cantidad en ml:</string>
+    <string name="domicilio">Domicilio</string>
+    <string name="_2_500">$ 2.500</string>
+    <string name="____">$</string>
+    <string name="precio_total">Precio Total</string>
+    <string name="numero_pedido">Numero_Pedido</string>
+    <string name="sub_total">SUB TOTAL</string>
+    <string name="orden_no">ORDEN No</string>
 </resources>

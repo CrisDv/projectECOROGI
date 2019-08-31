@@ -1,37 +1,21 @@
 package com.fraint.eco;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.material.navigation.NavigationView;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Optional;
 
 public class splash extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -50,7 +34,7 @@ public class splash extends AppCompatActivity implements GoogleApiClient.OnConne
         super.onCreate(savedInstanceState);
 
         // Tenemos una plantilla llamada splash.xml donde mostraremos la información que queramos (logotipo, etc.)
-        setContentView(R.layout.splash);
+        setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(() -> {
 
@@ -84,7 +68,7 @@ public class splash extends AppCompatActivity implements GoogleApiClient.OnConne
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
-            Intent intent=new Intent(this, NavegacionL.class);
+            Intent intent=new Intent(this, P_InterfazUsuario.class);
             startActivity(intent);
 
         } else {
@@ -97,6 +81,6 @@ public class splash extends AppCompatActivity implements GoogleApiClient.OnConne
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        System.out.println(connectionResult);
+
     }
 }

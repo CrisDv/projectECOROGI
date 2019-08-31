@@ -1,31 +1,29 @@
 package com.fraint.eco;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 public class InterfazProducto extends AppCompatActivity {
 
-
+   int sumatotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +37,23 @@ public class InterfazProducto extends AppCompatActivity {
         ImageView imagepr=findViewById(R.id.imageProduct);
         TextView idpr=findViewById(R.id.id_product);
         TextView produnidad=findViewById(R.id.producto_unidad);
+        TextView temp=findViewById(R.id.temp_price);
         preciototal.setText("0");
 
         cantidad_producto.setInputType(InputType.TYPE_CLASS_NUMBER);
-        String nom, pric, tipo_pr, id, unidad;
+        String nom, tipo_pr, id, unidad;
         Bitmap imgpr;
+        float pric;
         id=getIntent().getStringExtra("id_producto");
         nom=getIntent().getStringExtra("nombre");
-        pric=getIntent().getStringExtra("precio");
+        pric=getIntent().getFloatExtra("precio", 0);
         tipo_pr=getIntent().getStringExtra("Tipo_del_producto");
         imgpr=getIntent().getParcelableExtra("BitImage");
         unidad=getIntent().getStringExtra("Tipo_del_producto");
 
         idpr.setText(id);
         nombre.setText(nom);
-        precio.setText(pric);
+        precio.setText(String.valueOf(pric));
         tipo_producto.setText(tipo_pr);
         produnidad.setText(unidad);
         imagepr.setImageBitmap(imgpr);
@@ -78,16 +78,27 @@ public class InterfazProducto extends AppCompatActivity {
 
                 try
                 {
-                    int sumatotal, cantidad, preciou;
-                    cantidad=Integer.parseInt(cantidad_producto.getText().toString());
-                    preciou=Integer.parseInt(precio.getText().toString());
-                    sumatotal=cantidad*preciou;
-                    preciototal.setText(String.valueOf(sumatotal));
+                    final String separador = "###,###.###";
+                    DecimalFormat decimalFormat = new DecimalFormat(separador);
+                    NumberFormat nf=NumberFormat.getInstance();
+
+                    float cantidad;
+                    float preciou;
+                    float sumatotal=0;
+                    cantidad=Float.parseFloat(cantidad_producto.getText().toString());
+                    //preciou=Integer.parseInt(precio.getText().toString());
+                    preciou=  nf.parse(precio.getText().toString()).floatValue();
+                    sumatotal= (cantidad*preciou);
+
+                   preciototal.setText(decimalFormat.format(sumatotal));
+                   temp.setText(String.valueOf(sumatotal));
                 }
                 catch (NumberFormatException nx)
                 {
-                    System.out.println(nx);
-                    preciototal.setText("0");
+                    System.out.println(nx+" number error");
+                    preciototal.setText("");
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -96,26 +107,63 @@ public class InterfazProducto extends AppCompatActivity {
 
         agregar.setOnClickListener(view ->
         {
-            if (cantidad_producto.getText().toString()==null||preciototal.getText().toString()=="0")
+            if (cantidad_producto.getText().toString()==null  ||preciototal.getText().toString()=="0")
             {
                 Toast.makeText(this, "No agregaste una cantidad", Toast.LENGTH_LONG).show();
             }
             else
             {
-                cna.AgregarABolsa(Integer.parseInt(idpr.getText().toString()),nombre.getText().toString(),Integer.parseInt(cantidad_producto.getText().toString()), Integer.parseInt(preciototal.getText().toString()), imgpr, produnidad.getText().toString());
-                Toast.makeText(this, "Producto Agregado", Toast.LENGTH_LONG).show();
+                try
+                {
+                    cna.AgregarABolsa(Integer.parseInt(idpr.getText().toString()),nombre.getText().toString(),Integer.parseInt(cantidad_producto.getText().toString()), temp.getText().toString(), imgpr, produnidad.getText().toString());
+                    Toast.makeText(this, "Producto Agregado", Toast.LENGTH_LONG).show();
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, "Puede que ya hayas agregado este producto", Toast.LENGTH_LONG).show();
+                }
                /* Intent intent=new Intent(this, NavegacionL.class);
                 startActivity(intent);*/
                onBackPressed();
             }
         });
 
-        ImageView bolsa=findViewById(R.id.bolsacompra);
-        bolsa.setOnClickListener(view ->
-        {
-            Intent intent=new Intent(this, Bolsa.class);
-            startActivity(intent);
-        });
+        toolbar();
     }
+
+    private void toolbar()
+    {
+        Toolbar barra=findViewById(R.id.TituloCategoria);
+
+        setSupportActionBar(barra);
+        //getSupportActionBar().setTitle(categoria.toUpperCase());
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.toolbar_p, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.carritoshop:
+                Intent intent = new Intent(this, Bolsa.class);// bolsa
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

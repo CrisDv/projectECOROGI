@@ -41,7 +41,7 @@ public class MessagingService extends FirebaseMessagingService {
 
     private void showNotification(CLNotificacion notificacion)
     {
-        Intent intent=new Intent(this, NavegacionL.class);
+        Intent intent=new Intent(this, P_InterfazUsuario.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent= PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
