@@ -60,6 +60,13 @@ public class frgCategorias extends Fragment{
 
         final ImageView ofertas = view.findViewById(R.id.ofertas);
 
+        ofertas.setOnClickListener(view1 ->
+        {
+            load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Combos");
+            startActivity(intent);
+        });
         final File file;
         try {
             file = File.createTempFile("oferta", "png");
@@ -314,7 +321,7 @@ public class frgCategorias extends Fragment{
     {
         ImageView loadimg=view.findViewById(R.id.imgload);
         Button dir=view.findViewById(R.id.street);
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(3000, 1000) {
             public void onTick(long millisUntilFinished) {
                 loadimg.setVisibility(View.VISIBLE);
                 dir.setVisibility(View.INVISIBLE);

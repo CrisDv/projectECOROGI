@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".frgCategorias">
+
+        <Button
+            android:id="@+id/street"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:backgroundTint="@color/White"
+            android:text="@string/Pendiente_direccion"
+            android:textColor="@color/Vinotino"
+            android:textSize="15sp" />
+      <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="58dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ofertas"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@drawable/marca1" />
+
+                    <ImageView
+                        android:id="@+id/categoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+
+                    <ImageView
+                        android:id="@+id/categoria2"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+
+                    <ImageView
+                        android:id="@+id/categoria3"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+
+                    <ImageView
+                        android:id="@+id/categoria4"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/categoria7"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY"
+                        tools:ignore="NestedWeights" />
+
+                    <ImageView
+                        android:id="@+id/categoria8"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+
+                    <ImageView
+                        android:id="@+id/categoria9"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/categoria10"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/categoria11"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    <ImageView
+        android:id="@+id/imgload"
+        android:background="@drawable/imagenload"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>
