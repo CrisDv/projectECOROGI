@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +69,12 @@ public class Recycler_productAdapter extends RecyclerView.Adapter<Recycler_produ
         holder.FotoProducto.setImageBitmap(productolista.get(position).getImgproduct());
         holder.tipo.setText(productolista.get(position).getTipo());
 
+        if (productolista.get(position).getTipo().equals("und"))
+        {
+            int valueund=(int) productolista.get(position).getPrecio();
+            holder.precio.setText(String.valueOf(valueund));
+
+        }
     }
 
     public interface OnProductListener{

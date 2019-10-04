@@ -3,6 +3,7 @@ package com.fraint.eco;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -104,9 +105,9 @@ public class pago_Efectivo extends AppCompatActivity {
         ArrayList<String> DiaEnvio=new ArrayList<>();
         DiaEnvio.add("Dia");
         DiaEnvio.add("Lunes");
-        DiaEnvio.add("Martes");
+
         DiaEnvio.add("Miercoles");
-        DiaEnvio.add("Jueves");
+
         DiaEnvio.add("Viernes");
         DiaEnvio.add("Sabado");
         DiaEnvio.add("Domingo");
@@ -201,6 +202,25 @@ public class pago_Efectivo extends AppCompatActivity {
             Conexion cn=new Conexion(this);
             cn.EnviarProductos(acc.getEmail());
             return true;
+        }
+    }
+
+    private class Enviar extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
     }
 

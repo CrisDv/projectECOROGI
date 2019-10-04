@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
@@ -62,7 +63,7 @@ public class frgCategorias extends Fragment{
 
         ofertas.setOnClickListener(view1 ->
         {
-            load();
+            //load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Combos");
             startActivity(intent);
@@ -89,7 +90,7 @@ public class frgCategorias extends Fragment{
 
         cereales.setOnClickListener(view1 -> {
 
-            load();
+            //load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "cereales");
             startActivity(intent);
@@ -115,8 +116,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView granos = view.findViewById(R.id.categoria2);
         granos.setOnClickListener(view1 -> {
-
-            load();
+           // load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Granos");
             startActivity(intent);
@@ -141,7 +141,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView huevos = view.findViewById(R.id.categoria3);
         huevos.setOnClickListener(view1 -> {
-            load();
+          //  load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Huevos y Harina");
             startActivity(intent);
@@ -166,7 +166,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView aceite = view.findViewById(R.id.categoria4);
         aceite.setOnClickListener(view1 -> {
-            load();
+            //load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Aceites");
             startActivity(intent);
@@ -191,7 +191,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView dulce = view.findViewById(R.id.categoria8);
         dulce.setOnClickListener(view1 -> {
-            load();
+           // load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Dulce y Sal");
             startActivity(intent);
@@ -216,7 +216,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView aseo = view.findViewById(R.id.categoria11);
         aseo.setOnClickListener(view1 -> {
-            load();
+         //   load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Aseo del Hogar");
             startActivity(intent);
@@ -224,7 +224,7 @@ public class frgCategorias extends Fragment{
         //----IMAGEN 6
         final File file6;
         try {
-            load();
+          //  load();
             file6 = File.createTempFile("dulce", "png");
             storageRef.child("Categorias/6-Aseo.png").getFile(file6)
                     .addOnSuccessListener(taskSnapshot -> {
@@ -242,7 +242,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView cuidado = view.findViewById(R.id.categoria7);
         cuidado.setOnClickListener(view1 -> {
-            load();
+          //  load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Dulceria");
             startActivity(intent);
@@ -268,7 +268,7 @@ public class frgCategorias extends Fragment{
         final ImageView frutos = view.findViewById(R.id.categoria9);
         frutos.setOnClickListener(view1 -> {
 
-            load();
+          //  load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Frutos Secos");
             startActivity(intent);
@@ -293,7 +293,7 @@ public class frgCategorias extends Fragment{
 
         final ImageView mascota = view.findViewById(R.id.categoria10);
         mascota.setOnClickListener(view1 -> {
-            load();
+           // load();
             Intent intent = new Intent(getContext(), Lista_Categoria.class);
             intent.putExtra("valor", "Mascotas");
             startActivity(intent);
@@ -314,25 +314,12 @@ public class frgCategorias extends Fragment{
             //cc
             e.printStackTrace();
         }
+
         return view;
-    }
-
-    public void load()
-    {
-        ImageView loadimg=view.findViewById(R.id.imgload);
-        Button dir=view.findViewById(R.id.street);
-        new CountDownTimer(3000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                loadimg.setVisibility(View.VISIBLE);
-                dir.setVisibility(View.INVISIBLE);
-            }
-
-            public void onFinish() {
-                loadimg.setVisibility(View.GONE);
-                dir.setVisibility(View.VISIBLE);
-            }
-
-        }.start();
 
     }
+
+
+
 }
+

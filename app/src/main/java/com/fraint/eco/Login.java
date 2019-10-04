@@ -1,9 +1,12 @@
 package com.fraint.eco;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +28,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private com.google.firebase.auth.FirebaseAuth FirebaseAuth;
     private com.google.firebase.auth.FirebaseAuth.AuthStateListener AuthListener;
     private static final String TAG = "Login";
-
+    Button GSign;
+    ImageView load, GNuttonIMG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +45,17 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         Googleapiclient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
                             .addApi(Auth.GOOGLE_SIGN_IN_API, GSO).build();
 
-        Button GSign=findViewById(R.id.GSingIng);
+        GSign=findViewById(R.id.GSingIng);
         GSign.setOnClickListener(v -> {
             Intent intent =Auth.GoogleSignInApi.getSignInIntent(Googleapiclient);//Selector de cuentas de google
             Googleapiclient.connect();
             startActivityForResult(intent,SignCode);
         });
 
+        load=findViewById(R.id.ImagenCargaLogin);
+        load.setVisibility(View.INVISIBLE);
+        GNuttonIMG=findViewById(R.id.Gbutton);
+        GNuttonIMG.setVisibility(View.VISIBLE);
         initialize();
     }
 
@@ -77,9 +85,9 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 {
 
                     //Toast.makeText(Login.this, "Autenticando Con Google", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this,P_InterfazUsuario.class);
-                    startActivity(intent);
-                    finish();
+                    cargaInterfazPrincipal cargaInterfazPrincipal=new cargaInterfazPrincipal();
+                    cargaInterfazPrincipal.execute();
+
                 }
                 else
                 {
@@ -95,6 +103,37 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
         System.out.println(resultado.getStatus());
 
+
+    }
+
+    private class cargaInterfazPrincipal extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            GSign.setVisibility(View.INVISIBLE);
+            GSign.setEnabled(false);
+            GNuttonIMG.setVisibility(View.INVISIBLE);
+            load.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Intent intent = new Intent(Login.this,P_InterfazUsuario.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

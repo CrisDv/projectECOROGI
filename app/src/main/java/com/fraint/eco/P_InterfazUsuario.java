@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.Layout;
 import android.util.Xml;
@@ -36,7 +38,7 @@ import java.util.Objects;
 public class P_InterfazUsuario extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private TextView mTextMessage;
     private int MY_LOCATION_REQUEST;
-
+    final Handler mhandler=new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +66,16 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
 
         switch (menuItem.getItemId()) {
             case R.id.navigation_home:
-                fmanager.beginTransaction().replace(R.id.NavViewInterfaz, new frgCategorias()).commit();
+                fmanager.beginTransaction().replace(R.id.NavViewInterfaz, new frgCategorias()).addToBackStack(null).commit();
+
                 break;
-           /* case R.id.navigation_dashboard:
-                Toast.makeText(this, "dashboard", Toast.LENGTH_LONG).show();
-                break;*/
             case R.id.navigation_notifications:
-                fmanager.beginTransaction().replace(R.id.NavViewInterfaz, new frgPerfil()).commit();
+                fmanager.beginTransaction().replace(R.id.NavViewInterfaz, new frgPerfil()).addToBackStack(null).commit();
+
                 break;
         }
         return true;
     }
-
 
 
     private void showAlert() {
@@ -171,20 +171,6 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.carritoshop:
-                new CountDownTimer(2000, 1000) {
-
-                    LinearLayout viewLoad=(LinearLayout) findViewById(R.id.loadcontentview);
-                    public void onTick(long millisUntilFinished) {
-                        viewLoad.setVisibility(View.VISIBLE);
-
-                    }
-
-                    public void onFinish() {
-                        viewLoad.setVisibility(View.INVISIBLE);
-                        viewLoad.setVisibility(View.GONE);
-                    }
-
-                }.start();
                 Intent intent = new Intent(this, Bolsa.class);// bolsa
                 startActivity(intent);
                 break;
@@ -192,8 +178,14 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
         return super.onOptionsItemSelected(item);
     }
 
+    public void hilo_producto()
+    {
+
+    }
+
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
     }
 }

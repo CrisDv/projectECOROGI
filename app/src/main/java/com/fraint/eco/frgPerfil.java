@@ -65,9 +65,9 @@ public class frgPerfil extends Fragment implements GoogleApiClient.OnConnectionF
         Button pedidos=view.findViewById(R.id.PerfilPedidos);
         pedidos.setOnClickListener(view1 ->
         {
-            Toast.makeText(view.getContext(), "Pronto En Funcionamiento", Toast.LENGTH_LONG).show();
-            /*Intent intent=new Intent(getContext(),MisPedidos.class );
-            startActivity(intent);*/
+            //Toast.makeText(view.getContext(), "Pronto En Funcionamiento", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(getContext(),Historial.class );
+            startActivity(intent);
         });
 
         Button direcciones=view.findViewById(R.id.PerfilDirecciones);
@@ -83,7 +83,6 @@ public class frgPerfil extends Fragment implements GoogleApiClient.OnConnectionF
         });
         initialize();
         UIPerfil();
-        initialize();
         return view;
     }
 

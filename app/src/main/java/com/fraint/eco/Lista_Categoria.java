@@ -3,6 +3,7 @@ package com.fraint.eco;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -28,31 +29,39 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
     private RecyclerView recyclerproducto;
     private Recycler_productAdapter recycler_productAdapter;
     private List<itemproducto>product=new ArrayList<>();
+    LinearLayout loadlayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista__categoria);
-
-
         recyclerproducto=findViewById(R.id.recyclerlistproducto);
         recyclerproducto.setLayoutManager(new LinearLayoutManager(this));
 
-        recycler_productAdapter =new Recycler_productAdapter(mostrarproductos(), this);
-        recyclerproducto.setAdapter(recycler_productAdapter);
         toolbar();
+
+//        recycler_productAdapter =new Recycler_productAdapter(mostrarproductos(), Lista_Categoria.this);
+  //      recyclerproducto.setAdapter(recycler_productAdapter);
+
+        CargarImagen cargarImagen=new CargarImagen();
+        cargarImagen.execute();
+
+
+        loadlayout=findViewById(R.id.loadcontentproduct);
+        loadlayout.setVisibility(View.VISIBLE);
 
         recyclerproducto.setHasFixedSize(true);
         recyclerproducto.setItemViewCacheSize(20);
         recyclerproducto.setDrawingCacheEnabled(true);
         recyclerproducto.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
     }
 
-    public List<itemproducto> mostrarproductos()
+
+    /*public List<itemproducto> mostrarproductos()
     {
         String categoria=getIntent().getStringExtra("valor");
-        String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"';";
-        String sqli="SELECT * FROM productos";
+        String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"' ORDER BY nombre;";
+        String sqle="SELECT * FROM productos";
+
 
         Conexionpst post=new Conexionpst();
         try
@@ -60,11 +69,12 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             Statement st =post.conexionbd().createStatement();
             ResultSet rs=st.executeQuery(sqla);
 
+
             for(int i=0;i<=49;i++)
             {
                 while(rs.next())
                 {
-                    product.add(new itemproducto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6),foto(Integer.parseInt(rs.getString(1)))));
+                    product.add(new itemproducto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6), foto(Integer.parseInt(rs.getString(1)))));
 
                 }
             }
@@ -79,7 +89,10 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             System.out.println("MUESTRAN LOS DATOS");
         }
         return product;
-    }
+
+       // foto(Integer.parseInt(rs.getString(1)))
+    }*/
+
 
   @Override
     public void onProductClick(int position) {
@@ -97,10 +110,8 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
     public Bitmap foto(int id)
     {
         String sql="SELECT img FROM productos WHERE product_id="+id+";";
-
-        InputStream im=null;
-
         Conexionpst post=new Conexionpst();
+        InputStream im=null;
         try
         {
             Statement st =post.conexionbd().createStatement();
@@ -116,8 +127,60 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             System.out.println(e);
         }
 
-        Bitmap bpm=BitmapFactory.decodeStream(im);
-        return bpm;
+        return BitmapFactory.decodeStream(im);
+    }
+
+    private class CargarImagen extends AsyncTask<Void, Void, List<itemproducto>>
+    {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<itemproducto> doInBackground(Void... voids) {
+            String categoria=getIntent().getStringExtra("valor");
+            String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"' ORDER BY nombre;";
+            String sqle="SELECT * FROM productos";
+
+
+            Conexionpst post=new Conexionpst();
+            try
+            {
+                Statement st =post.conexionbd().createStatement();
+                ResultSet rs=st.executeQuery(sqla);
+
+
+                for(int i=0;i<=49;i++)
+                {
+                    while(rs.next())
+                    {
+                        product.add(new itemproducto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6), foto(Integer.parseInt(rs.getString(1)))));
+
+                    }
+                }
+                st.close();
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(Lista_Categoria.this, "Sin Productos por el momento", Toast.LENGTH_LONG).show();
+                System.out.println(e);
+            }
+            finally {
+                System.out.println("MUESTRAN LOS DATOS");
+            }
+            return product;
+        }
+
+        @Override
+        protected void onPostExecute(List<itemproducto> itempr) {
+            super.onPostExecute(itempr);
+            loadlayout.setVisibility(View.GONE);
+            recycler_productAdapter =new Recycler_productAdapter(itempr, Lista_Categoria.this);
+            recyclerproducto.setAdapter(recycler_productAdapter);
+        }
     }
 
     private void toolbar()
@@ -156,4 +219,8 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

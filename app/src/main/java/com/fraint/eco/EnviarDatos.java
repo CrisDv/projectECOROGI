@@ -28,7 +28,8 @@ public class EnviarDatos {
 
         rbigid=BigInteger.valueOf(Long.parseLong(idpedido5));
 
-        //p_interfazUsuario.agregar_historial(idpedido5, tiempo);
+        /*Historial h=new Historial();
+        h.DataHistorialPedidos(idpedido5, tiempo);*/
 
         return rbigid;
     }
@@ -38,9 +39,15 @@ public class EnviarDatos {
         Conexionpst post=new Conexionpst();
         PreparedStatement ps=null;
 
+        Calendar fecha2=Calendar.getInstance();
+        int mes=fecha2.get(Calendar.MONTH)+1;
+        int dia=fecha2.get(Calendar.DAY_OF_MONTH);
+        int hora=fecha2.get(Calendar.HOUR_OF_DAY);
+        int minuto=fecha2.get(Calendar.MINUTE);
+        String fechapedido=String.valueOf(mes)+"/"+String.valueOf(dia)+"/"+String.valueOf(hora)+":"+String.valueOf(minuto);
         try
         {
-            ps=post.conexionbd().prepareStatement("INSERT INTO pedido VALUES ("+idpedidos()+","+total+", '"+fecha+"', 1,'"+correo+"', "+telefono+" )");
+            ps=post.conexionbd().prepareStatement("INSERT INTO pedido VALUES ("+idpedidos()+","+total+", '"+fecha+"', 1,'"+correo+"', "+telefono+", '"+fechapedido+"' )");
             ps.execute();
             ps.close();
         }
@@ -59,14 +66,12 @@ public class EnviarDatos {
         try
         {
             Statement st=post.conexionbd().createStatement();
-
-            ResultSet rs=st.executeQuery("SELECT ID FROM pedido WHERE Client_correo='"+correo+"' ORDER BY id DESC LIMIT 1;");
+            ResultSet rs=st.executeQuery("SELECT ID FROM pedido WHERE Client_correo='"+correo+"' ORDER BY fechadelpedido DESC LIMIT 1;");
                     while (rs.next())
                     {
-                        statement=post.conexionbd().prepareStatement("INSERT INTO pedido_producto VALUES ("+BigInteger.valueOf(Long.parseLong(rs.getString(1)))+", "+id_producto+", "+cantidad+")");
+                        statement=post.conexionbd().prepareStatement("INSERT INTO pedido_producto VALUES ("+BigInteger.valueOf(Long.parseLong(rs.getString(1)))+", "+id_producto+", "+cantidad+");");
                         statement.execute();
                     }
-
                     rs.close();
         }
         catch (SQLException e)
@@ -94,4 +99,6 @@ public class EnviarDatos {
             return dir;
         }
     }
+
+
 }

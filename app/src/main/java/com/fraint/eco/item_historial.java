@@ -1,5 +1,7 @@
 package com.fraint.eco;
 
+import java.math.BigInteger;
+
 public class item_historial {
 
     String idproducto;

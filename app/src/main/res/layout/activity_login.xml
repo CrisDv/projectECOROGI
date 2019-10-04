@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
+    <ImageView
+        android:id="@+id/ImagenCargaLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/imagenload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/GSingIng"
         android:layout_width="296dp"
@@ -25,6 +34,7 @@
         app:layout_constraintVertical_bias="0.41" />
 
     <ImageView
+        android:id="@+id/Gbutton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/icgoogle"
@@ -34,4 +44,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.415110" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

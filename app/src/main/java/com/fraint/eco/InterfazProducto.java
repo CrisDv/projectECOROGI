@@ -58,6 +58,12 @@ public class InterfazProducto extends AppCompatActivity {
         produnidad.setText(unidad);
         imagepr.setImageBitmap(imgpr);
 
+        if (unidad.equals("und"))
+        {
+            int preciodeunidad=(int) pric;
+            precio.setText(String.valueOf(preciodeunidad));
+
+        }
 
         Conexion cna=new Conexion(getApplicationContext());
         Button agregar=findViewById(R.id.agregarBolsa);
@@ -78,27 +84,25 @@ public class InterfazProducto extends AppCompatActivity {
 
                 try
                 {
-                    final String separador = "###,###.###";
+                    final String separador = "###,###.##";
                     DecimalFormat decimalFormat = new DecimalFormat(separador);
                     NumberFormat nf=NumberFormat.getInstance();
 
                     float cantidad;
                     float preciou;
-                    float sumatotal=0;
+                    int sumatotal=0;
                     cantidad=Float.parseFloat(cantidad_producto.getText().toString());
                     //preciou=Integer.parseInt(precio.getText().toString());
                     preciou=  nf.parse(precio.getText().toString()).floatValue();
-                    sumatotal= (cantidad*preciou);
+                    sumatotal= (int) (cantidad*preciou);
 
                    preciototal.setText(decimalFormat.format(sumatotal));
                    temp.setText(String.valueOf(sumatotal));
                 }
-                catch (NumberFormatException nx)
+                catch (Exception nx)
                 {
                     System.out.println(nx+" number error");
                     preciototal.setText("");
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
 
             }

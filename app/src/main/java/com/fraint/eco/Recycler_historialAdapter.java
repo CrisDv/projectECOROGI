@@ -41,7 +41,7 @@ public class Recycler_historialAdapter extends RecyclerView.Adapter<Recycler_his
     @Override
     public void onBindViewHolder(@NonNull Recycler_historialAdapter.ViewHolderDatos holder, int position) {
 
-        holder.idproducto.setText(listdatos.get(position).getIdproducto());
+        holder.idproducto.setText("ID: "+listdatos.get(position).getIdproducto());
         holder.fecha.setText(listdatos.get(position).getFecha());
 
     }
