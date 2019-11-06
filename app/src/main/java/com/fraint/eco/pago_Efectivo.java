@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.fraint.eco.Connections_.Conexion;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
@@ -52,6 +53,7 @@ public class pago_Efectivo extends AppCompatActivity {
                     Intent intent=new Intent(this, P_InterfazUsuario.class);
                     startActivity(intent);
                     Toast.makeText(this, "PEDIDO CONFIRMADO", Toast.LENGTH_LONG).show();
+
                     cn.eliminarbolsa();
                 }
                 else
@@ -67,7 +69,7 @@ public class pago_Efectivo extends AppCompatActivity {
         TextView DireccionValidada=findViewById(R.id.DireccionEnvio);
 
         Conexion bdhelper=new Conexion(this);
-        EnviarDatos data=new EnviarDatos();
+        EnviarDatos data=new EnviarDatos(this);
 
         DireccionValidada.setText(data.direccion(acc.getEmail()));
 
@@ -104,11 +106,6 @@ public class pago_Efectivo extends AppCompatActivity {
     {
         ArrayList<String> DiaEnvio=new ArrayList<>();
         DiaEnvio.add("Dia");
-        DiaEnvio.add("Lunes");
-
-        DiaEnvio.add("Miercoles");
-
-        DiaEnvio.add("Viernes");
         DiaEnvio.add("Sabado");
         DiaEnvio.add("Domingo");
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, DiaEnvio);
@@ -175,7 +172,7 @@ public class pago_Efectivo extends AppCompatActivity {
 
     private boolean enviarBD()
     {
-        EnviarDatos datos=new EnviarDatos();
+        EnviarDatos datos=new EnviarDatos(this);
         GoogleSignInAccount acc= GoogleSignIn.getLastSignedInAccount(this);
         TextView total=findViewById(R.id.totalinvisible);
         EditText tel=findViewById(R.id.CELULAR);
@@ -204,6 +201,7 @@ public class pago_Efectivo extends AppCompatActivity {
             return true;
         }
     }
+
 
     private class Enviar extends AsyncTask<Void, Void, Void>
     {

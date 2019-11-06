@@ -2,36 +2,32 @@ package com.fraint.eco;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fraint.eco.Adapters.Recycler_BolsaAdapter;
+import com.fraint.eco.Adapters.item_carro;
+import com.fraint.eco.Connections_.Conexion;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Bolsa extends AppCompatActivity implements Recycler_BolsaAdapter.OnitembagListener {
 
     private RecyclerView recycleritemb;
     private Recycler_BolsaAdapter mRecyclerBolsaAdapter;
-    private List<itemcarro> itembolsa = new ArrayList<>();
+    private List<item_carro> itembolsa = new ArrayList<>();
     private final String COMMA_SEPERATED = "###,###.###";
     private DecimalFormat decimalFormat = new DecimalFormat(COMMA_SEPERATED);
 

@@ -1,19 +1,14 @@
 package com.fraint.eco;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
-import android.text.Layout;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +23,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.fraint.eco.Connections_.Conexion;
+import com.fraint.eco.Connections_.Conexionpst;
+import com.fraint.eco.FragmentsList.frgCategorias;
+import com.fraint.eco.FragmentsList.frgPerfil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -141,17 +140,6 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
         //getSupportActionBar().setTitle(categoria.toUpperCase());
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void agregar_historial(String id_ped, String fecha)
-    {
-        Conexion con=new Conexion(this);
-        SQLiteDatabase bd=con.getWritableDatabase();
-        EnviarDatos en=new EnviarDatos();
-
-        bd.execSQL("INSERT INTO historial VALUES ('"+String.valueOf(en.idpedidos())+"', '"+fecha+"')");
-        bd.close();
-
     }
 
     @Override

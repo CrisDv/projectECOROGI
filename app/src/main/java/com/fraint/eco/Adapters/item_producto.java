@@ -1,15 +1,15 @@
-package com.fraint.eco;
+package com.fraint.eco.Adapters;
 
 import android.graphics.Bitmap;
 
-public class itemproducto {
+public class item_producto {
     private String id_product;
     private String Nombre;
     private float  precio;
     private String tipo;
     private Bitmap imgproduct;
 
-    public itemproducto(String id_product, String nombre, float precio, String tipo, Bitmap imgproduct) {
+    public item_producto(String id_product, String nombre, float precio, String tipo, Bitmap imgproduct) {
         this.id_product=id_product;
         Nombre = nombre;
         this.precio = precio;
@@ -17,7 +17,7 @@ public class itemproducto {
         this.imgproduct = imgproduct;
     }
 
-    public itemproducto() {
+    public item_producto() {
 
     }
 

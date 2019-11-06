@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.FragmentsList;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.fraint.eco.Historial;
+import com.fraint.eco.Login;
+import com.fraint.eco.P_InterfazUsuario;
+import com.fraint.eco.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -66,7 +70,7 @@ public class frgPerfil extends Fragment implements GoogleApiClient.OnConnectionF
         pedidos.setOnClickListener(view1 ->
         {
             //Toast.makeText(view.getContext(), "Pronto En Funcionamiento", Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(getContext(),Historial.class );
+            Intent intent=new Intent(getContext(), Historial.class );
             startActivity(intent);
         });
 

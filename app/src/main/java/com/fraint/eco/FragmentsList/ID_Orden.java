@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.FragmentsList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
+
+import com.fraint.eco.P_InterfazUsuario;
+import com.fraint.eco.R;
 
 public class ID_Orden extends DialogFragment{
 

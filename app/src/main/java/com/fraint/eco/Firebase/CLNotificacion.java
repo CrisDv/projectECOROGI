@@ -1,4 +1,4 @@
-package com.fraint.eco.Notificacion;
+package com.fraint.eco.Firebase;
 
 public class CLNotificacion {
 

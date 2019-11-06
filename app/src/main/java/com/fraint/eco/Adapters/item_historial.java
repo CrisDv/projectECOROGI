@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.Adapters;
 
 import java.math.BigInteger;
 

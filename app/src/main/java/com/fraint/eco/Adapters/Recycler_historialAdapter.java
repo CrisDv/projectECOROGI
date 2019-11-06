@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fraint.eco.R;
 
 import java.util.List;
 

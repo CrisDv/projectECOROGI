@@ -22,6 +22,10 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.fraint.eco.Connections_.Conexion;
+import com.fraint.eco.Connections_.Conexionpst;
+import com.fraint.eco.P_InterfazUsuario;
+import com.fraint.eco.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.maps.CameraUpdate;

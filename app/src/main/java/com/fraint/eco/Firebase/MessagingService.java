@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.Firebase;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,7 +9,9 @@ import android.net.Uri;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
-import com.fraint.eco.Notificacion.CLNotificacion;
+import com.fraint.eco.Firebase.CLNotificacion;
+import com.fraint.eco.P_InterfazUsuario;
+import com.fraint.eco.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

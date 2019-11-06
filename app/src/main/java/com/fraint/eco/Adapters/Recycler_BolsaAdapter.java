@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fraint.eco.Connections_.Conexion;
+import com.fraint.eco.R;
 
 import java.util.List;
 
@@ -48,9 +51,9 @@ public class Recycler_BolsaAdapter extends RecyclerView.Adapter<Recycler_BolsaAd
 
     }
 
-    public List<itemcarro> itemcarroLista;
+    public List<item_carro> itemcarroLista;
 
-    public Recycler_BolsaAdapter(List<itemcarro> itemcarroLista, OnitembagListener onitembagListener)
+    public Recycler_BolsaAdapter(List<item_carro> itemcarroLista, OnitembagListener onitembagListener)
     {
         this.mOnitembagListener=onitembagListener;
         this.itemcarroLista=itemcarroLista;

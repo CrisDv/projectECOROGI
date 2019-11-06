@@ -1,5 +1,10 @@
 package com.fraint.eco;
 
+import android.content.Context;
+
+import com.fraint.eco.Connections_.Conexion;
+import com.fraint.eco.Connections_.Conexionpst;
+
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,52 +14,35 @@ import java.util.Calendar;
 
 public class EnviarDatos {
 
-    public BigInteger idpedidos()
-    {
-        BigInteger rbigid;
+    private Context context;
 
-        long id1=(long) (Math.random()*100000)+1;
-        Calendar fecha = Calendar.getInstance();
-        int mes = fecha.get(Calendar.MONTH) + 1;
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        int minuti=fecha.get(Calendar.MINUTE);
-        int segundo=fecha.get(Calendar.SECOND);
-
-        int anio=fecha.get(Calendar.YEAR);
-
-        String idpedido5= String.valueOf(id1) +String.valueOf(mes)+ String.valueOf(dia) + String.valueOf(minuti) + String.valueOf(segundo);
-        P_InterfazUsuario p_interfazUsuario=new P_InterfazUsuario();
-        String tiempo= anio +"/"+ mes +"/"+ dia;
-
-        rbigid=BigInteger.valueOf(Long.parseLong(idpedido5));
-
-        /*Historial h=new Historial();
-        h.DataHistorialPedidos(idpedido5, tiempo);*/
-
-        return rbigid;
+    public EnviarDatos(Context context) {
+        this.context = context;
     }
 
-    public void pedido(int total, BigInteger telefono, String correo, String fecha)
-    {
-        Conexionpst post=new Conexionpst();
-        PreparedStatement ps=null;
+    public void pedido(int total, BigInteger telefono, String correo, String fecha) {
+        Conexionpst post = new Conexionpst();
 
-        Calendar fecha2=Calendar.getInstance();
-        int mes=fecha2.get(Calendar.MONTH)+1;
-        int dia=fecha2.get(Calendar.DAY_OF_MONTH);
-        int hora=fecha2.get(Calendar.HOUR_OF_DAY);
-        int minuto=fecha2.get(Calendar.MINUTE);
-        String fechapedido=String.valueOf(mes)+"/"+String.valueOf(dia)+"/"+String.valueOf(hora)+":"+String.valueOf(minuto);
-        try
-        {
-            ps=post.conexionbd().prepareStatement("INSERT INTO pedido VALUES ("+idpedidos()+","+total+", '"+fecha+"', 1,'"+correo+"', "+telefono+", '"+fechapedido+"' )");
+        Conexion cn= new Conexion(context);
+        PreparedStatement ps = null;
+
+        Calendar fecha2 = Calendar.getInstance();
+        int mes = fecha2.get(Calendar.MONTH) + 1;
+        int dia = fecha2.get(Calendar.DAY_OF_MONTH);
+        int hora = fecha2.get(Calendar.HOUR_OF_DAY);
+        int minuto = fecha2.get(Calendar.MINUTE);
+
+        BigInteger bigid=cn.generarid();
+        String fechapedido = String.valueOf(mes) + "/" + String.valueOf(dia) + "/" + String.valueOf(hora) + ":" + String.valueOf(minuto);
+        try {
+            ps = post.conexionbd().prepareStatement("INSERT INTO pedido VALUES ("+bigid+"," + total + ", '" + fecha + "', 1,'" + correo + "', " + telefono + ", '" + fechapedido + "' )");
+            System.out.println("pedido: "+ bigid);
             ps.execute();
             ps.close();
+        } catch (SQLException e) {
+            System.out.println(e + "Enviar datos pedido");
         }
-        catch (SQLException e)
-        {
-            System.out.println(e+"Enviar datos pedido");
-        }
+
 
     }
 
@@ -62,15 +50,18 @@ public class EnviarDatos {
     {
         Conexionpst post=new Conexionpst();
         PreparedStatement statement=null;
-
+        Conexion con=new Conexion(context);
+        BigInteger bigid=BigInteger.valueOf(con.recogerid());
         try
         {
             Statement st=post.conexionbd().createStatement();
-            ResultSet rs=st.executeQuery("SELECT ID FROM pedido WHERE Client_correo='"+correo+"' ORDER BY fechadelpedido DESC LIMIT 1;");
+            //ResultSet rs=st.executeQuery("SELECT ID FROM pedido WHERE Client_correo='"+correo+"' ORDER BY fechadelpedido DESC LIMIT 1;");
+            ResultSet rs=st.executeQuery("SELECT ID FROM pedido WHERE Client_correo='"+correo+"';");
                     while (rs.next())
                     {
-                        statement=post.conexionbd().prepareStatement("INSERT INTO pedido_producto VALUES ("+BigInteger.valueOf(Long.parseLong(rs.getString(1)))+", "+id_producto+", "+cantidad+");");
+                        statement=post.conexionbd().prepareStatement("INSERT INTO pedido_producto VALUES ("+bigid+", "+id_producto+", "+cantidad+");");
                         statement.execute();
+                        System.out.println("pedido_producto: "+bigid);
                     }
                     rs.close();
         }
@@ -78,6 +69,8 @@ public class EnviarDatos {
         {
             System.out.println(e+" Enviar datos pedido_productos");
         }
+
+
     }
 
     String direccion(String correo)  {

@@ -1,4 +1,4 @@
-package com.fraint.eco;
+package com.fraint.eco.Connections_;
 
 import android.content.Context;
 import android.content.Intent;

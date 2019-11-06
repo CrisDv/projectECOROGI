@@ -1,8 +1,8 @@
-package com.fraint.eco;
+package com.fraint.eco.Adapters;
 
 import android.graphics.Bitmap;
 
-public class itemcarro {
+public class item_carro {
 
     int id_producto;
     private String Nombre;
@@ -12,11 +12,11 @@ public class itemcarro {
     private String tipo_unidad;
 
 
-    public itemcarro() {
+    public item_carro() {
 
     }
 
-    public itemcarro(int id_producto,String nombre, int cantidad, int total, Bitmap img, String tipo_unidad) {
+    public item_carro(int id_producto, String nombre, int cantidad, int total, Bitmap img, String tipo_unidad) {
         this.id_producto=id_producto;
         Nombre = nombre;
         this.cantidad = cantidad;
