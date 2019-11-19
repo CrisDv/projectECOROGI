@@ -2,6 +2,7 @@ package com.fraint.eco;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.fraint.eco.Connections_.Conexion;
 
 import java.text.DecimalFormat;
@@ -43,7 +45,7 @@ public class InterfazProducto extends AppCompatActivity {
 
         cantidad_producto.setInputType(InputType.TYPE_CLASS_NUMBER);
         String nom, tipo_pr, id, unidad;
-        Bitmap imgpr;
+        Uri imgpr;
         float pric;
         id=getIntent().getStringExtra("id_producto");
         nom=getIntent().getStringExtra("nombre");
@@ -57,7 +59,8 @@ public class InterfazProducto extends AppCompatActivity {
         precio.setText(String.valueOf(pric));
         tipo_producto.setText(tipo_pr);
         produnidad.setText(unidad);
-        imagepr.setImageBitmap(imgpr);
+        //imagepr.setImageBitmap(imgpr);
+        Glide.with(this).load(imgpr).into(imagepr);
 
         if (unidad.equals("und"))
         {
@@ -126,6 +129,7 @@ public class InterfazProducto extends AppCompatActivity {
                 catch (Exception e)
                 {
                     Toast.makeText(this, "Puede que ya hayas agregado este producto", Toast.LENGTH_LONG).show();
+                    System.out.println(e+"INTERFAZPRODUCTO");
                 }
                /* Intent intent=new Intent(this, NavegacionL.class);
                 startActivity(intent);*/

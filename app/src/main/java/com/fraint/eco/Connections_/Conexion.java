@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 import com.fraint.eco.EnviarDatos;
 import com.fraint.eco.Lista_Categoria;
@@ -29,7 +30,7 @@ public class Conexion extends SQLiteOpenHelper {
             "    nombrepr VARCHAR (20) PRIMARY KEY NOT NULL," +
             "    cantidad INT NOT NULL," +
             "    suma INT NOT NULL," +
-            "    img bytea," +
+            "    img VARCHAR(300)," +
             "    tipo_producto VARCHAR (5)"+
             ");";
 
@@ -86,15 +87,17 @@ public class Conexion extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void AgregarABolsa(int id_produc, String nombre, int cantidad, String sumacomprada, Bitmap imc, String tipoUnidad)
+    public void AgregarABolsa(int id_produc, String nombre, int cantidad, String sumacomprada, Uri imc, String tipoUnidad)
     {
-        ByteArrayOutputStream bos=new ByteArrayOutputStream();
+       /* ByteArrayOutputStream bos=new ByteArrayOutputStream();
         imc.compress(Bitmap.CompressFormat.PNG, 0, bos);
-        byte [] barray=bos.toByteArray();
+        byte [] barray=bos.toByteArray();*/
+       String imgn=imc.toString();
+
         SQLiteDatabase bdagregar=getWritableDatabase();
         if (bdagregar!=null)
         {
-            bdagregar.execSQL("INSERT INTO bolsacompra (id_producto, nombrepr, cantidad, suma, tipo_producto) VALUES ("+id_produc+",'"+nombre+"', "+cantidad+", "+sumacomprada+",'"+tipoUnidad+"');");
+            bdagregar.execSQL("INSERT INTO bolsacompra (id_producto, nombrepr, cantidad, suma, tipo_producto, img) VALUES ("+id_produc+",'"+nombre+"', "+cantidad+", "+sumacomprada+",'"+tipoUnidad+"','"+imgn+"');");
 
             bdagregar.close();
         }

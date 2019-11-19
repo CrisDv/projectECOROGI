@@ -2,85 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="5dp"
+    android:background="@color/White"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:background="@drawable/contorno2"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+   <com.facebook.shimmer.ShimmerFrameLayout
+       android:id="@+id/shimmer_item_producto"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageProduct"
-                android:layout_width="80dp"
-                android:background="@color/White"
-                android:layout_height="80dp"
-                android:src="@drawable/ecologo"
-                 />
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+       <androidx.cardview.widget.CardView
+           android:background="@drawable/contorno2"
+           android:layout_marginRight="5dp"
+           android:layout_marginLeft="5dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/Product_Name"
-                    android:layout_width="match_parent"
-                    android:textColor="#000"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:textStyle="bold"
-                    android:textSize="17dp"
-                    android:layout_marginLeft="12dp"
-                    android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    app:textAllCaps="true" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="3dp"
+               android:orientation="horizontal">
 
-                <LinearLayout
+               <ImageView
+                   android:id="@+id/imageProduct"
+                   android:layout_width="80dp"
+                   android:background="@color/shimmer_background"
+                   android:layout_height="80dp"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                   />
 
-                    <TextView
-                        android:text="$"
-                        android:textColor="#000"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="12dp"
-                        android:textSize="18dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/precioproduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="0dp"
-                        android:textColor="#000"
-                        android:textSize="18dp"
-                        android:text="TextView" />
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/Unidad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="#000"
-                        android:textSize="18dp"
-                        android:text="TextView" />
-                </LinearLayout>
+                   <TextView
+                       android:id="@+id/Product_Name"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="12dp"
+                       android:layout_marginTop="15dp"
+                       android:background="@color/shimmer_background"
+                       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                       android:textColor="#000"
+                       android:textSize="17dp"
 
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                       android:textStyle="bold"
+                       app:textAllCaps="true" />
+
+                   <LinearLayout
+
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:orientation="horizontal">
+
+                       <TextView
+                           android:text="$"
+                           android:textColor="#000"
+                           android:layout_marginTop="8dp"
+                           android:layout_marginLeft="12dp"
+                           android:textSize="18dp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <TextView
+                           android:id="@+id/precioproduct"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp"
+                           android:layout_marginLeft="0dp"
+                           android:textColor="#000"
+                           android:textSize="18dp"
+                           android:background="@color/shimmer_background"
+                           android:hint="TextView"
+                           android:textColorHint="@color/Unknow"/>
+
+                       <TextView
+                           android:id="@+id/Unidad"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp"
+                           android:layout_marginLeft="5dp"
+                           android:textColor="#000"
+                           android:background="@color/shimmer_background"
+                           android:textSize="18dp"
+                           android:hint="TextView"
+                           android:textColorHint="@color/Unknow"/>
+                   </LinearLayout>
+
+               </LinearLayout>
+           </LinearLayout>
+       </androidx.cardview.widget.CardView>
+   </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

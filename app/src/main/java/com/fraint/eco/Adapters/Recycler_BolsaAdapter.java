@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.fraint.eco.Connections_.Conexion;
 import com.fraint.eco.R;
 
@@ -77,7 +78,9 @@ public class Recycler_BolsaAdapter extends RecyclerView.Adapter<Recycler_BolsaAd
         holder.Total.setText(Integer.toString(itemcarroLista.get(posicion).getTotal()));
         holder.Cantidad.setText(Integer.toString(itemcarroLista.get(posicion).getCantidad()));
         holder.tipou.setText(itemcarroLista.get(posicion).getTipo_unidad());
-        holder.foto.setImageBitmap(itemcarroLista.get(posicion).getImg());
+        //holder.foto.setImageURI(itemcarroLista.get(posicion).getImg());
+        Glide.with(holder.foto.getContext()).load(itemcarroLista.get(posicion).getImg()).into(holder.foto);
+
 
         Context con=holder.context;
 

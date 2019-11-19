@@ -33,7 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.List;
 
 
-public class frgPerfil extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
+public class    frgPerfil extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
     private static GoogleApiClient Googleapiclient;//API para autenticar inicio con Google (intermediario)
     static final int SignCode = 5;

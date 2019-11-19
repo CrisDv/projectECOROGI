@@ -1,6 +1,7 @@
 package com.fraint.eco.Adapters;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 public class item_carro {
 
@@ -8,7 +9,7 @@ public class item_carro {
     private String Nombre;
     private int cantidad;
     private int total;
-    private Bitmap img;
+    private Uri img;
     private String tipo_unidad;
 
 
@@ -16,7 +17,7 @@ public class item_carro {
 
     }
 
-    public item_carro(int id_producto, String nombre, int cantidad, int total, Bitmap img, String tipo_unidad) {
+    public item_carro(int id_producto, String nombre, int cantidad, int total, Uri img, String tipo_unidad) {
         this.id_producto=id_producto;
         Nombre = nombre;
         this.cantidad = cantidad;
@@ -49,11 +50,11 @@ public class item_carro {
         this.total = total;
     }
 
-    public Bitmap getImg() {
+    public Uri getImg() {
         return img;
     }
 
-    public void setImg(Bitmap img) {
+    public void setImg(Uri img) {
         this.img = img;
     }
 

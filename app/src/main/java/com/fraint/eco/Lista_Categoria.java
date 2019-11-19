@@ -3,6 +3,7 @@ package com.fraint.eco;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,15 +43,16 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
         toolbar();
 
-//        recycler_productAdapter =new Recycler_productAdapter(mostrarproductos(), Lista_Categoria.this);
-  //      recyclerproducto.setAdapter(recycler_productAdapter);
+        recycler_productAdapter =new Recycler_productAdapter(null, Lista_Categoria.this);
+        recyclerproducto.setAdapter(recycler_productAdapter);
 
         CargarImagen cargarImagen=new CargarImagen();
         cargarImagen.execute();
 
+        recycler_productAdapter.showShimmer=true;
 
         loadlayout=findViewById(R.id.loadcontentproduct);
-        loadlayout.setVisibility(View.VISIBLE);
+        loadlayout.setVisibility(View.GONE);
 
         recyclerproducto.setHasFixedSize(true);
         recyclerproducto.setItemViewCacheSize(20);
@@ -71,11 +73,11 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         startActivity(intent);
     }
 
-    public Bitmap foto(int id)
+    public Uri foto(int id)
     {
-        String sql="SELECT img FROM productos WHERE product_id="+id+";";
+        String sql="SELECT urlimagen FROM productos WHERE product_id="+id+";";
         Conexionpst post=new Conexionpst();
-        InputStream im=null;
+        Uri ImagenURL=null;
         try
         {
             Statement st =post.conexionbd().createStatement();
@@ -83,7 +85,8 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
 
             while (rs.next())
             {
-                im=rs.getBinaryStream(1);
+
+                ImagenURL=Uri.parse(rs.getString(1));
             }
         }
         catch (Exception e)
@@ -91,7 +94,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             System.out.println(e);
         }
 
-        return BitmapFactory.decodeStream(im);
+        return ImagenURL;
     }
 
     private class CargarImagen extends AsyncTask<Void, Void, List<item_producto>>
@@ -121,8 +124,8 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
                 {
                     while(rs.next())
                     {
-                        product.add(new item_producto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6), foto(Integer.parseInt(rs.getString(1)))));
 
+                        product.add(new item_producto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6), foto(Integer.parseInt(rs.getString(1))), rs.getBoolean(9)));
                     }
                 }
                 st.close();
@@ -144,6 +147,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
             loadlayout.setVisibility(View.GONE);
             recycler_productAdapter =new Recycler_productAdapter(itempr, Lista_Categoria.this);
             recyclerproducto.setAdapter(recycler_productAdapter);
+            recycler_productAdapter.showShimmer=false;
         }
     }
 
