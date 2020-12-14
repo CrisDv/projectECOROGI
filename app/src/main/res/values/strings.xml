@@ -36,4 +36,7 @@
     <string name="numero_pedido">Numero_Pedido</string>
     <string name="sub_total">SUB TOTAL</string>
     <string name="orden_no">ORDEN No</string>
+
+    <string name="facebook_app_id">409172179635546</string>
+    <string name="fb_login_protocol_scheme">fb409172179635546</string>
 </resources>

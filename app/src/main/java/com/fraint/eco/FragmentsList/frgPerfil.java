@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.fraint.eco.Historial;
 import com.fraint.eco.Login;
 import com.fraint.eco.P_InterfazUsuario;
@@ -96,18 +99,27 @@ public class    frgPerfil extends Fragment implements GoogleApiClient.OnConnecti
         GoogleSignInAccount account=GoogleSignIn.getLastSignedInAccount(view.getContext());
 
         ImageView fperfil=view.findViewById(R.id.foto_perfil);
-        if (account.getPhotoUrl()!=null)
+        try
         {
-            Glide.with(this).load(account.getPhotoUrl()).into(fperfil);
+            if (account.getPhotoUrl()!=null)
+            {
+                Glide.with(this).load(account.getPhotoUrl()).into(fperfil);
+            }
+            else
+            {
+                Glide.with(this).load("https://www.sumarecursos.com/wp-content/uploads/2016/12/silueta-gris.png").into(fperfil);
+            }
+            TextView nombre=view.findViewById(R.id.User_name);
+            if (account.getDisplayName()!=null)
+            {
+                nombre.setText(account.getDisplayName());
+            }
+
         }
-        else
+        catch (Exception e)
         {
-            Glide.with(this).load("https://www.sumarecursos.com/wp-content/uploads/2016/12/silueta-gris.png").into(fperfil);
+            System.out.println("ERROR "+e);
         }
-
-        TextView nombre=view.findViewById(R.id.User_name);
-        nombre.setText(account.getDisplayName());
-
         Button sali=view.findViewById(R.id.cerrar);
         sali.setOnClickListener(view1 ->
         {
@@ -180,9 +192,9 @@ public class    frgPerfil extends Fragment implements GoogleApiClient.OnConnecti
         }
 
         deleteAppData();
-      /*  if (LoginManager.getInstance() != null){
+        if (LoginManager.getInstance() != null){
             LoginManager.getInstance().logOut();
-        }*/
+        }
     }
 
     private void initialize() {

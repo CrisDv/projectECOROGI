@@ -23,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.facebook.Profile;
 import com.fraint.eco.Connections_.Conexion;
 import com.fraint.eco.Connections_.Conexionpst;
 import com.fraint.eco.FragmentsList.frgCategorias;
@@ -55,7 +56,16 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
 
         LinearLayout viewLoad=(LinearLayout) findViewById(R.id.loadcontentview);
         viewLoad.setVisibility(View.GONE);
-        bdperfile();
+        GoogleSignInAccount account=GoogleSignIn.getLastSignedInAccount(this);
+        if (account!=null)
+        {
+            bdperfileG(account);
+        }
+        /*else
+        {
+            //String idFacebook= getIntent().getStringExtra("FBid");
+            bdprofileFB();
+        }*/
         showAlert();
     }
 
@@ -107,9 +117,9 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
         }
     }
 
-    private void bdperfile()
+    private void bdperfileG(GoogleSignInAccount account)
     {
-        GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
+        System.out.println("INICIO GOOGLE");
         Conexion con=new Conexion(this);
         Conexionpst post=new Conexionpst();
         try
@@ -131,6 +141,29 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
         }
     }
 
+    /*private void bdprofileFB()
+    {
+        System.out.println("INICIO FACEBOOK");
+        Conexion con=new Conexion(this);
+        Conexionpst post=new Conexionpst();
+        try
+        {
+            PreparedStatement pst=post.conexionbd().prepareStatement("INSERT INTO usuarios (correo, nombre) VALUES ('"
+                    + Profile.getCurrentProfile().getId() +"', '"+
+                    Profile.getCurrentProfile().getFirstName()+"')");
+            pst.executeQuery();
+            Toast.makeText(this, "CONSULTA AGREGADA", Toast.LENGTH_LONG).show();
+            SQLiteDatabase bs=con.getWritableDatabase();
+            bs.execSQL("INSERT INTO usuario (correo) VALUES '"+Profile.getCurrentProfile().getId()+"';");
+            con.close();
+            pst.close();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            System.out.println(e.getLocalizedMessage());
+        }
+    }*/
 
     private void toolbar()
     {
@@ -164,11 +197,6 @@ public class P_InterfazUsuario extends AppCompatActivity implements BottomNaviga
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void hilo_producto()
-    {
-
     }
 
     @Override

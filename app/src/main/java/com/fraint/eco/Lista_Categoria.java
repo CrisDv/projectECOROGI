@@ -60,8 +60,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         recyclerproducto.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
-  @Override
-    public void onProductClick(int position) {
+  @Override public void onProductClick(int position) {
 
          final item_producto pdpropieties=product.get(position);
         Intent intent=new Intent(this, InterfazProducto.class);
@@ -109,7 +108,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
         @Override
         protected List<item_producto> doInBackground(Void... voids) {
             String categoria=getIntent().getStringExtra("valor");
-            String sqla="SELECT * FROM productos WHERE tipo_categoria='"+categoria+"' ORDER BY nombre;";
+            String sqla="SELECT product_id, nombre, preciou, tipo_unidadm, disponible FROM productos WHERE tipo_categoria='"+categoria+"' ORDER BY nombre;";
             String sqle="SELECT * FROM productos";
 
 
@@ -125,7 +124,7 @@ public class Lista_Categoria extends AppCompatActivity implements Recycler_produ
                     while(rs.next())
                     {
 
-                        product.add(new item_producto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(6), foto(Integer.parseInt(rs.getString(1))), rs.getBoolean(9)));
+                        product.add(new item_producto(rs.getString(1),rs.getString(2), Float.parseFloat(rs.getString(3)), rs.getString(4), foto(Integer.parseInt(rs.getString(1))), rs.getBoolean(5)));
                     }
                 }
                 st.close();

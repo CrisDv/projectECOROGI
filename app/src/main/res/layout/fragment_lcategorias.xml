@@ -57,7 +57,6 @@
                         android:background="@drawable/marca2"
                         android:scaleType="fitXY" />
 
-
                     <ImageView
                         android:id="@+id/categoria3"
                         android:layout_width="match_parent"
@@ -69,6 +68,33 @@
 
                     <ImageView
                         android:id="@+id/categoria4"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/cat_lonchera"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/cat_Aseopersonal"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/cat_Pastas"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginTop="5dp"
@@ -130,7 +156,34 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/marca2"
                         android:scaleType="fitXY" />
-                </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/cat_mecato"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/cat_bebidas"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:id="@+id/cat_sopas"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/marca2"
+                        android:scaleType="fitXY"/>
+            </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

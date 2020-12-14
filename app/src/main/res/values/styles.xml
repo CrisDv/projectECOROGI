@@ -33,4 +33,10 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
 
     </style>
+
+    <style name="PopUpHistorial" parent="AppTheme.NoActionBar">
+        <item name="android:popupBackground">#D6000000</item>
+
+        <item name="android:alpha">60</item>
+    </style>
 </resources>

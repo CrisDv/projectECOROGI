@@ -15,20 +15,30 @@ import java.util.List;
 public class Recycler_historialAdapter extends RecyclerView.Adapter<Recycler_historialAdapter.ViewHolderDatos> {
 
     List<item_historial> listdatos;
-    public class ViewHolderDatos extends RecyclerView.ViewHolder {
+    private OnItemHistorialListener itemHistorialListener;
+    public class ViewHolderDatos extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView idproducto, fecha;
-
+        OnItemHistorialListener onitemHistorialListener;
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
 
             idproducto=itemView.findViewById(R.id.PedidoNo);
             fecha=itemView.findViewById(R.id.fecha);
+
+            this.onitemHistorialListener=itemHistorialListener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            itemHistorialListener.onItemListener(getAdapterPosition());
+        }
     }
-    public Recycler_historialAdapter(List<item_historial> listdatos) {
+    public Recycler_historialAdapter(List<item_historial> listdatos, OnItemHistorialListener itemHistorialListener) {
+
         this.listdatos = listdatos;
+        this.itemHistorialListener=itemHistorialListener;
     }
 
     @NonNull
@@ -53,5 +63,9 @@ public class Recycler_historialAdapter extends RecyclerView.Adapter<Recycler_his
         return listdatos.size();
     }
 
+    public interface OnItemHistorialListener
+    {
+        void onItemListener(int position);
+    }
 
 }

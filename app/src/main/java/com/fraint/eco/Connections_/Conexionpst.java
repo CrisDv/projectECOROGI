@@ -24,7 +24,7 @@ public class Conexionpst {
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("org.postgresql.Driver").newInstance();
-            connection= DriverManager.getConnection("jdbc:postgresql://3.13.99.76:5432/MOVIL","mastercr","ECOMARKETAPPTEST");
+            connection= DriverManager.getConnection("URI", "USER", "PASS");
 
             //Toast.makeText(this, "Conexion Exitosa", Toast.LENGTH_LONG).show();
         }

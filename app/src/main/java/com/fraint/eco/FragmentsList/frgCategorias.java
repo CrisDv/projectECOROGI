@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.fraint.eco.MapsActivity;
@@ -302,6 +303,154 @@ public class frgCategorias extends Fragment{
             e.printStackTrace();
         }
 
+
+        final ImageView Lonchera = view.findViewById(R.id.cat_lonchera);
+        Lonchera.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Lonchera");
+
+            startActivity(intent);
+        });
+        //----IMAGEN 9
+        final File file10;
+        try {
+            file10 = File.createTempFile("lonchera", "png");
+            storageRef.child("Categorias/10-Lonchera.png").getFile(file10)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file10.getAbsolutePath());
+                        Lonchera.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+            System.out.println("FRGCATEGORIAS "+e);
+        }
+
+
+        final ImageView Mecato = view.findViewById(R.id.cat_mecato);
+        Mecato.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Mecato");
+            startActivity(intent);
+        });
+        //----IMAGEN 9
+        final File file11;
+        try {
+            file11 = File.createTempFile("mecato", "png");
+            storageRef.child("Categorias/12-Mecato.png").getFile(file11)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file11.getAbsolutePath());
+                        Mecato.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+        }
+
+        final ImageView Aseo_p = view.findViewById(R.id.cat_Aseopersonal);
+        Aseo_p.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Aseo Personal");
+            startActivity(intent);
+        });
+        //----IMAGEN 9
+        final File file12;
+        try {
+            file12 = File.createTempFile("mascotas", "png");
+            storageRef.child("Categorias/11-Aseo-personal.png").getFile(file12)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file12.getAbsolutePath());
+                        Aseo_p.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+        }
+
+//--------------------------------------------------------------------------
+        final ImageView catBebidas = view.findViewById(R.id.cat_bebidas);
+        catBebidas.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Bebidas");
+            startActivity(intent);
+        });
+
+        final File file13;
+        try {
+            file13 = File.createTempFile("Bebidas", "png");
+            storageRef.child("Categorias/15-Bebidas.png").getFile(file13)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file13.getAbsolutePath());
+                        catBebidas.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+        }
+//--------------------------------------------------------------------------
+        final ImageView catpastas = view.findViewById(R.id.cat_Pastas);
+        catpastas.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Pastas");
+            startActivity(intent);
+        });
+
+        final File file14;
+        try {
+            file14 = File.createTempFile("Pastas", "png");
+            storageRef.child("Categorias/13-Pastas.png").getFile(file14)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file14.getAbsolutePath());
+                        catpastas.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+        }
+//--------------------------------------------------------------------------
+        final ImageView catsopas = view.findViewById(R.id.cat_sopas);
+        catsopas.setOnClickListener(view1 -> {
+            // load();
+            Intent intent = new Intent(getContext(), Lista_Categoria.class);
+            intent.putExtra("valor", "Salsas y Sopas");
+            startActivity(intent);
+        });
+
+        final File file15;
+        try {
+            file15 = File.createTempFile("Sopas", "png");
+            storageRef.child("Categorias/14-Sopas-y-salsas.png").getFile(file15)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file15.getAbsolutePath());
+                        catsopas.setImageBitmap(bitmap);
+                    }).addOnFailureListener(e -> {
+                //Log.e(TAG, "Ocurrio un error al mostrar la imagen");
+                e.printStackTrace();
+            });
+        } catch (Exception e) {
+            //cc
+            e.printStackTrace();
+        }
         return view;
 
     }

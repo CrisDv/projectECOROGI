@@ -1,5 +1,6 @@
 package com.fraint.eco;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Historial extends AppCompatActivity {
+public class Historial extends AppCompatActivity implements Recycler_historialAdapter.OnItemHistorialListener {
 
   private List<item_historial> historial = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -36,7 +37,7 @@ public class Historial extends AppCompatActivity {
         setContentView(R.layout.activity_historial);
         recyclerView = findViewById(R.id.recyclerHistorial);
 
-        mHistoryAdapter = new Recycler_historialAdapter(historial);
+        mHistoryAdapter = new Recycler_historialAdapter(historial, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mHistoryAdapter);
@@ -48,7 +49,6 @@ public class Historial extends AppCompatActivity {
 
     private  void DataHistorialPedidos()
     {
-        Toast.makeText(this, "aasd", Toast.LENGTH_LONG).show();
         GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
         Conexionpst con=new Conexionpst();
          String consulta_historial="SELECT id, fecha FROM pedido WHERE Client_correo='"+account.getEmail()+"';";
@@ -85,4 +85,12 @@ public class Historial extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemListener(int position) {
+        final item_historial item_historialp=historial.get(position);
+        Toast.makeText(this, "Aun estamos trabajando en esto", Toast.LENGTH_LONG).show();
+        Intent i=new Intent(this, PopUpHistorial.class);
+        i.putExtra("id", item_historialp.getIdproducto());
+        startActivity(i);
+    }
 }
